@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="https:/ffib.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="https:/ffib.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="https:/ffib.github.io/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https:/ffib.github.io/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="本文的示例以计算器为例。 简单工厂模式由三部分组成：  对象抽象类：抽象共有属性或者方法，可以通过协议或者父类。 对象类：实现或者继承工厂类的方法或者属性，并且定义自身特有的属性或者方法。 工厂类：通过工厂类去创建对象类。  对象抽象类在这里，对象抽象类，采用协议的方法创建，降低代码的耦合度，如果需要实现共有逻辑，可以通过对协议进行拓展来实现12345protocol Operatable &amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift设计模式系列之工厂模式">
+<meta property="og:url" content="https://ffib.github.io/Swift设计模式系列之工厂模式/index.html">
+<meta property="og:site_name" content="FFIB">
+<meta property="og:description" content="本文的示例以计算器为例。 简单工厂模式由三部分组成：  对象抽象类：抽象共有属性或者方法，可以通过协议或者父类。 对象类：实现或者继承工厂类的方法或者属性，并且定义自身特有的属性或者方法。 工厂类：通过工厂类去创建对象类。  对象抽象类在这里，对象抽象类，采用协议的方法创建，降低代码的耦合度，如果需要实现共有逻辑，可以通过对协议进行拓展来实现12345protocol Operatable &amp;#1">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-07T14:05:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift设计模式系列之工厂模式">
+<meta name="twitter:description" content="本文的示例以计算器为例。 简单工厂模式由三部分组成：  对象抽象类：抽象共有属性或者方法，可以通过协议或者父类。 对象类：实现或者继承工厂类的方法或者属性，并且定义自身特有的属性或者方法。 工厂类：通过工厂类去创建对象类。  对象抽象类在这里，对象抽象类，采用协议的方法创建，降低代码的耦合度，如果需要实现共有逻辑，可以通过对协议进行拓展来实现12345protocol Operatable &amp;#1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: 'https://ffib.github.io/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ffib.github.io/Swift设计模式系列之工厂模式/"/>
+
+
+
+
+
+  <title>Swift设计模式系列之工厂模式 | FFIB</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="https://ffib.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FFIB</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="https:/ffib.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="https:/ffib.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.iohttps:/ffib.github.io/Swift设计模式系列之工厂模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https:/ffib.github.io/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift设计模式系列之工厂模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-31T16:14:05+08:00">
+                2017-07-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="https:/ffib.github.io/Swift设计模式系列之工厂模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="Swift设计模式系列之工厂模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文的示例以计算器为例。</p>
+<h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><p>由三部分组成：</p>
+<ul>
+<li>对象抽象类：抽象共有属性或者方法，可以通过协议或者父类。</li>
+<li>对象类：实现或者继承工厂类的方法或者属性，并且定义自身特有的属性或者方法。</li>
+<li>工厂类：通过工厂类去创建对象类。</li>
+</ul>
+<h2 id="对象抽象类"><a href="#对象抽象类" class="headerlink" title="对象抽象类"></a>对象抽象类</h2><p>在这里，对象抽象类，采用协议的方法创建，降低代码的耦合度，如果需要实现共有逻辑，可以通过对协议进行拓展来实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">protocol Operatable &#123;</div><div class="line">    var value1: Int &#123; set get &#125;</div><div class="line">    var value2: Int &#123; set get &#125;</div><div class="line">    var res: Int &#123; get &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="对象类"><a href="#对象类" class="headerlink" title="对象类"></a>对象类</h2><p>定义具体的加、减、乘、除对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">struct Subtraction: Operatable&#123;</div><div class="line">    var value1: Int = 0</div><div class="line">    var value2: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return value1 - value2</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">struct Addition: Operatable&#123;</div><div class="line">    var value1: Int = 0</div><div class="line">    var value2: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return value1 + value2</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">struct Division: Operatable&#123;</div><div class="line">    var value1: Int = 0</div><div class="line">    var value2: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return value1 / value2</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">struct Multiplicaion: Operatable&#123;</div><div class="line">    var value1: Int = 0</div><div class="line">    var value2: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return value1 * value2</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a>工厂类</h2><p>定义工厂类<br>使用<strong>enum</strong>方便操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">enum OperationType &#123;</div><div class="line">    case add, sub, mult, div</div><div class="line">&#125;</div><div class="line">struct OperationFactory &#123;</div><div class="line">    func creatArithmetic(opertion: OperationType) -&gt; Operatable &#123;</div><div class="line">        switch opertion &#123;</div><div class="line">        case .add:</div><div class="line">            return Addition()</div><div class="line">        case .sub:</div><div class="line">            return Subtraction()</div><div class="line">        case .mult:</div><div class="line">            return Multiplicaion()</div><div class="line">        case .div:</div><div class="line">            return Division()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var factory = OperationFactory()</div><div class="line">var oper = factory.creatArithmetic(opertion: OperationType.add)</div><div class="line">oper.value2 = 10</div><div class="line">oper.value1 = 12</div><div class="line">print(oper.res)</div></pre></td></tr></table></figure>
+<h1 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h1><p>工厂方法模式是简单工厂模式加强版，通过将工厂类进行拆分，分为<strong>工厂抽象类</strong>和<strong>工厂具象类</strong></p>
+<p>为上述的简单工厂类中的对象类添加一个幂次方操作类。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">struct Power: Operatable &#123;</div><div class="line">    var value1: Int = 0</div><div class="line">    var value2: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return Int(pow(Double(value1), Double(value2)))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="工厂抽象类"><a href="#工厂抽象类" class="headerlink" title="工厂抽象类"></a>工厂抽象类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">enum OperationType &#123;</div><div class="line">    case add, sub, mult, div, pow</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol Factoriable &#123;</div><div class="line">    func creatArithmetic(opertion: OperationType) -&gt; Operatable?</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="工厂具象类"><a href="#工厂具象类" class="headerlink" title="工厂具象类"></a>工厂具象类</h2><p>通过将工厂类进行分类，由于加减乘除为简单算术，定义一个简单操作的工厂类；而幂为复杂算术，则定义一个复杂操作的工厂类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">struct SimpleOperationFactory: Factoriable &#123;</div><div class="line">    func creatArithmetic(opertion: OperationType) -&gt; Operatable? &#123;</div><div class="line">        switch opertion &#123;</div><div class="line">        case .add:</div><div class="line">            return Addition()</div><div class="line">        case .sub:</div><div class="line">            return Subtraction()</div><div class="line">        case .mult:</div><div class="line">            return Multiplicaion()</div><div class="line">        case .div:</div><div class="line">            return Division()</div><div class="line">        default:</div><div class="line">            return nil</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct ComplexOperationFactory: Factoriable &#123;</div><div class="line">    func creatArithmetic(opertion: OperationType) -&gt; Operatable? &#123;</div><div class="line">        switch opertion &#123;</div><div class="line">        case .pow:</div><div class="line">            return  Power()</div><div class="line">        default:</div><div class="line">            return nil</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var simpleFactory = SimpleOperationFactory()</div><div class="line">if var oper = simpleFactory.creatArithmetic(opertion: OperationType.add) &#123;</div><div class="line">    oper.value2 = 10</div><div class="line">    oper.value1 = 12</div><div class="line">    print(oper.res)</div><div class="line">&#125;</div><div class="line">var complexFactory = ComplexOperationFactory()</div><div class="line">if var oper = complexFactory.creatArithmetic(opertion: OperationType.pow) &#123;</div><div class="line">    oper.value1 = 10</div><div class="line">    oper.value2 = 2</div><div class="line">    print(oper.res)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="抽象对象类"><a href="#抽象对象类" class="headerlink" title="抽象对象类"></a>抽象对象类</h2><p>抽象工厂模式是工厂方法模式加强版，通过将对象抽象类和对象类进行拆分。<br>将上文中的<code>Operatable</code>拆分成<code>ComplexOperatable</code>和<code>SimpleOperationType</code>，将<code>OperationType</code>拆分成<code>SimpleOperationType</code>和<code>ComplexOperatable</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">enum SimpleOperationType &#123;</div><div class="line">    case add, sub, mult, div</div><div class="line">&#125;</div><div class="line"></div><div class="line">protocol SimpleOperatable &#123;</div><div class="line">    var value1: Int &#123; set get &#125;</div><div class="line">    var value2: Int &#123; set get &#125;</div><div class="line">    var res: Int &#123; get &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于幂次方操作相对于加减乘除来说，所需要属性的含义是不同，单纯使用<code>value1</code>和<code>value2</code>来表示，容易混淆使用者，所以这里改为<code>value</code>和<code>coefficient(系数)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">enum ComplexOperationType &#123;</div><div class="line">    case pow</div><div class="line">&#125;</div><div class="line">protocol ComplexOperatable &#123;</div><div class="line">    var value: Int &#123; get set &#125;</div><div class="line">    var coefficient: Int &#123;get set &#125;</div><div class="line">    var res: Int &#123; get &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="对象类-1"><a href="#对象类-1" class="headerlink" title="对象类"></a>对象类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">struct Power: ComplexOperatable &#123;</div><div class="line">    var value: Int = 0</div><div class="line">    var coefficient: Int = 0</div><div class="line">    var res: Int &#123;</div><div class="line">        get &#123;</div><div class="line">            return Int(pow(Double(value), Double(coefficient)))</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="工厂类-1"><a href="#工厂类-1" class="headerlink" title="工厂类"></a>工厂类</h2><p>通过协议的<code>associatedtype</code>约束协议接口所传递的参数和返回值类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">protocol Factoriable &#123;</div><div class="line">    associatedtype type</div><div class="line">    associatedtype operationType</div><div class="line">    func creatArithmetic(opertion: operationType) -&gt; type?</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct SimpleOperationFactory: Factoriable &#123;</div><div class="line">    typealias type  = SimpleOperatable</div><div class="line">    typealias operationType = SimpleOperationType</div><div class="line">    func creatArithmetic(opertion: SimpleOperationType) -&gt; SimpleOperatable? &#123;</div><div class="line">        switch opertion &#123;</div><div class="line">        case .add:</div><div class="line">            return Addition()</div><div class="line">        case .sub:</div><div class="line">            return Subtraction()</div><div class="line">        case .mult:</div><div class="line">            return Multiplicaion()</div><div class="line">        case .div:</div><div class="line">            return Division()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">struct ComplexOperationFactory: Factoriable &#123;</div><div class="line">    typealias operationType = ComplexOperationType</div><div class="line">    typealias type = ComplexOperatable</div><div class="line">    func creatArithmetic(opertion: ComplexOperationType) -&gt; ComplexOperatable? &#123;</div><div class="line">        switch opertion &#123;</div><div class="line">        case .pow:</div><div class="line">            return Power()</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="客户端-2"><a href="#客户端-2" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var complexFactory = ComplexOperationFactory()</div><div class="line">if var oper = complexFactory.creatArithmetic(opertion: ComplexOperationType.pow) &#123;</div><div class="line">    oper.value = 10</div><div class="line">    oper.coefficient = 2</div><div class="line">    print(oper.res)</div><div class="line">&#125;</div><div class="line">var simpleFactory = SimpleOperationFactory()</div><div class="line">if var oper = simpleFactory.creatArithmetic(opertion: SimpleOperationType.add) &#123;</div><div class="line">    oper.value2 = 10</div><div class="line">    oper.value1 = 12</div><div class="line">    print(oper.res)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>工厂模式的优缺点：</p>
+<ul>
+<li>优点：业务层感知不到数据层的变化</li>
+<li>缺点：如果添加额外的操作例如根号等运算，需要增加<code>Switch</code>分支，并且需要修改工厂类中的方法，而且还需要增加相对应的操作类，违反了开闭原则</li>
+</ul>
+<h1 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h1><p>在此简单介绍Swift中实现抽象工厂模式的另一种方式，<strong>柯里化</strong>。<br>借助上文中所述的<code>SimpleOperationType</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">func arithmetic(value1: Int, value2: Int) -&gt;(_ operation: SimpleOperationType) -&gt; Int &#123;</div><div class="line">    return &#123; (_ operation: SimpleOperationType)  -&gt; Int in</div><div class="line">            switch operation &#123;</div><div class="line">            case .add:</div><div class="line">                return value1 + value2</div><div class="line">            case .sub:</div><div class="line">                return value1 - value2</div><div class="line">            case .mult:</div><div class="line">                return value1 * value2</div><div class="line">            case .div:</div><div class="line">                return value1 / value2</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端-3"><a href="#客户端-3" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let oper = arithmetic(value1: 10, value2: 5)</div><div class="line">print(oper(.add))</div><div class="line">print(oper(.div))</div><div class="line">print(oper(.mult))</div><div class="line">print(oper(.sub))</div></pre></td></tr></table></figure>
+<p>这种实现方式相对于传统的抽象工厂模式，看起来更加优雅。</p>
+<p><strong>任何需求的变更都是需要成本的，设计模式不能完全解决问题，但是优秀的设计，能够降低代码修改的代价</strong></p>
+<blockquote>
+<p>希望能帮助到读者，如果文中有什么理解不到位的地方，欢迎指出。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="https:/ffib.github.io/Swift设计模式系列之策略模式/" rel="prev" title="Swift设计模式系列之策略模式">
+                Swift设计模式系列之策略模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https:/ffib.github.io/images/avatar.png"
+               alt="FFIB" />
+          <p class="site-author-name" itemprop="name">FFIB</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="https:/ffib.github.io/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单工厂模式"><span class="nav-text">简单工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象抽象类"><span class="nav-text">对象抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象类"><span class="nav-text">对象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂类"><span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工厂方法模式"><span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂抽象类"><span class="nav-text">工厂抽象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂具象类"><span class="nav-text">工厂具象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-1"><span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#抽象工厂模式"><span class="nav-text">抽象工厂模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象对象类"><span class="nav-text">抽象对象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象类-1"><span class="nav-text">对象类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂类-1"><span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-2"><span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#柯里化"><span class="nav-text">柯里化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-3"><span class="nav-text">客户端</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FFIB</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="https:/ffib.github.io/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ffib-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://ffib.github.iohttps:/ffib.github.io/Swift设计模式系列之工厂模式/';
+          this.page.identifier = 'Swift设计模式系列之工厂模式/';
+          this.page.title = 'Swift设计模式系列之工厂模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ffib-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

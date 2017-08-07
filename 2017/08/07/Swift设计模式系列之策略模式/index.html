@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="https:/ffib.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="https:/ffib.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="https:/ffib.github.io/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="https:/ffib.github.io/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="定义定义算法家族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化，不会影响到使用算法的客户。 简单的来说：在软件开发中总是会有各种各样的算法，需要将这些算法封装起来，以便客户端调用，但是算法的变化并不会影响到客户端的调用。 策略模式由三部分组成：  Strategy: 抽象策略类，一般使用协议的形式来定义。 ConcreteStrategy: 具体策略类，实现抽象策略类的具体操作。 Co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift设计模式系列之策略模式">
+<meta property="og:url" content="https://ffib.github.io/2017/08/07/Swift设计模式系列之策略模式/index.html">
+<meta property="og:site_name" content="FFIB">
+<meta property="og:description" content="定义定义算法家族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化，不会影响到使用算法的客户。 简单的来说：在软件开发中总是会有各种各样的算法，需要将这些算法封装起来，以便客户端调用，但是算法的变化并不会影响到客户端的调用。 策略模式由三部分组成：  Strategy: 抽象策略类，一般使用协议的形式来定义。 ConcreteStrategy: 具体策略类，实现抽象策略类的具体操作。 Co">
+<meta property="og:updated_time" content="2017-08-07T14:03:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift设计模式系列之策略模式">
+<meta name="twitter:description" content="定义定义算法家族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化，不会影响到使用算法的客户。 简单的来说：在软件开发中总是会有各种各样的算法，需要将这些算法封装起来，以便客户端调用，但是算法的变化并不会影响到客户端的调用。 策略模式由三部分组成：  Strategy: 抽象策略类，一般使用协议的形式来定义。 ConcreteStrategy: 具体策略类，实现抽象策略类的具体操作。 Co">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: 'https://ffib.github.io/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ffib.github.io/2017/08/07/Swift设计模式系列之策略模式/"/>
+
+
+
+
+
+  <title>Swift设计模式系列之策略模式 | FFIB</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="https://ffib.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FFIB</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="https:/ffib.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="https:/ffib.github.io/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.iohttps:/ffib.github.io/2017/08/07/Swift设计模式系列之策略模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https:/ffib.github.io/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift设计模式系列之策略模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-07T16:28:02+08:00">
+                2017-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="https:/ffib.github.io/2017/08/07/Swift设计模式系列之策略模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/08/07/Swift设计模式系列之策略模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>定义算法家族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化，不会影响到使用算法的客户。</p>
+<p>简单的来说：在软件开发中总是会有各种各样的算法，需要将这些算法封装起来，以便客户端调用，但是算法的变化并不会影响到客户端的调用。</p>
+<p><strong>策略模式</strong>由三部分组成：</p>
+<ul>
+<li><strong>Strategy</strong>: 抽象策略类，一般使用协议的形式来定义。</li>
+<li><strong>ConcreteStrategy</strong>: 具体策略类，实现抽象策略类的具体操作。</li>
+<li><strong>Context</strong>: 环境类，起到承上启下的作用，通过环境类实现客户端与策略的调用。</li>
+</ul>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>本文以工资计算为示例，模拟三种策略来讲述：</p>
+<ul>
+<li>正常工资</li>
+<li>工资 + 工资百分比（奖金）</li>
+<li>工资 + 补贴</li>
+</ul>
+<h2 id="Strategy"><a href="#Strategy" class="headerlink" title="Strategy"></a>Strategy</h2><p>使用协议，抽象出来工资计算的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">protocol Salariable&#123;</div><div class="line">	func calcute(salary: Double) -&gt; Double</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="ConcreteStrategy"><a href="#ConcreteStrategy" class="headerlink" title="ConcreteStrategy"></a>ConcreteStrategy</h2><p>通过实现协议定义相应的实现策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">struct SalaryNormal: Salariable &#123;</div><div class="line">func calcute(salary: Double) -&gt; Double&#123;</div><div class="line">return salary</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//工资 + 工资百分比</div><div class="line">struct SalaryBonus: Salariable &#123;</div><div class="line">var proportion = 0.0  //所占的百分比</div><div class="line">func calcute(salary: Double) -&gt; Double &#123;</div><div class="line">return salary + salary * proportion</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">//工资 + 补贴</div><div class="line">struct SalaryAllowance: Salariable &#123;</div><div class="line">var allowance = 0.0   //补贴的金额</div><div class="line">func calcute(salary: Double) -&gt; Double &#123;</div><div class="line">return salary + allowance</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Context"><a href="#Context" class="headerlink" title="Context"></a>Context</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">struct SalaryContext &#123;</div><div class="line">	private let salaryStrategy: Salariable   //实例化策略抽象类</div><div class="line">	init(salaryStrategy: Salariable) &#123;</div><div class="line">		self.salaryStrategy = salaryStrategy</div><div class="line">	&#125;</div><div class="line">	func calcute(salary: Double) -&gt; Double&#123;</div><div class="line">		return salaryStrategy.calcute(salary: salary)</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">let bonus = SalaryBonus(proportion: 0.1)</div><div class="line">let allowance = SalaryAllowance(allowance: 500)</div><div class="line">let normal = SalaryNormal()</div><div class="line"></div><div class="line">let normalContext = SalaryContext(salaryStrategy: normal)</div><div class="line">let bonusContext = SalaryContext(salaryStrategy: bonus)</div><div class="line">let allowanceContext = SalaryContext(salaryStrategy: allowance)</div><div class="line"></div><div class="line">print(normal.calcute(salary: 1000))</div><div class="line">print(bonusContext.calcute(salary: 1000))</div><div class="line">print(allowanceContext.calcute(salary: 1000))</div></pre></td></tr></table></figure>
+<h1 id="策略模式优缺点"><a href="#策略模式优缺点" class="headerlink" title="策略模式优缺点"></a>策略模式优缺点</h1><p>优点：</p>
+<ul>
+<li>策略模式遵从<strong>开闭原则</strong>，当需求发生变化时，不需要修改相应的策略，只需要新增具体策略类，实现新的策略即可，可扩展性强。</li>
+<li>策略模式避免了使用多重的条件判断。</li>
+<li>策略模式在调用时，可以自由的切换不同的策略。</li>
+<li>所有的策略都是独立运行的，具体策略类之前不存在耦合。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>策略模式违反了<strong>迪米特法则</strong>，客户端必须知道都有哪些策略，才能准确的使用。</li>
+<li>随着需求不断地增加，具体策略类会变得越来越多。</li>
+</ul>
+<h1 id="策略模式与工厂模式结合"><a href="#策略模式与工厂模式结合" class="headerlink" title="策略模式与工厂模式结合"></a>策略模式与工厂模式结合</h1><p>策略模式在使用时，往往不是单独出现的，经常会和工厂模式相结合。就上面的工资计算，对策略模式进行改造。</p>
+<p>利用Swift<code>enum</code>的特性，定义<code>ConcreteStrategy</code>相应的枚举值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">enum SalaryStrategy &#123;</div><div class="line">	case normal</div><div class="line">	case bonus(proportion: Double)</div><div class="line">	case allowance(allowance: Double)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a>工厂类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">struct SalaryFatory &#123;</div><div class="line">	private let salarySuper: Salariable</div><div class="line">	init(strategy: SalaryStrategy) &#123;</div><div class="line">		switch strategy &#123;</div><div class="line">		case .normal:</div><div class="line">			salarySuper = SalaryNormal()</div><div class="line">			break</div><div class="line">		case .allowance(let allowance):</div><div class="line">			salarySuper = SalaryAllowance(allowance: allowance)</div><div class="line">			break</div><div class="line">		case .bonus(let bonus):</div><div class="line">			salarySuper = SalaryBonus(proportion: bonus)</div><div class="line">		break</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	func calcute(salary: Double) -&gt; Double &#123;</div><div class="line">		return salarySuper.calcute(salary: salary</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端-1"><a href="#客户端-1" class="headerlink" title="客户端"></a>客户端</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">let normalContext = SalaryFatory(strategy: .normal)</div><div class="line">let bonusContext = SalaryFatory(strategy: .bonus(proportion: 0.1))</div><div class="line">let allowanceContext = SalaryFatory(strategy: .allowance(allowance: 500))</div><div class="line"></div><div class="line">print(normalContext.calcute(salary: 1000))</div><div class="line">print(bonusContext.calcute(salary: 1000))</div><div class="line">print(allowanceContext.calcute(salary: 1000))</div></pre></td></tr></table></figure>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>相对于单纯的策略模式<br>优点：</p>
+<ul>
+<li>通过工厂模式对具体策略和客户端进行彻底的解耦。</li>
+<li>结合Swift枚举的特性，调用起来更加简洁。</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>违反<strong>开闭原则</strong>，当新增策略时，需要修改添加 <strong>Switch</strong>分支</li>
+</ul>
+<p><strong>任何需求的变更都是需要成本的，设计模式不能完全解决问题，但是优秀的设计，能够降低代码修改的代价</strong></p>
+<blockquote>
+<p>希望能帮助到读者，如果文中有什么理解不到位的地方，欢迎指出。</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="https:/ffib.github.io/2017/07/31/Swift设计模式系列之工厂模式/" rel="next" title="Swift设计模式系列之工厂模式">
+                <i class="fa fa-chevron-left"></i> Swift设计模式系列之工厂模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https:/ffib.github.io/images/avatar.png"
+               alt="FFIB" />
+          <p class="site-author-name" itemprop="name">FFIB</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="https:/ffib.github.io/archives/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Strategy"><span class="nav-text">Strategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcreteStrategy"><span class="nav-text">ConcreteStrategy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context"><span class="nav-text">Context</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-text">客户端</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式优缺点"><span class="nav-text">策略模式优缺点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#策略模式与工厂模式结合"><span class="nav-text">策略模式与工厂模式结合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂类"><span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端-1"><span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-text">优缺点</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FFIB</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="https:/ffib.github.io/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="https:/ffib.github.io/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ffib-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://ffib.github.iohttps:/ffib.github.io/2017/08/07/Swift设计模式系列之策略模式/';
+          this.page.identifier = '2017/08/07/Swift设计模式系列之策略模式/';
+          this.page.title = 'Swift设计模式系列之策略模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ffib-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
