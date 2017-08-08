@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/FFIB/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/FFIB/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/FFIB/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/FFIB/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="定义动态地给一个对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。 装饰模式由三部分组成：  Component(组合抽象类)：定义一个对象接口，可以给这些对象动态地添加职责。 ConcreteComponet(组合具象类)：定义一个具体的对象，也可以给这个对象添加一些职责。 Decorator(装饰抽象类)：继承了Component，从外类来扩展Component类的功能，但对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift设计模式之装饰模式">
+<meta property="og:url" content="https://ffib.github.io/FFIB/Swift设计模式之装饰模式/index.html">
+<meta property="og:site_name" content="FFIB">
+<meta property="og:description" content="定义动态地给一个对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。 装饰模式由三部分组成：  Component(组合抽象类)：定义一个对象接口，可以给这些对象动态地添加职责。 ConcreteComponet(组合具象类)：定义一个具体的对象，也可以给这个对象添加一些职责。 Decorator(装饰抽象类)：继承了Component，从外类来扩展Component类的功能，但对">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-08T14:28:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Swift设计模式之装饰模式">
+<meta name="twitter:description" content="定义动态地给一个对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。 装饰模式由三部分组成：  Component(组合抽象类)：定义一个对象接口，可以给这些对象动态地添加职责。 ConcreteComponet(组合具象类)：定义一个具体的对象，也可以给这个对象添加一些职责。 Decorator(装饰抽象类)：继承了Component，从外类来扩展Component类的功能，但对">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/FFIB/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ffib.github.io/FFIB/Swift设计模式之装饰模式/"/>
+
+
+
+
+
+  <title>Swift设计模式之装饰模式 | FFIB</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/FFIB/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">FFIB</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/FFIB/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/FFIB/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/FFIB/FFIB/Swift设计模式之装饰模式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/FFIB/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Swift设计模式之装饰模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-08T12:13:46+08:00">
+                2017-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/FFIB/Swift设计模式之装饰模式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="Swift设计模式之装饰模式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h1><p>动态地给一个对象添加一些额外的职责，就增加功能来说，装饰模式比生成子类更为灵活。</p>
+<p><strong>装饰模式</strong>由三部分组成：</p>
+<ul>
+<li>Component(组合抽象类)：定义一个对象接口，可以给这些对象动态地添加职责。</li>
+<li>ConcreteComponet(组合具象类)：定义一个具体的对象，也可以给这个对象添加一些职责。</li>
+<li>Decorator(装饰抽象类)：继承了Component，从外类来扩展Component类的功能，但对于Component来说，是无需知道Decorator的存在。</li>
+<li>ConcreteDecorator(装饰具象类)：具体的装饰对象，起到给Component添加职责的功能。</li>
+</ul>
+<h1 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h1><p>本文以食物为例。</p>
+<h2 id="Component"><a href="#Component" class="headerlink" title="Component"></a>Component</h2><p>定义<code>Behviorable</code>作为<code>Component</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">protocol Behviorable &#123;</div><div class="line">    func cook()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h2 id="ConcreteComponet"><a href="#ConcreteComponet" class="headerlink" title="ConcreteComponet"></a>ConcreteComponet</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class Fry: Behviorable &#123;</div><div class="line">    var name: String</div><div class="line">    init(name: String) &#123;</div><div class="line">        self.name = name</div><div class="line">    &#125;</div><div class="line">    func cook() &#123;</div><div class="line">        print(&quot;炒&quot; + name + &quot;，需要原料：&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Steam: Behviorable &#123;</div><div class="line">    var name: String</div><div class="line">    init(name: String) &#123;</div><div class="line">        self.name = name</div><div class="line">    &#125;</div><div class="line">    func cook() &#123;</div><div class="line">        print(&quot;蒸&quot; + name + &quot;，需要原料：&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="Decorator"><a href="#Decorator" class="headerlink" title="Decorator"></a>Decorator</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Vegetables: Behviorable &#123;</div><div class="line">    fileprivate var cate: Behviorable? = nil</div><div class="line">    func cook() &#123;</div><div class="line">        guard let cate = cate else&#123;</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line">        cate.cook()</div><div class="line">    &#125;</div><div class="line">    final func decorator(cate: Behviorable) &#123;</div><div class="line">        self.cate = cate</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="ConcreteDecorator"><a href="#ConcreteDecorator" class="headerlink" title="ConcreteDecorator"></a>ConcreteDecorator</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Tomato: Vegetables &#123;</div><div class="line">    override func cook() &#123;</div><div class="line">        super.cook()</div><div class="line">         print(&quot;tomato&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Egg: Vegetables &#123;</div><div class="line">    override func cook() &#123;</div><div class="line">        super.cook()</div><div class="line">        print(&quot;egg&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">class Pepper: Vegetables &#123;</div><div class="line">    override func cook() &#123;</div><div class="line">        super.cook()</div><div class="line">        print(&quot;pepper&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><p><code>Vegetables</code>和<code>ConcreteComponent</code>相互组合便可做出一道美味的菜肴。<br>例如现在要吃西红柿炒鸡蛋。只需要将<code>fry</code>和<code>egg</code>、<code>tomato</code>、<code>pepper</code>组合到一起就是一道菜。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">let fry = Fry(name: &quot;鸡蛋&quot;)</div><div class="line">let egg = Egg()</div><div class="line">let tomato = Tomato()</div><div class="line">let pepper = Pepper()</div><div class="line"></div><div class="line">egg.decorator(cate: fry)</div><div class="line">tomato.decorator(cate: egg)</div><div class="line">pepper.decorator(cate: tomato)</div><div class="line">pepper.cook()</div><div class="line"></div><div class="line">//假如你换主意了，想吃蒸鸡蛋了</div><div class="line">let steam = Steam(name: &quot;鸡蛋&quot;)</div><div class="line">egg.decorator(cate: steam)</div><div class="line">egg.cook()</div></pre></td></tr></table></figure>
+<h2 id="需求变化"><a href="#需求变化" class="headerlink" title="需求变化"></a>需求变化</h2><p>如果此时你想吃韭菜炒鸡蛋怎么办，只需要再声明一个韭菜即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">class Leek: Vegetables &#123;</div><div class="line">    override func cook() &#123;</div><div class="line">        super.cook()</div><div class="line">        print(&quot;leek&quot;)</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">let leek = Leek()</div><div class="line">leek.decorator(cate: egg)</div><div class="line">leek.cook()</div></pre></td></tr></table></figure>
+<p>从上述操作中，我们已经了解装饰模式的简单应用，同样也了解了装饰模式的核心思想：<strong>通过父类实现具体组合方式，将装饰对象与装饰对象的组合分离，每个装饰对象只需要管理自己本身的属性即可，通过继承，以新增的具象类的方式拓展原有类的功能</strong>。</p>
+<p>为防止程序被过度设计，当<code>ConcreteComponent</code>、<code>Decorator</code>、<code>ConcreteDecorator</code>只有一个时，可以相互合并。<br>就以上述例子来说，当<code>Vegetable</code>只有一个子类时，就不需要那么多子类了，可以合并到<code>Vegetable</code>里；比如，当<code>ConcreteComponet</code>只有一个<code>Fry</code>类，可以将<code>Fry</code>合并到<code>Vegetable</code>里。</p>
+<p>随着需求的变动，如果感觉这块有可能变得复杂可以再对其进行细化，切勿将代码复杂化。</p>
+<h1 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h1><p>优点：</p>
+<ul>
+<li>对原有类的功能进行拆分，使父类更加简洁。</li>
+<li>易于扩展，只需要通过继承便可扩展原有类的功能。</li>
+<li>通过不同<code>ConcreteComponet</code>和<code>ConcreteDecorator</code>的自由组合，使得调用更加灵活。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>虽然通过继承易于扩展，但是随着功能的愈加复杂，<code>ConcreteComponet</code>和<code>ConcreteDecorator</code>会多得难以想象。此时就需要在简洁和可扩展性上进行取舍。</li>
+<li>通过装饰模式也暴露出来面向对象编程中继承特性的一个缺陷，随着继承的子类越来越多，会使这个模块显得错综复杂，从而使这个模块变得难以维护。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/FFIB/Swift设计模式系列之策略模式/" rel="next" title="Swift设计模式系列之策略模式">
+                <i class="fa fa-chevron-left"></i> Swift设计模式系列之策略模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/FFIB/images/avatar.png"
+               alt="FFIB" />
+          <p class="site-author-name" itemprop="name">FFIB</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/FFIB/archives/">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#示例"><span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Component"><span class="nav-text">Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcreteComponet"><span class="nav-text">ConcreteComponet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Decorator"><span class="nav-text">Decorator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ConcreteDecorator"><span class="nav-text">ConcreteDecorator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-text">客户端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#需求变化"><span class="nav-text">需求变化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点"><span class="nav-text">优缺点</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">FFIB</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/FFIB/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/FFIB/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/FFIB/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/FFIB/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/FFIB/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/FFIB/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/FFIB/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/FFIB/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/FFIB/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/FFIB/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/FFIB/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://ffib-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://ffib.github.io/FFIB/Swift设计模式之装饰模式/';
+          this.page.identifier = 'Swift设计模式之装饰模式/';
+          this.page.title = 'Swift设计模式之装饰模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://ffib-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
