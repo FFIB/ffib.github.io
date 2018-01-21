@@ -531,7 +531,7 @@
 <p>Determine the maximum amount of money the thief can rob tonight without alerting the police.</p>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>小偷又找到了新的目标，这条街上的房子呈二叉树排列，同一晚上相邻的两层被偷会引发警报。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>递归，深度优先搜索（DFS）<br><br>当遍历到某一层时，偷当前层和不偷的最大值。</p>
+<p>递归，深度优先搜索（DFS<br>当遍历到某一层时，偷当前层和不偷的最大值。</p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func rob(_ root: TreeNode?) -&gt; Int &#123;</div><div class="line">        func dfs(tree: TreeNode?) -&gt; (Int, Int) &#123;</div><div class="line">            guard let t = tree else &#123; return (0, 0) &#125;</div><div class="line">            let left = dfs(tree: t.left)</div><div class="line">            let right = dfs(tree: t.right)</div><div class="line">            let noRob = max(left.0, left.1) + max(right.0, right.1)</div><div class="line">            let rob = t.val + left.0 + right.0</div><div class="line">            return (noRob, rob)</div><div class="line">        &#125;</div><div class="line">        let ans = dfs(tree: root)</div><div class="line">        return max(ans.0, ans.1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
@@ -1019,40 +1019,12 @@
 <ul>
 <li>深度为d - 1的目标节点，创建两个值为<code>v</code>的节点，作为目标节点的左节点，记为vLeft，和右节点，记为vRight。</li>
 <li>目标节点的左子树应该是vLeft的左子树，目标节点的原右子树应该是vRight的右子树。</li>
-<li>如果<code>depth d</code>为1，则表示没有深度<code>d - 1</code>，那么创建一个值为<code>v</code>的节点作为<code>root</code>的新根，而<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">### 解题思路</div><div class="line">&gt;递归，层序遍历。&lt;br&gt;</div><div class="line">如果d为1，则将`v`作为根节点返回。</div><div class="line">如果d为2，则将`v`插入下一层。</div><div class="line"></div><div class="line">### 代码</div></pre></td></tr></table></figure></li>
+<li>如果<code>depth d</code>为1，则表示没有深度<code>d - 1</code>，那么创建一个值为<code>v</code>的节点作为<code>root</code>的新根，而<code>root</code>是新根的左子树。<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>递归，层序遍历。<br>如果d为1，则将<code>v</code>作为根节点返回。<br>如果d为2，则将<code>v</code>插入下一层。</p>
+</blockquote>
+</li>
 </ul>
-<p>/**</p>
-<ul>
-<li>Definition for a binary tree node.</li>
-<li>public class TreeNode {</li>
-<li>public var val: Int</li>
-<li>public var left: TreeNode?</li>
-<li>public var right: TreeNode?</li>
-<li>public init(_ val: Int) {</li>
-<li>self.val = val</li>
-<li>self.left = nil</li>
-<li>self.right = nil</li>
-<li>}</li>
-<li>}<br>*/<br>class Solution {<br> func addOneRow(<em> root: TreeNode?, </em> v: Int, _ d: Int) -&gt; TreeNode? {<pre><code>guard let tree = root else { return nil }
-if d == 1 {
-    let node = TreeNode(v)
-    node.left = tree
-    return node
-}
-if d == 2 {
-    let (left, right) = (tree.left, tree.right)
-    let (vLeft, vRight) = (TreeNode(v), TreeNode(v))
-    vLeft.left = left
-    vRight.right = right
-    tree.left = vLeft
-    tree.right = vRight
-    return tree
-}
-addOneRow(tree.left, v, d - 1)
-addOneRow(tree.right, v, d - 1)
-return tree
-</code></pre> }<br>}<br>```</li>
-</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func addOneRow(_ root: TreeNode?, _ v: Int, _ d: Int) -&gt; TreeNode? &#123;</div><div class="line">        guard let tree = root else &#123; return nil &#125;</div><div class="line">        if d == 1 &#123;</div><div class="line">            let node = TreeNode(v)</div><div class="line">            node.left = tree</div><div class="line">            return node</div><div class="line">        &#125;</div><div class="line">        if d == 2 &#123;</div><div class="line">            let (left, right) = (tree.left, tree.right)</div><div class="line">            let (vLeft, vRight) = (TreeNode(v), TreeNode(v))</div><div class="line">            vLeft.left = left</div><div class="line">            vRight.right = right</div><div class="line">            tree.left = vLeft</div><div class="line">            tree.right = vRight</div><div class="line">            return tree</div><div class="line">        &#125;</div><div class="line">        addOneRow(tree.left, v, d - 1)</div><div class="line">        addOneRow(tree.right, v, d - 1)</div><div class="line">        return tree</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -1217,47 +1189,18 @@ return tree
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    / \</div><div class="line">   2   3</div><div class="line">    \</div><div class="line">     4</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;3&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;&quot;, &quot;4&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Example 3:</div><div class="line">Input:</div><div class="line">      1</div><div class="line">     / \</div><div class="line">    2   5</div><div class="line">   / </div><div class="line">  3 </div><div class="line"> / </div><div class="line">4 </div><div class="line">Output:</div><div class="line"></div><div class="line">[[&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;5&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;3&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;4&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
 <p>Note: The height of binary tree is in the range of [1, 10].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<figure class="highlight m"><figcaption><span>* n```的二位数组。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">规则如下：</div><div class="line"></div><div class="line">* 行数m为二叉树的深度</div><div class="line">* 列数n必须是以奇数</div><div class="line">* 根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。&lt;br&gt;左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。&lt;br&gt;即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。&lt;br&gt;如果左右子树都不存在，则不需要保留任何空间。</div><div class="line">* 每个未使用的空间需要以空字符串表示。</div><div class="line">* 重复以上操作输出子树。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line">&gt;<span class="number">1</span>、需先求出树的高度。&lt;br&gt;</div><div class="line"><span class="number">2</span>、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。&lt;br&gt;</div><div class="line"><span class="number">3</span>、递归遍历左右子树，采用双指针，求出节点的下标。</div><div class="line"></div><div class="line">### 代码</div></pre></td></tr></table></figure></p>
-<p>/**</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<code>m * n</code>的二位数组。<br>规则如下：</p>
 <ul>
-<li>Definition for a binary tree node.</li>
-<li>public class TreeNode {</li>
-<li>public var val: Int</li>
-<li>public var left: TreeNode?</li>
-<li>public var right: TreeNode?</li>
-<li>public init(_ val: Int) {</li>
-<li>self.val = val</li>
-<li>self.left = nil</li>
-<li>self.right = nil</li>
-<li>}</li>
-<li><p>}<br>*/<br>class Solution {<br> func printTree(_ root: TreeNode?) -&gt; [[String]] {</p>
-<pre><code>func findDepth(root: TreeNode?) -&gt; Int {
-    guard let node = root else { return 0 }
-    return 1 + max(findDepth(root: node.left), findDepth(root: node.right))
-}
-</code></pre></li>
+<li>行数m为二叉树的深度</li>
+<li>列数n必须是以奇数</li>
+<li>根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。如果左右子树都不存在，则不需要保留任何空间。</li>
+<li>每个未使用的空间需要以空字符串表示。</li>
+<li>重复以上操作输出子树。</li>
 </ul>
-<pre><code>    guard let root = root else { return [] }
-
-    let height = findDepth(root: root)
-    var width = (1 &lt;&lt; height) - 1
-    var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)
-
-
-    func transform(root: TreeNode?, level: Int, l: Int, r: Int) {
-        guard let node = root else { return }
-        let mid = l + (r - l) / 2
-        ans[level][mid] = &quot;\(node.val)&quot;
-        transform(root: node.left, level: level + 1, l: l, r: mid - 1)
-        transform(root: node.right, level: level + 1, l: mid + 1, r: r)
-    }
-
-
-    transform(root: root, level: 0, l: 0, r: width - 1)
-
-    return ans
-}
-</code></pre><p>}<br>```</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>1、需先求出树的高度。<br>2、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。<br>3、递归遍历左右子树，采用双指针，求出节点的下标。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func printTree(_ root: TreeNode?) -&gt; [[String]] &#123;</div><div class="line"></div><div class="line">        func findDepth(root: TreeNode?) -&gt; Int &#123;</div><div class="line">            guard let node = root else &#123; return 0 &#125;</div><div class="line">            return 1 + max(findDepth(root: node.left), findDepth(root: node.right))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        let height = findDepth(root: root)</div><div class="line">        var width = (1 &lt;&lt; height) - 1</div><div class="line">        var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)</div><div class="line">        </div><div class="line">        </div><div class="line">        func transform(root: TreeNode?, level: Int, l: Int, r: Int) &#123;</div><div class="line">            guard let node = root else &#123; return &#125;</div><div class="line">            let mid = l + (r - l) / 2</div><div class="line">            ans[level][mid] = &quot;\(node.val)&quot;</div><div class="line">            transform(root: node.left, level: level + 1, l: l, r: mid - 1)</div><div class="line">            transform(root: node.right, level: level + 1, l: mid + 1, r: r)</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        transform(root: root, level: 0, l: 0, r: width - 1)</div><div class="line">        </div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
         
@@ -1419,39 +1362,11 @@ return tree
 <p>Example 2:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]</div><div class="line">Output: &quot;pest&quot;</div><div class="line">Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.</div><div class="line">We return the one that occurred first.</div></pre></td></tr></table></figure>
 <p>Note:<br>licensePlate will be a string with length in range [1, 7].<br>licensePlate will contain digits, spaces, or letters (uppercase or lowercase).<br>words will have a length in the range [10, 1000].<br>Every words[i] will consist of lowercase letters, and have length in range [1, 15].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 解题思路</div><div class="line">&gt;暴力搜索，辅助哈希表。</div><div class="line"></div><div class="line">### 代码</div></pre></td></tr></table></figure></p>
-<p>class Solution {<br>    func shortestCompletingWord(<em> licensePlate: String, </em> words: [String]) -&gt; String {<br>        var dict = <a href="">Character: Int</a><br>        var ans = “”<br>        let express = try! NSRegularExpression(pattern: “[a-z]”, options: .caseInsensitive)</p>
-<pre><code>    for n in licensePlate.lowercased() {
-        let s = String(n)
-        //正则匹配字母
-        if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))
-           .count &gt;= 1{
-            dict[n] = (dict[n] ?? 0) + 1
-        }
-    }
-
-    for word in words {
-        var tmp = dict
-
-        for char in word {
-            if let count = tmp[char] {
-                tmp[char] = count - 1
-                if count &lt;= 1 {
-                    tmp.removeValue(forKey: char)
-                }
-            }
-        }
-
-        if tmp.isEmpty {
-            if ans.isEmpty { ans = word }
-            //判断最小匹配元素
-            ans = ans.count &lt;= word.count ? ans : word
-        }
-    }
-    return ans
-}
-</code></pre><p>}<br>```</p>
-
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<code>licensePlate</code>，在<code>words</code>中寻找包含了车牌上所有字符的元素。返回最短的匹配元素，如果有多个，则返回第一个。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>暴力搜索，辅助哈希表。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -&gt; String &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        var ans = &quot;&quot;</div><div class="line">        let express = try! NSRegularExpression(pattern: &quot;[a-z]&quot;, options: .caseInsensitive)</div><div class="line">        </div><div class="line">        for n in licensePlate.lowercased() &#123;</div><div class="line">            let s = String(n)</div><div class="line">            //正则匹配字母</div><div class="line">            if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))</div><div class="line">               .count &gt;= 1&#123;</div><div class="line">                dict[n] = (dict[n] ?? 0) + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for word in words &#123;</div><div class="line">            var tmp = dict</div><div class="line">            </div><div class="line">            for char in word &#123;</div><div class="line">                if let count = tmp[char] &#123;</div><div class="line">                    tmp[char] = count - 1</div><div class="line">                    if count &lt;= 1 &#123;</div><div class="line">                        tmp.removeValue(forKey: char)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if tmp.isEmpty &#123;</div><div class="line">                if ans.isEmpty &#123; ans = word &#125;</div><div class="line">                //判断最小匹配元素</div><div class="line">                ans = ans.count &lt;= word.count ? ans : word</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
           
         
       
@@ -1608,7 +1523,7 @@ return tree
 <p>Note:<br>1 &lt;= len(A), len(B) &lt;= 1000<br>0 &lt;= A[i], B[i] &lt; 100</p>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求两个数组内的最长重复子数组。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br><br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br><br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
+<p>动态规划<br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLength(_ A: [Int], _ B: [Int]) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: Array(repeating: 0, count: B.count + 1), count: A.count + 1)</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;A.count &#123;</div><div class="line">            for j in 0..&lt;B.count &#123;</div><div class="line">                if A[i] == B[j] &#123;</div><div class="line">                    dp[i + 1][j + 1] = dp[i][j] + 1</div><div class="line">                    ans = max(ans, dp[i + 1][j + 1])</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -1769,11 +1684,12 @@ return tree
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: &quot;aba&quot;, &quot;cdc&quot;, &quot;eae&quot;</div><div class="line">Output: 3</div></pre></td></tr></table></figure>
 <p>Note:</p>
 <p>All the given strings’ lengths will not exceed 10.<br>The length of the given list will be in the range of [2, 50].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一组字符串，求最长不公共子序列。<br><br>子序列可以通过删除一些字符而不改变其余元素顺序的新序列。<br><br>空字符串不属于任何字符串的子序列</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一组字符串，求最长不公共子序列。<br>子序列可以通过删除一些字符而不改变其余元素顺序的新序列。<br>空字符串不属于任何字符串的子序列</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>辅助字典，优化数组遍历。<br><br>根据字符串长度对数组进行排序，简化遍历。<br>再次遍历数组，判断当前字符串是否是数组内其他字符串的子字符串。</p>
+<p>辅助字典，优化数组遍历。<br>根据字符串长度对数组进行排序，简化遍历。<br>再次遍历数组，判断当前字符串是否是数组内其他字符串的子字符串。</p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLUSlength(_ strs: [String]) -&gt; Int &#123;</div><div class="line">        </div><div class="line">        func isSubstring(s: String, t: String) -&gt; Bool &#123;</div><div class="line">            var arr1 = Array(s)</div><div class="line">            var arr2 = Array(t)</div><div class="line">            var index1 = 0</div><div class="line">            var index2 = 0</div><div class="line">            while index1 &lt; arr1.count &amp;&amp; index2 &lt; arr2.count &#123;</div><div class="line">                if arr1[index1] == arr2[index2] &#123;</div><div class="line">                    index1 += 1</div><div class="line">                &#125;</div><div class="line">                index2 += 1</div><div class="line">            &#125;</div><div class="line">            return index1 == arr1.count</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        var dict = [String: Int]()</div><div class="line">        for str in strs &#123;</div><div class="line">            dict[str] = (dict[str] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        let sortStrs = strs.sorted&#123; $0.count &gt; $1.count &#125;</div><div class="line">        for (i, s) in sortStrs.enumerated() &#123;</div><div class="line">            guard dict[s] == 1 else &#123; continue &#125;</div><div class="line">            var flag = true</div><div class="line">            </div><div class="line">            for j in 0..&lt;i &#123;</div><div class="line">                if isSubstring(s: s, t: sortStrs[j]) &#123;</div><div class="line">                    flag = false</div><div class="line">                    break</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">    </div><div class="line">            if flag &#123; return s.count &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        return -1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
           
         
       
@@ -2018,7 +1934,7 @@ return tree
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

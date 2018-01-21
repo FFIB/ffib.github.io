@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="FFIB">
 <meta property="og:description" content="655. Print Binary Tree题目描述Print a binary tree in an m*n 2D string array following these rules:  The row number m should be equal to the height of the given binary tree. The column number n should alwa">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T09:50:47.330Z">
+<meta property="og:updated_time" content="2018-01-21T11:13:04.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="655. Print Binary Tree">
 <meta name="twitter:description" content="655. Print Binary Tree题目描述Print a binary tree in an m*n 2D string array following these rules:  The row number m should be equal to the height of the given binary tree. The column number n should alwa">
@@ -379,47 +379,18 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    / \</div><div class="line">   2   3</div><div class="line">    \</div><div class="line">     4</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;3&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;&quot;, &quot;4&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Example 3:</div><div class="line">Input:</div><div class="line">      1</div><div class="line">     / \</div><div class="line">    2   5</div><div class="line">   / </div><div class="line">  3 </div><div class="line"> / </div><div class="line">4 </div><div class="line">Output:</div><div class="line"></div><div class="line">[[&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;5&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;3&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;4&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
 <p>Note: The height of binary tree is in the range of [1, 10].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<figure class="highlight m"><figcaption><span>* n```的二位数组。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">规则如下：</div><div class="line"></div><div class="line">* 行数m为二叉树的深度</div><div class="line">* 列数n必须是以奇数</div><div class="line">* 根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。&lt;br&gt;左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。&lt;br&gt;即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。&lt;br&gt;如果左右子树都不存在，则不需要保留任何空间。</div><div class="line">* 每个未使用的空间需要以空字符串表示。</div><div class="line">* 重复以上操作输出子树。</div><div class="line"></div><div class="line">### 解题思路</div><div class="line">&gt;<span class="number">1</span>、需先求出树的高度。&lt;br&gt;</div><div class="line"><span class="number">2</span>、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。&lt;br&gt;</div><div class="line"><span class="number">3</span>、递归遍历左右子树，采用双指针，求出节点的下标。</div><div class="line"></div><div class="line">### 代码</div></pre></td></tr></table></figure></p>
-<p>/**</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<code>m * n</code>的二位数组。<br>规则如下：</p>
 <ul>
-<li>Definition for a binary tree node.</li>
-<li>public class TreeNode {</li>
-<li>public var val: Int</li>
-<li>public var left: TreeNode?</li>
-<li>public var right: TreeNode?</li>
-<li>public init(_ val: Int) {</li>
-<li>self.val = val</li>
-<li>self.left = nil</li>
-<li>self.right = nil</li>
-<li>}</li>
-<li><p>}<br>*/<br>class Solution {<br> func printTree(_ root: TreeNode?) -&gt; [[String]] {</p>
-<pre><code>func findDepth(root: TreeNode?) -&gt; Int {
-    guard let node = root else { return 0 }
-    return 1 + max(findDepth(root: node.left), findDepth(root: node.right))
-}
-</code></pre></li>
+<li>行数m为二叉树的深度</li>
+<li>列数n必须是以奇数</li>
+<li>根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。如果左右子树都不存在，则不需要保留任何空间。</li>
+<li>每个未使用的空间需要以空字符串表示。</li>
+<li>重复以上操作输出子树。</li>
 </ul>
-<pre><code>    guard let root = root else { return [] }
-
-    let height = findDepth(root: root)
-    var width = (1 &lt;&lt; height) - 1
-    var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)
-
-
-    func transform(root: TreeNode?, level: Int, l: Int, r: Int) {
-        guard let node = root else { return }
-        let mid = l + (r - l) / 2
-        ans[level][mid] = &quot;\(node.val)&quot;
-        transform(root: node.left, level: level + 1, l: l, r: mid - 1)
-        transform(root: node.right, level: level + 1, l: mid + 1, r: r)
-    }
-
-
-    transform(root: root, level: 0, l: 0, r: width - 1)
-
-    return ans
-}
-</code></pre><p>}<br>```</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>1、需先求出树的高度。<br>2、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。<br>3、递归遍历左右子树，采用双指针，求出节点的下标。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func printTree(_ root: TreeNode?) -&gt; [[String]] &#123;</div><div class="line"></div><div class="line">        func findDepth(root: TreeNode?) -&gt; Int &#123;</div><div class="line">            guard let node = root else &#123; return 0 &#125;</div><div class="line">            return 1 + max(findDepth(root: node.left), findDepth(root: node.right))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        let height = findDepth(root: root)</div><div class="line">        var width = (1 &lt;&lt; height) - 1</div><div class="line">        var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)</div><div class="line">        </div><div class="line">        </div><div class="line">        func transform(root: TreeNode?, level: Int, l: Int, r: Int) &#123;</div><div class="line">            guard let node = root else &#123; return &#125;</div><div class="line">            let mid = l + (r - l) / 2</div><div class="line">            ans[level][mid] = &quot;\(node.val)&quot;</div><div class="line">            transform(root: node.left, level: level + 1, l: l, r: mid - 1)</div><div class="line">            transform(root: node.right, level: level + 1, l: mid + 1, r: r)</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        transform(root: root, level: 0, l: 0, r: width - 1)</div><div class="line">        </div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -540,7 +511,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -588,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#655-Print-Binary-Tree"><span class="nav-text">655. Print Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#655-Print-Binary-Tree"><span class="nav-text">655. Print Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>

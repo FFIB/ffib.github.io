@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="FFIB">
 <meta property="og:description" content="718. Maximum Length of Repeated Subarray题目描述Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays. 1234567Example 1:Input:A: [1,2,3,2,1]B: [3,2,1,4,7]O">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T09:47:53.815Z">
+<meta property="og:updated_time" content="2018-01-21T12:26:06.971Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="718. Maximum Length of Repeated Subarray">
 <meta name="twitter:description" content="718. Maximum Length of Repeated Subarray题目描述Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays. 1234567Example 1:Input:A: [1,2,3,2,1]B: [3,2,1,4,7]O">
@@ -372,7 +372,7 @@
 <p>Note:<br>1 &lt;= len(A), len(B) &lt;= 1000<br>0 &lt;= A[i], B[i] &lt; 100</p>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求两个数组内的最长重复子数组。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br><br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br><br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
+<p>动态规划<br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLength(_ A: [Int], _ B: [Int]) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: Array(repeating: 0, count: B.count + 1), count: A.count + 1)</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;A.count &#123;</div><div class="line">            for j in 0..&lt;B.count &#123;</div><div class="line">                if A[i] == B[j] &#123;</div><div class="line">                    dp[i + 1][j + 1] = dp[i][j] + 1</div><div class="line">                    ans = max(ans, dp[i + 1][j + 1])</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
@@ -495,7 +495,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

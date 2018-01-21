@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="FFIB">
 <meta property="og:description" content="198. House Robber题目描述You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T09:33:14.804Z">
+<meta property="og:updated_time" content="2018-01-21T12:36:09.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="House Robber I, II">
 <meta name="twitter:description" content="198. House Robber题目描述You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed, the only constraint stopping you from robbing each of them i">
@@ -371,7 +371,7 @@
 <p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
 <h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>小偷打算在街上抢劫房屋，每户都会存放一定数额的现金，以<code>nums</code>表示，唯一的限制是，如果每相邻的两家同一晚上被盗就会自动联系警察。求今晚能偷到的最大金额</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br><br>根据下标将数组分为奇数和偶数，以此确保两个相邻的不会被偷，设奇数和偶数变量分别为even、odd。<br><br>even表示打劫到奇数下标时所能累计的最大值，odd亦然。</p>
+<p>动态规划<br>根据下标将数组分为奇数和偶数，以此确保两个相邻的不会被偷，设奇数和偶数变量分别为even、odd。<br>even表示打劫到奇数下标时所能累计的最大值，odd亦然。</p>
 </blockquote>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func rob(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">        var even = 0</div><div class="line">        var odd = 0</div><div class="line">        for i in 0..&lt;nums.count &#123;</div><div class="line">            if i % 2 == 0 &#123;</div><div class="line">                even = max(even + nums[i], odd)</div><div class="line">            &#125;else &#123;</div><div class="line">                odd = max(odd + nums[i], even)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return max(even, odd)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="213-House-Robber-II"><a href="#213-House-Robber-II" class="headerlink" title="213. House Robber II"></a><a href="https://leetcode.com/problems/house-robber-ii/description/" target="_blank" rel="external">213. House Robber II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Note: This is an extension of House Robber.</p>
@@ -379,7 +379,7 @@
 <p>Given a list of non-negative integers representing the amount of money of each house, determine the maximum amount of money you can rob tonight without alerting the police.</p>
 <h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>House Robber的扩展，小偷找到新的目标，但是这条街上所有的房屋是环形，即第一个房屋和最后一个房屋是相邻，警报的规则同House Robber相同。</p>
 <h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>具体实现思路与House Robber<br><br>不同的是需要把第一个数从数组中移除，数组记为nums1；最后一个从数组中移除，数组记为nums2。如此才能保证第一个房屋和最后一个房屋不同时被偷。</p>
+<p>具体实现思路与House Robber<br>不同的是需要把第一个数从数组中移除，数组记为nums1；最后一个从数组中移除，数组记为nums2。如此才能保证第一个房屋和最后一个房屋不同时被偷。</p>
 </blockquote>
 <h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func rob(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">        func auxiliary(nums: [Int]) -&gt; Int &#123;</div><div class="line">            var even = 0</div><div class="line">            var odd = 0</div><div class="line">            for i in 0..&lt;nums.count &#123;</div><div class="line">                if i % 2 == 0 &#123;</div><div class="line">                    even = max(even + nums[i], odd)</div><div class="line">                &#125;else &#123;</div><div class="line">                    odd = max(odd + nums[i], even)</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return max(even, odd)</div><div class="line">        &#125;</div><div class="line">        if nums.count == 1 &#123; return nums[0] &#125;</div><div class="line">        if nums.count == 0 &#123; return 0 &#125;</div><div class="line">        var nums1 = nums</div><div class="line">        var nums2 = nums</div><div class="line">        nums1.removeFirst()</div><div class="line">        nums2.removeLast()</div><div class="line">        return max(auxiliary(nums: nums1), auxiliary(nums: nums2))</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
@@ -415,8 +415,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/103-Binary-Tree-Zigzag-Level-Order-Traversal/" rel="prev" title="103. Binary Tree Zigzag Level Order Traversal">
-                103. Binary Tree Zigzag Level Order Traversal <i class="fa fa-chevron-right"></i>
+              <a href="/450-Delete-Node-in-a-BST/" rel="prev" title="450. Delete Node in a BST">
+                450. Delete Node in a BST <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,7 +501,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
