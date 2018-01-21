@@ -260,6 +260,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/547-Friend-Circles/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/547-Friend-Circles/" itemprop="url">547 Friend Circles</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T23:14:49+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/547-Friend-Circles/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="547-Friend-Circles/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="547-Friend-Circles"><a href="#547-Friend-Circles" class="headerlink" title="547. Friend Circles"></a><a href="https://leetcode.com/problems/friend-circles/description/" target="_blank" rel="external">547. Friend Circles</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a N*N matrix M representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: </div><div class="line">[[1,1,0],</div><div class="line"> [1,1,0],</div><div class="line"> [0,0,1]]</div><div class="line">Output: 2</div><div class="line">Explanation:The 0th and 1st students are direct friends, so they are in a friend circle. </div><div class="line">The 2nd student himself is in a friend circle. So return 2.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: </div><div class="line">[[1,1,0],</div><div class="line"> [1,1,1],</div><div class="line"> [0,1,1]]</div><div class="line">Output: 1</div><div class="line">Explanation:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends, </div><div class="line">so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>如果A和B是朋友，B和C是朋友，那么A和C是间接朋友。<br>给定二位数组<code>M</code>，如果<code>M[i][j]</code>表示i和j是朋友。求朋友圈的数量。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>DFS<br>通过<code>visited</code>辅助数组，判断是否访问过。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findCircleNum(_ M: [[Int]]) -&gt; Int &#123;</div><div class="line">        guard !M.isEmpty || !M[0].isEmpty else &#123; return 0 &#125;</div><div class="line">        </div><div class="line">        var ans = 0</div><div class="line">        var visited = Array(repeating: 0, count: M[0].count)</div><div class="line">        </div><div class="line">        func dfs(k: Int) &#123;</div><div class="line">            visited[k] = 1</div><div class="line">            for i in 0..&lt;M.count &#123;</div><div class="line">                if M[k][i] == 0 || visited[i] == 1 &#123; continue &#125;</div><div class="line">                dfs(k: i)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for i in 0..&lt;M.count &#123;</div><div class="line">            if visited[i] == 1 &#123; continue &#125;</div><div class="line">            dfs(k: i)</div><div class="line">            ans += 1</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1726,169 +1892,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/522-Longest-Uncommon-Subsequence-II/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/522-Longest-Uncommon-Subsequence-II/" itemprop="url">522. Longest Uncommon Subsequence II</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:46:07+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/522-Longest-Uncommon-Subsequence-II/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="522-Longest-Uncommon-Subsequence-II/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="522-Longest-Uncommon-Subsequence-II"><a href="#522-Longest-Uncommon-Subsequence-II" class="headerlink" title="522. Longest Uncommon Subsequence II"></a><a href="https://leetcode.com/problems/longest-uncommon-subsequence-ii/description/" target="_blank" rel="external">522. Longest Uncommon Subsequence II</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a list of strings, you need to find the longest uncommon subsequence among them. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.</p>
-<p>A subsequence is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
-<p>The input will be a list of strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: &quot;aba&quot;, &quot;cdc&quot;, &quot;eae&quot;</div><div class="line">Output: 3</div></pre></td></tr></table></figure>
-<p>Note:</p>
-<p>All the given strings’ lengths will not exceed 10.<br>The length of the given list will be in the range of [2, 50].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一组字符串，求最长不公共子序列。<br>子序列可以通过删除一些字符而不改变其余元素顺序的新序列。<br>空字符串不属于任何字符串的子序列</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>辅助字典，优化数组遍历。<br>根据字符串长度对数组进行排序，简化遍历。<br>再次遍历数组，判断当前字符串是否是数组内其他字符串的子字符串。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLUSlength(_ strs: [String]) -&gt; Int &#123;</div><div class="line">        </div><div class="line">        func isSubstring(s: String, t: String) -&gt; Bool &#123;</div><div class="line">            var arr1 = Array(s)</div><div class="line">            var arr2 = Array(t)</div><div class="line">            var index1 = 0</div><div class="line">            var index2 = 0</div><div class="line">            while index1 &lt; arr1.count &amp;&amp; index2 &lt; arr2.count &#123;</div><div class="line">                if arr1[index1] == arr2[index2] &#123;</div><div class="line">                    index1 += 1</div><div class="line">                &#125;</div><div class="line">                index2 += 1</div><div class="line">            &#125;</div><div class="line">            return index1 == arr1.count</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        var dict = [String: Int]()</div><div class="line">        for str in strs &#123;</div><div class="line">            dict[str] = (dict[str] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        let sortStrs = strs.sorted&#123; $0.count &gt; $1.count &#125;</div><div class="line">        for (i, s) in sortStrs.enumerated() &#123;</div><div class="line">            guard dict[s] == 1 else &#123; continue &#125;</div><div class="line">            var flag = true</div><div class="line">            </div><div class="line">            for j in 0..&lt;i &#123;</div><div class="line">                if isSubstring(s: s, t: sortStrs[j]) &#123;</div><div class="line">                    flag = false</div><div class="line">                    break</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">    </div><div class="line">            if flag &#123; return s.count &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        return -1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1939,7 +1942,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

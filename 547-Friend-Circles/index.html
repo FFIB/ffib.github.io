@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="746. Min Cost Climbing Stairs题目描述On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed). Once you pay the cost, you can either climb one or two steps. You need to find m">
+<meta name="description" content="547. Friend Circles题目描述There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a di">
 <meta property="og:type" content="article">
-<meta property="og:title" content="746. Min Cost Climbing Stairs">
-<meta property="og:url" content="https://ffib.github.io/746-Min-Cost-Climbing-Stairs/index.html">
+<meta property="og:title" content="547 Friend Circles">
+<meta property="og:url" content="https://ffib.github.io/547-Friend-Circles/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="746. Min Cost Climbing Stairs题目描述On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed). Once you pay the cost, you can either climb one or two steps. You need to find m">
+<meta property="og:description" content="547. Friend Circles题目描述There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a di">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T09:45:54.328Z">
+<meta property="og:updated_time" content="2018-01-21T15:37:29.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="746. Min Cost Climbing Stairs">
-<meta name="twitter:description" content="746. Min Cost Climbing Stairs题目描述On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed). Once you pay the cost, you can either climb one or two steps. You need to find m">
+<meta name="twitter:title" content="547 Friend Circles">
+<meta name="twitter:description" content="547. Friend Circles题目描述There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a di">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/746-Min-Cost-Climbing-Stairs/"/>
+  <link rel="canonical" href="https://ffib.github.io/547-Friend-Circles/"/>
 
 
 
 
 
-  <title>746. Min Cost Climbing Stairs | FFIB</title>
+  <title>547 Friend Circles | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/746-Min-Cost-Climbing-Stairs/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/547-Friend-Circles/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">746. Min Cost Climbing Stairs</h1>
+          <h1 class="post-title" itemprop="name headline">547 Friend Circles</h1>
         
 
         <div class="post-meta">
@@ -291,7 +291,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:44:56+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T23:14:49+08:00">
                 2018-01-21
               </time>
             
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/746-Min-Cost-Climbing-Stairs/#comments" itemprop="discussionUrl">
+                <a href="/547-Friend-Circles/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="746-Min-Cost-Climbing-Stairs/" itemprop="commentCount"></span>
+                        data-disqus-identifier="547-Friend-Circles/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,15 +367,21 @@
       
 
       
-        <h2 id="746-Min-Cost-Climbing-Stairs"><a href="#746-Min-Cost-Climbing-Stairs" class="headerlink" title="746. Min Cost Climbing Stairs"></a><a href="https://leetcode.com/problems/min-cost-climbing-stairs/description/" target="_blank" rel="external">746. Min Cost Climbing Stairs</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).</p>
-<p>Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: cost = [10, 15, 20]</div><div class="line">Output: 15</div><div class="line">Explanation: Cheapest is start on cost[1], pay that cost and go to the top.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</div><div class="line">Output: 6</div><div class="line">Explanation: Cheapest is start on cost[0], and only step on 1s, skipping cost[3].</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>上楼梯，可以走一步也可以走两步，每一级台阶都是需要付出代价的，求花最少代价上楼梯。</p>
+        <h2 id="547-Friend-Circles"><a href="#547-Friend-Circles" class="headerlink" title="547. Friend Circles"></a><a href="https://leetcode.com/problems/friend-circles/description/" target="_blank" rel="external">547. Friend Circles</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>There are N students in a class. Some of them are friends, while some are not. Their friendship is transitive in nature. For example, if A is a direct friend of B, and B is a direct friend of C, then A is an indirect friend of C. And we defined a friend circle is a group of students who are direct or indirect friends.</p>
+<p>Given a N*N matrix M representing the friend relationship between students in the class. If M[i][j] = 1, then the ith and jth students are direct friends with each other, otherwise not. And you have to output the total number of friend circles among all the students.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: </div><div class="line">[[1,1,0],</div><div class="line"> [1,1,0],</div><div class="line"> [0,0,1]]</div><div class="line">Output: 2</div><div class="line">Explanation:The 0th and 1st students are direct friends, so they are in a friend circle. </div><div class="line">The 2nd student himself is in a friend circle. So return 2.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: </div><div class="line">[[1,1,0],</div><div class="line"> [1,1,1],</div><div class="line"> [0,1,1]]</div><div class="line">Output: 1</div><div class="line">Explanation:The 0th and 1st students are direct friends, the 1st and 2nd students are direct friends, </div><div class="line">so the 0th and 2nd students are indirect friends. All of them are in the same friend circle, so return 1.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>N is in range [1,200].</li>
+<li>M[i][i] = 1 for all students.</li>
+<li>If M[i][j] = 1, then M[j][i] = 1.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>如果A和B是朋友，B和C是朋友，那么A和C是间接朋友。<br>给定二位数组<code>M</code>，如果<code>M[i][j]</code>表示i和j是朋友。求朋友圈的数量。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划</p>
+<p>DFS<br>通过<code>visited</code>辅助数组，判断是否访问过。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minCostClimbingStairs(_ cost: [Int]) -&gt; Int &#123;</div><div class="line">        guard cost.count &gt; 1 else &#123; return cost.last ?? 0 &#125;</div><div class="line">        var dp = [cost[0], cost[1]]</div><div class="line">        for i in 2..&lt;cost.count &#123;</div><div class="line">            dp.append(min(dp[i - 1], dp[i - 2]) + cost[i])</div><div class="line">        &#125;</div><div class="line">        return min(dp[dp.count - 1], dp[dp.count - 2])</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findCircleNum(_ M: [[Int]]) -&gt; Int &#123;</div><div class="line">        guard !M.isEmpty || !M[0].isEmpty else &#123; return 0 &#125;</div><div class="line">        </div><div class="line">        var ans = 0</div><div class="line">        var visited = Array(repeating: 0, count: M[0].count)</div><div class="line">        </div><div class="line">        func dfs(k: Int) &#123;</div><div class="line">            visited[k] = 1</div><div class="line">            for i in 0..&lt;M.count &#123;</div><div class="line">                if M[k][i] == 0 || visited[i] == 1 &#123; continue &#125;</div><div class="line">                dfs(k: i)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for i in 0..&lt;M.count &#123;</div><div class="line">            if visited[i] == 1 &#123; continue &#125;</div><div class="line">            dfs(k: i)</div><div class="line">            ans += 1</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -399,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/98-Validate-Binary-Search-Tree/" rel="next" title="98. Validate Binary Search Tree">
-                <i class="fa fa-chevron-left"></i> 98. Validate Binary Search Tree
+              <a href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" rel="next" title="712 Minimum ASCII Delete Sum for Two Strings">
+                <i class="fa fa-chevron-left"></i> 712 Minimum ASCII Delete Sum for Two Strings
               </a>
             
           </div>
@@ -408,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/522-Longest-Uncommon-Subsequence-II/" rel="prev" title="522. Longest Uncommon Subsequence II">
-                522. Longest Uncommon Subsequence II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#746-Min-Cost-Climbing-Stairs"><span class="nav-text">746. Min Cost Climbing Stairs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#547-Friend-Circles"><span class="nav-text">547. Friend Circles</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -708,9 +710,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/746-Min-Cost-Climbing-Stairs/';
-          this.page.identifier = '746-Min-Cost-Climbing-Stairs/';
-          this.page.title = '746. Min Cost Climbing Stairs';
+          this.page.url = 'https://ffib.github.io/547-Friend-Circles/';
+          this.page.identifier = '547-Friend-Circles/';
+          this.page.title = '547 Friend Circles';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
