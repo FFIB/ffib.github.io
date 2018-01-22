@@ -260,6 +260,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/725-Split-Linked-List-in-Parts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/725-Split-Linked-List-in-Parts/" itemprop="url">725 Split Linked List in Parts</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T11:22:03+08:00">
+                2018-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/725-Split-Linked-List-in-Parts/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="725-Split-Linked-List-in-Parts/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="725-Split-Linked-List-in-Parts"><a href="#725-Split-Linked-List-in-Parts" class="headerlink" title="725. Split Linked List in Parts"></a><a href="https://leetcode.com/problems/split-linked-list-in-parts/description/" target="_blank" rel="external">725. Split Linked List in Parts</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a (singly) linked list with head node root, write a function to split the linked list into k consecutive linked list “parts”.</p>
+<p>The length of each part should be as equal as possible: no two parts should have a size differing by more than 1. This may lead to some parts being null.</p>
+<p>The parts should be in order of occurrence in the input list, and parts occurring earlier should always have a size greater than or equal parts occurring later.</p>
+<p>Return a List of ListNode’s representing the linked list parts that are formed.</p>
+<p>Examples 1-&gt;2-&gt;3-&gt;4, k = 5 // 5 equal parts [ [1], [2], [3], [4], null ]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: </div><div class="line">root = [1, 2, 3], k = 5</div><div class="line">Output: [[1],[2],[3],[],[]]</div><div class="line">Explanation:</div><div class="line">The input and each element of the output are ListNodes, not arrays.</div><div class="line">For example, the input root has root.val = 1, root.next.val = 2, \root.next.next.val = 3, and root.next.next.next = null.</div><div class="line">The first element output[0] has output[0].val = 1, output[0].next = null.</div><div class="line">The last element output[4] is null, but it&apos;s string representation as a ListNode is [].</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: </div><div class="line">root = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], k = 3</div><div class="line">Output: [[1, 2, 3, 4], [5, 6, 7], [8, 9, 10]]</div><div class="line">Explanation:</div><div class="line">The input has been split into consecutive parts with size difference at most 1, and earlier parts are a larger size than the later parts.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<p>The length of root will be in the range [0, 1000].<br>Each value of a node in the input will be an integer in the range [0, 999].<br>k will be an integer in the range [1, 50].</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定数值k，把链条平均分配为k个链表，以数组形式返回。<br>记<code>链表长度 % k</code>为<code>r</code>，有以下规则：</p>
+<ul>
+<li>如果<code>k &gt; 链表长度</code>，则返回k个元素的数组，不足的用nil补充。</li>
+<li>如果<code>r &gt; 0</code>，则前r项多分配一个节点。</li>
+<li>如果<code>r == 0</code>，则链表平均分配节点数即可。</li>
+</ul>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>先求得链表长度。<br>按照题目规则生成节点长度的数组，需要用nil补充的，标记为<code>-1</code></p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for singly-linked list.</div><div class="line"> * public class ListNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var next: ListNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.next = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func splitListToParts(_ root: ListNode?, _ k: Int) -&gt; [ListNode?] &#123;</div><div class="line">        </div><div class="line">        //求长度</div><div class="line">        func findlength(root: ListNode?) -&gt; Int &#123;</div><div class="line">            var list = root</div><div class="line">            var length = 0</div><div class="line">            while list != nil &#123;</div><div class="line">                length += 1</div><div class="line">                list = list?.next</div><div class="line">            &#125;</div><div class="line">            return length</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        //求每个链表的长度</div><div class="line">        func findListLength(length: Int) -&gt; [Int] &#123;</div><div class="line">            let num = length / k</div><div class="line">            let r = length % k</div><div class="line">            let counts: [Int]</div><div class="line">            if r &gt; 0 &amp;&amp; r &lt; length &#123;</div><div class="line">                counts = Array(repeating: num + 1, count: r) + Array(repeating: num, count: k - r)</div><div class="line">            &#125;else if r == length &#123;</div><div class="line">                counts = Array(repeating: 1, count: length) + Array(repeating: -1, count: k - length)</div><div class="line">            &#125;else &#123;</div><div class="line">                counts = Array(repeating: num, count: k)</div><div class="line">            &#125;</div><div class="line">            return counts</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        let counts = findListLength(length: findlength(root: root))</div><div class="line">        var list = root</div><div class="line">        var ans = [ListNode?]()</div><div class="line">        for count in counts &#123;</div><div class="line">            if count == -1 &#123;</div><div class="line">                ans.append(nil)</div><div class="line">                continue</div><div class="line">            &#125;</div><div class="line">            var node = list</div><div class="line">            for _ in 0..&lt;count - 1 &#123;</div><div class="line">                node = node?.next</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            ans.append(list)</div><div class="line">            list = node?.next</div><div class="line">            node?.next = nil</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/547-Friend-Circles/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1732,166 +1902,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/718-Maximum-Length-of-Repeated-Subarray/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/718-Maximum-Length-of-Repeated-Subarray/" itemprop="url">718. Maximum Length of Repeated Subarray</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:47:08+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/718-Maximum-Length-of-Repeated-Subarray/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="718-Maximum-Length-of-Repeated-Subarray/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="718-Maximum-Length-of-Repeated-Subarray"><a href="#718-Maximum-Length-of-Repeated-Subarray" class="headerlink" title="718. Maximum Length of Repeated Subarray"></a><a href="https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/" target="_blank" rel="external">718. Maximum Length of Repeated Subarray</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:</div><div class="line">A: [1,2,3,2,1]</div><div class="line">B: [3,2,1,4,7]</div><div class="line">Output: 3</div><div class="line">Explanation: </div><div class="line">The repeated subarray with maximum length is [3, 2, 1].</div></pre></td></tr></table></figure>
-<p>Note:<br>1 &lt;= len(A), len(B) &lt;= 1000<br>0 &lt;= A[i], B[i] &lt; 100</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求两个数组内的最长重复子数组。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLength(_ A: [Int], _ B: [Int]) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: Array(repeating: 0, count: B.count + 1), count: A.count + 1)</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;A.count &#123;</div><div class="line">            for j in 0..&lt;B.count &#123;</div><div class="line">                if A[i] == B[j] &#123;</div><div class="line">                    dp[i + 1][j + 1] = dp[i][j] + 1</div><div class="line">                    ans = max(ans, dp[i + 1][j + 1])</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1942,7 +1952,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
