@@ -260,6 +260,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/748-Shortest-Completing-Word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/748-Shortest-Completing-Word/" itemprop="url">748. Shortest Completing Word</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:48:15+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/748-Shortest-Completing-Word/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="748-Shortest-Completing-Word/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="748-Shortest-Completing-Word"><a href="#748-Shortest-Completing-Word" class="headerlink" title="748. Shortest Completing Word"></a><a href="https://leetcode.com/problems/shortest-completing-word/description/" target="_blank" rel="external">748. Shortest Completing Word</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string licensePlate</p>
+<p>Here, for letters we ignore case. For example, “P” on the licensePlate still matches “p” on the word.</p>
+<p>It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.</p>
+<p>The license plate might have the same letter occurring multiple times. For example, given a licensePlate of “PP”, the word “pair” does not complete the licensePlate, but the word “supper” does.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]</div><div class="line">Output: &quot;steps&quot;</div><div class="line">Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.</div><div class="line">Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.</div><div class="line">Also note that we ignored case for the purposes of comparing whether a letter exists in the word.</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]</div><div class="line">Output: &quot;pest&quot;</div><div class="line">Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.</div><div class="line">We return the one that occurred first.</div></pre></td></tr></table></figure>
+<p>Note:<br>licensePlate will be a string with length in range [1, 7].<br>licensePlate will contain digits, spaces, or letters (uppercase or lowercase).<br>words will have a length in the range [10, 1000].<br>Every words[i] will consist of lowercase letters, and have length in range [1, 15].</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<code>licensePlate</code>，在<code>words</code>中寻找包含了车牌上所有字符的元素。返回最短的匹配元素，如果有多个，则返回第一个。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>暴力搜索，辅助哈希表。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -&gt; String &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        var ans = &quot;&quot;</div><div class="line">        let express = try! NSRegularExpression(pattern: &quot;[a-z]&quot;, options: .caseInsensitive)</div><div class="line">        </div><div class="line">        for n in licensePlate.lowercased() &#123;</div><div class="line">            let s = String(n)</div><div class="line">            //正则匹配字母</div><div class="line">            if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))</div><div class="line">               .count &gt;= 1&#123;</div><div class="line">                dict[n] = (dict[n] ?? 0) + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for word in words &#123;</div><div class="line">            var tmp = dict</div><div class="line">            </div><div class="line">            for char in word &#123;</div><div class="line">                if let count = tmp[char] &#123;</div><div class="line">                    tmp[char] = count - 1</div><div class="line">                    if count &lt;= 1 &#123;</div><div class="line">                        tmp.removeValue(forKey: char)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if tmp.isEmpty &#123;</div><div class="line">                if ans.isEmpty &#123; ans = word &#125;</div><div class="line">                //判断最小匹配元素</div><div class="line">                ans = ans.count &lt;= word.count ? ans : word</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/718-Maximum-Length-of-Repeated-Subarray/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1698,171 +1863,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Unique-Binary-Search-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Unique-Binary-Search-Tree/" itemprop="url">Unique Binary Search Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:31:06+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Unique-Binary-Search-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Unique-Binary-Search-Tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="96-Unique-Binary-Search-Trees"><a href="#96-Unique-Binary-Search-Trees" class="headerlink" title="96. Unique Binary Search Trees"></a><a href="https://leetcode.com/problems/unique-binary-search-trees/description/" target="_blank" rel="external">96. Unique Binary Search Trees</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given n, how many structurally unique BST’s (binary search trees) that store values 1…n?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example,</div><div class="line">Given n = 3, there are a total of 5 unique BST&apos;s.</div><div class="line"></div><div class="line">   1         3     3      2      1</div><div class="line">    \       /     /      / \      \</div><div class="line">     3     2     1      1   3      2</div><div class="line">    /     /       \                 \</div><div class="line">   2     1         2                 3</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一数字n，求有多少个BST组合。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>如果n=1，ans=1。<br>如果n=2，ans=2。<br>如果n=3，ans=5。<br>如果n=4，ans=14。<br>可以发现规律：<br>f(0)=1<br>f(1)=f(0)<br>f(2)=f(0)<em>f(1) + f(1)</em>f(0)<br>f(3)=f(0)<em>f(2) + f(1)</em>f(1) + f(2)<em>f(0)<br>f(4)=f(0)</em>f(3) + f(1)<em>f(2) + f(2)</em>f(1) + f(3)<em>f(0)<br>.<br>.<br>.<br>f(n)=f(0)</em>f(n-1) + f(1)<em>f(n-2) + …+f(n-1)</em>f(0)</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numTrees(_ n: Int) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: 0, count: n + 1)</div><div class="line">        dp[0] = 1</div><div class="line">        for i in 1...n &#123;</div><div class="line">            for j in 0..&lt;i &#123;</div><div class="line">                dp[i] += dp[j] * dp[i - 1 - j]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return dp[n]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="95-Unique-Binary-Search-Trees-II"><a href="#95-Unique-Binary-Search-Trees-II" class="headerlink" title="95. Unique Binary Search Trees II"></a><a href="">95. Unique Binary Search Trees II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example,</div><div class="line">Given n = 3, your program should return all 5 unique BST&apos;s shown below.</div><div class="line"></div><div class="line">   1         3     3      2      1</div><div class="line">    \       /     /      / \      \</div><div class="line">     3     2     1      1   3      2</div><div class="line">    /     /       \                 \</div><div class="line">   2     1         2                 3</div></pre></td></tr></table></figure>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一数字n，返回BST组合。跟I不同的是这里需要返回具体的BST。</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>使用递归生成左右节点，再将所有左右节点加在根节点。</p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func generateTrees(_ n: Int) -&gt; [TreeNode?] &#123;</div><div class="line">        </div><div class="line">        func recursion(min: Int, max: Int) -&gt; [TreeNode?] &#123;</div><div class="line">            var ans = [TreeNode?]()</div><div class="line">            guard min &lt;= max else&#123; return [nil] &#125;</div><div class="line">            for i in min...max &#123;</div><div class="line">                let left = recursion(min: min, max: i - 1)</div><div class="line">                let right = recursion(min: i + 1, max: max)</div><div class="line">                for l in left &#123;</div><div class="line">                    for r in right &#123;</div><div class="line">                        let t = TreeNode(i)</div><div class="line">                        t.left = l</div><div class="line">                        t.right = r</div><div class="line">                        ans.append(t)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return ans</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        guard n != 0 else&#123; return [] &#125;</div><div class="line">        return recursion(min: 1, max: n)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1913,7 +1913,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
