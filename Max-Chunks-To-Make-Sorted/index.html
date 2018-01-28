@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="712. Minimum ASCII Delete Sum for Two Strings题目描述Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal. 123456Example 1:Input: s1 = &amp;quot;sea&amp;quot;, s2 =">
+<meta name="description" content="769. Max Chunks To Make Sorted题目描述Given an array arr that is a permutation of [0, 1, …, arr.length - 1], we split the array into some number of “chunks” (partitions), and individually sort each chunk.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="712 Minimum ASCII Delete Sum for Two Strings">
-<meta property="og:url" content="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/index.html">
+<meta property="og:title" content="Max Chunks To Make Sorted">
+<meta property="og:url" content="https://ffib.github.io/Max-Chunks-To-Make-Sorted/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="712. Minimum ASCII Delete Sum for Two Strings题目描述Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal. 123456Example 1:Input: s1 = &amp;quot;sea&amp;quot;, s2 =">
+<meta property="og:description" content="769. Max Chunks To Make Sorted题目描述Given an array arr that is a permutation of [0, 1, …, arr.length - 1], we split the array into some number of “chunks” (partitions), and individually sort each chunk.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T14:20:25.275Z">
+<meta property="og:updated_time" content="2018-01-28T14:16:22.449Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="712 Minimum ASCII Delete Sum for Two Strings">
-<meta name="twitter:description" content="712. Minimum ASCII Delete Sum for Two Strings题目描述Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal. 123456Example 1:Input: s1 = &amp;quot;sea&amp;quot;, s2 =">
+<meta name="twitter:title" content="Max Chunks To Make Sorted">
+<meta name="twitter:description" content="769. Max Chunks To Make Sorted题目描述Given an array arr that is a permutation of [0, 1, …, arr.length - 1], we split the array into some number of “chunks” (partitions), and individually sort each chunk.">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/"/>
+  <link rel="canonical" href="https://ffib.github.io/Max-Chunks-To-Make-Sorted/"/>
 
 
 
 
 
-  <title>712 Minimum ASCII Delete Sum for Two Strings | FFIB</title>
+  <title>Max Chunks To Make Sorted | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Max-Chunks-To-Make-Sorted/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">712 Minimum ASCII Delete Sum for Two Strings</h1>
+          <h1 class="post-title" itemprop="name headline">Max Chunks To Make Sorted</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T21:29:50+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T20:26:22+08:00">
+                2018-01-28
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/#comments" itemprop="discussionUrl">
+                <a href="/Max-Chunks-To-Make-Sorted/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" itemprop="commentCount"></span>
+                        data-disqus-identifier="Max-Chunks-To-Make-Sorted/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,20 +367,26 @@
       
 
       
-        <h2 id="712-Minimum-ASCII-Delete-Sum-for-Two-Strings"><a href="#712-Minimum-ASCII-Delete-Sum-for-Two-Strings" class="headerlink" title="712. Minimum ASCII Delete Sum for Two Strings"></a><a href="https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/description/" target="_blank" rel="external">712. Minimum ASCII Delete Sum for Two Strings</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot;</div><div class="line">Output: 231</div><div class="line">Explanation: Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.</div><div class="line">Deleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.</div><div class="line">At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot;</div><div class="line">Output: 403</div><div class="line">Explanation: Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,</div><div class="line">adds 100[d]+101[e]+101[e] to the sum.  Deleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.</div><div class="line">At the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.</div><div class="line">If instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.</div></pre></td></tr></table></figure>
-<p>Note:</p>
-<ul>
-<li>0 &lt; s1.length, s2.length &lt;= 1000.</li>
-<li>All elements of each string will have an ASCII value in [97, 122].</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定两个字符串，删除其中一些字符使得两个字符相等。<br>删除字符ASCII和最小的。</p>
+        <h2 id="769-Max-Chunks-To-Make-Sorted"><a href="#769-Max-Chunks-To-Make-Sorted" class="headerlink" title="769. Max Chunks To Make Sorted"></a><a href="https://leetcode.com/problems/max-chunks-to-make-sorted/description/" target="_blank" rel="external">769. Max Chunks To Make Sorted</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array arr that is a permutation of [0, 1, …, arr.length - 1], we split the array into some number of “chunks” (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.</p>
+<p>What is the most number of chunks we could have made?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line"></div><div class="line">Input: arr = [4,3,2,1,0]</div><div class="line">Output: 1</div><div class="line">Explanation:</div><div class="line">Splitting into two or more chunks will not return the required result.</div><div class="line">For example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn&apos;t sorted.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line"></div><div class="line">Input: arr = [1,0,2,3,4]</div><div class="line">Output: 4</div><div class="line">Explanation:</div><div class="line">We can split into two chunks, such as [1, 0], [2, 3, 4].</div><div class="line">However, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将arr拆分n个部分，使得每个部分分别排序之后，重新组合在一起的数组呈递增序列。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>使用数组<code>dp</code>记录<code>s1</code>前<code>i</code>项ASCII和。<br>遍历<code>s2</code>, 使用<code>tmp</code>记录删除字符ASCII和最小。添加规则为:</p>
+<p>使数组呈递减序列，不满足条件的既加1：<br><code>arr[i..&lt;arr.count].min()! &gt; arr[0..&lt;i].max()!</code></p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如果相等，则tmp 添加dp[j - 1]，</div><div class="line">如果不相等，则有两种选择。第一种：删除s2[i - 1]ASCII再加上前i - 1项内最小的ASCII和；第二种：删除s1[j - 1]再加上前j  - 1项内最小的ASCII和</div><div class="line">if s2[i - 1] == s1[j - 1] &#123;</div><div class="line">    tmp.append(dp[j - 1])</div><div class="line">&#125;else &#123;</div><div class="line">    tmp.append(min(dp[j] + Int(s2[i - 1].value), tmp[j - 1] + Int(s1[j - 1].value)))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minimumDeleteSum(_ s1: String, _ s2: String) -&gt; Int &#123;</div><div class="line">        var dp = [0]</div><div class="line">        var arr1 = Array(s1.unicodeScalars)</div><div class="line">        var arr2 = Array(s2.unicodeScalars)</div><div class="line">        </div><div class="line">        for char in s1.unicodeScalars &#123;</div><div class="line">            dp.append(dp.last! + Int(char.value))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for i in 1...arr2.count &#123;</div><div class="line">            var tmp = [dp[0] + Int(arr2[i - 1].value)]</div><div class="line">            for j in 1...arr1.count &#123;</div><div class="line">                if arr2[i - 1] == arr1[j - 1] &#123;</div><div class="line">                    tmp.append(dp[j - 1])</div><div class="line">                &#125;else &#123;</div><div class="line">                    tmp.append(min(dp[j] + Int(arr2[i - 1].value), tmp[j - 1] + Int(arr1[j - 1].value)))</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            dp = tmp</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return dp.last!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func maxChunksToSorted(_ arr: [Int]) -&gt; Int &#123;</div><div class="line">        guard !arr.isEmpty else &#123; return 0 &#125;</div><div class="line">        var ans = 1</div><div class="line">        for i in 1..&lt;arr.count &#123;</div><div class="line">            if arr[i..&lt;arr.count].min()! &gt; arr[0..&lt;i].max()! &#123;</div><div class="line">                ans += 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="768-Max-Chunks-To-Make-Sorted-II"><a href="#768-Max-Chunks-To-Make-Sorted-II" class="headerlink" title="768. Max Chunks To Make Sorted II"></a><a href="https://leetcode.com/problems/max-chunks-to-make-sorted-ii/description/" target="_blank" rel="external">768. Max Chunks To Make Sorted II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>This question is the same as “Max Chunks to Make Sorted” except the integers of the given array are not necessarily distinct, the input array could be up to length 2000, and the elements could be up to 10**8.</p>
+<p>Given an array arr of integers (not necessarily distinct), we split the array into some number of “chunks” (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.</p>
+<p>What is the most number of chunks we could have made?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line"></div><div class="line">Input: arr = [5,4,3,2,1]</div><div class="line">Output: 1</div><div class="line">Explanation:</div><div class="line">Splitting into two or more chunks will not return the required result.</div><div class="line">For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&apos;t sorted.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line"></div><div class="line">Input: arr = [2,1,3,4,4]</div><div class="line">Output: 4</div><div class="line">Explanation:</div><div class="line">We can split into two chunks, such as [2, 1], [3, 4, 4].</div><div class="line">However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.</div></pre></td></tr></table></figure>
+<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>这是<code>I</code>的变形，数组可能有重复元素。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过当前数组记为<code>arr</code>和已排序数组记为<code>sortArr</code>进行对比，如果之前的元素个数不相等则计数器加一。<br>只有当计数器为0，即代表arr和sortArr前N项元素相同，结果加一。</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func maxChunksToSorted(_ arr: [Int]) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        var dict = [Int: Int]()</div><div class="line">        var count = 0</div><div class="line"></div><div class="line">        for (x, y) in zip(arr, arr.sorted()) &#123;</div><div class="line">            dict[x] = (dict[x] ?? 0) + 1</div><div class="line">            if dict[x] == 0 &#123;count -= 1 &#125;</div><div class="line">            if dict[x] == 1 &#123; count += 1 &#125;</div><div class="line"></div><div class="line">            dict[y] = (dict[y] ?? 0) - 1</div><div class="line">            if dict[y] == -1 &#123; count += 1 &#125;</div><div class="line">            if dict[y] == 0 &#123; count -= 1 &#125;</div><div class="line"></div><div class="line">            if count == 0 &#123; ans += 1 &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -404,8 +410,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/84-Largest-Rectangle-in-Histogram/" rel="next" title="84. Largest Rectangle in Histogram">
-                <i class="fa fa-chevron-left"></i> 84. Largest Rectangle in Histogram
+              <a href="/592-Fraction-Addition-and-Subtraction/" rel="next" title="592 Fraction Addition and Subtraction">
+                <i class="fa fa-chevron-left"></i> 592 Fraction Addition and Subtraction
               </a>
             
           </div>
@@ -413,10 +419,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/547-Friend-Circles/" rel="prev" title="547 Friend Circles">
-                547 Friend Circles <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +550,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#712-Minimum-ASCII-Delete-Sum-for-Two-Strings"><span class="nav-text">712. Minimum ASCII Delete Sum for Two Strings</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#769-Max-Chunks-To-Make-Sorted"><span class="nav-text">769. Max Chunks To Make Sorted</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#768-Max-Chunks-To-Make-Sorted-II"><span class="nav-text">768. Max Chunks To Make Sorted II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述-1"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意-1"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +715,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/';
-          this.page.identifier = '712-Minimum-ASCII-Delete-Sum-for-Two-Strings/';
-          this.page.title = '712 Minimum ASCII Delete Sum for Two Strings';
+          this.page.url = 'https://ffib.github.io/Max-Chunks-To-Make-Sorted/';
+          this.page.identifier = 'Max-Chunks-To-Make-Sorted/';
+          this.page.title = 'Max Chunks To Make Sorted';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
