@@ -260,6 +260,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/337-House-Robber-III/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/337-House-Robber-III/" itemprop="url">337. House Robber III</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T18:47:39+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/337-House-Robber-III/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="337-House-Robber-III/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="337-House-Robber-III"><a href="#337-House-Robber-III" class="headerlink" title="337. House Robber III"></a><a href="https://leetcode.com/problems/house-robber-iii/description/" target="_blank" rel="external">337. House Robber III</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that “all houses in this place forms a binary tree”. It will automatically contact the police if two directly-linked houses were broken into on the same night.</p>
+<p>Determine the maximum amount of money the thief can rob tonight without alerting the police.</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>小偷又找到了新的目标，这条街上的房子呈二叉树排列，同一晚上相邻的两层被偷会引发警报。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>递归，深度优先搜索（DFS<br>当遍历到某一层时，偷当前层和不偷的最大值。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func rob(_ root: TreeNode?) -&gt; Int &#123;</div><div class="line">        func dfs(tree: TreeNode?) -&gt; (Int, Int) &#123;</div><div class="line">            guard let t = tree else &#123; return (0, 0) &#125;</div><div class="line">            let left = dfs(tree: t.left)</div><div class="line">            let right = dfs(tree: t.right)</div><div class="line">            let noRob = max(left.0, left.1) + max(right.0, right.1)</div><div class="line">            let rob = t.val + left.0 + right.0</div><div class="line">            return (noRob, rob)</div><div class="line">        &#125;</div><div class="line">        let ans = dfs(tree: root)</div><div class="line">        return max(ans.0, ans.1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/583-Delete-Operation-for-Two-Strings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1724,166 +1882,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/738-Monotone-Increasing-Digits/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/738-Monotone-Increasing-Digits/" itemprop="url">738. Monotone Increasing Digits</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:41:23+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/738-Monotone-Increasing-Digits/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="738-Monotone-Increasing-Digits/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="738-Monotone-Increasing-Digits"><a href="#738-Monotone-Increasing-Digits" class="headerlink" title="738. Monotone Increasing Digits"></a><a href="https://leetcode.com/problems/monotone-increasing-digits/description/" target="_blank" rel="external">738. Monotone Increasing Digits</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a non-negative integer N, find the largest number that is less than or equal to N with monotone increasing digits.</p>
-<p> (Recall that an integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x &lt;= y.)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: N = 10</div><div class="line">Output: 9</div><div class="line">Example 2:</div><div class="line">Input: N = 1234</div><div class="line">Output: 1234</div><div class="line">Example 3:</div><div class="line">Input: N = 332</div><div class="line">Output: 299</div></pre></td></tr></table></figure>
-<p> Note: N is an integer in the range [0, 10^9].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一整数N，找到小于等于N的最大单调递增数字。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>由高位到低位遍历整数N，找到第一个递减的数字。<br>记录最后一个连续相等的数字和下标记为v，直至第一个递减数字。例如12334551，我们只需要记录第一个5及其下标即可。<br>将v以后的所有数替换为0，再减一，加上递减之前的数字即可。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">func monotoneIncreasingDigits(_ N: Int) -&gt; Int &#123;</div><div class="line">       let s = &quot;\(N)&quot;</div><div class="line">       var ans = 0</div><div class="line">       var v = (-1, -1)</div><div class="line">       var flag = false</div><div class="line">       for (i, char) in s.enumerated() &#123;</div><div class="line">           guard i + 1 &lt; s.count else &#123;</div><div class="line">               break</div><div class="line">           &#125;</div><div class="line">           let n = Int(String(char))!</div><div class="line">           let next = Int(String(s[s.index(s.startIndex, offsetBy: i + 1)]))!</div><div class="line">           if n &gt; next &#123;</div><div class="line">               flag = true</div><div class="line">               if v.0 == -1 || v.1 &lt; n&#123;</div><div class="line">                   v = (i, n)</div><div class="line">               &#125;</div><div class="line">               break</div><div class="line">           &#125;else if n == next &amp;&amp; v.1 != n&#123;</div><div class="line">               v = (i, n)</div><div class="line">           &#125;</div><div class="line">           ans = ans * 10 + n</div><div class="line">       &#125;</div><div class="line">       guard flag else &#123;</div><div class="line">           return N</div><div class="line">       &#125;</div><div class="line">       var digit = 1</div><div class="line">       let power = s.count - v.0 - 1</div><div class="line">       //由于leetcode使用pow函数报错，借以此代替幂操作</div><div class="line">       for _ in 0..&lt;power &#123; digit *= 10 &#125;</div><div class="line">       return v.1 * digit - 1 + N / digit / 10 * digit * 10</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1934,7 +1932,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

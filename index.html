@@ -260,6 +260,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/43-Multiply-String/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/43-Multiply-String/" itemprop="url">43 Multiply String</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T11:27:57+08:00">
+                2018-02-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/43-Multiply-String/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="43-Multiply-String/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="43-Multiply-Strings"><a href="#43-Multiply-Strings" class="headerlink" title="43. Multiply Strings"></a><a href="https://leetcode.com/problems/multiply-strings/description/" target="_blank" rel="external">43. Multiply Strings</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2.</p>
+<p>Note:</p>
+<ul>
+<li>The length of both num1 and num2 is &lt; 110.</li>
+<li>Both num1 and num2 contains only digits 0-9.</li>
+<li>Both num1 and num2 does not contain any leading zero.</li>
+<li>You must not use any built-in BigInteger library or convert the inputs to integer directly.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>大数乘法。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>模拟手算的过程，以数组 <code>pos</code> 储存结果，第一个字符串的第 <code>i</code> 位 和 第二个字符串的第 <code>j</code> 位相乘，一定是结果的的第 <code>i + j</code> 位，那么对当前结果进行取余就是 进位，即 <code>i + j + 1</code> 位。<br>最后剔除掉数组 <code>pos</code> 内所有前置位的 <code>0</code> 。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func multiply(_ num1: String, _ num2: String) -&gt; String &#123;</div><div class="line">        let s1 = Array(num1.unicodeScalars.reversed())</div><div class="line">        let s2 = Array(num2.unicodeScalars.reversed())</div><div class="line"></div><div class="line">        var pos = Array(repeating: 0, count: num1.count + num2.count)</div><div class="line"></div><div class="line">        for (i, char1) in s1.enumerated() &#123;</div><div class="line">            for (j, char2) in s2.enumerated() &#123;</div><div class="line">                let mult = Int((char1.value - 48) * (char2.value - 48))</div><div class="line">                let p1 = num1.count + num2.count - i - j - 2, p2 = num1.count + num2.count - i - j - 2 + 1</div><div class="line">                let sum = mult  + pos[p2]</div><div class="line"></div><div class="line">                pos[p1] += sum / 10</div><div class="line">                pos[p2] = sum % 10</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var index = pos.count - 1</div><div class="line">        for (i, num) in pos.enumerated() &#123;</div><div class="line">            if num != 0 &#123;</div><div class="line">                index = i</div><div class="line">                break</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        let ans = pos[index..&lt;pos.count].reduce(&quot;&quot;, &#123; (res, num) -&gt; String in</div><div class="line">                    return res + &quot;\(num)&quot;</div><div class="line">                &#125;)</div><div class="line">        return ans.count == 0 ? &quot;0&quot; : ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/754-Reach-a-Number/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1758,164 +1922,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/337-House-Robber-III/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/337-House-Robber-III/" itemprop="url">337. House Robber III</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T18:47:39+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/337-House-Robber-III/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="337-House-Robber-III/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="337-House-Robber-III"><a href="#337-House-Robber-III" class="headerlink" title="337. House Robber III"></a><a href="https://leetcode.com/problems/house-robber-iii/description/" target="_blank" rel="external">337. House Robber III</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the “root.” Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that “all houses in this place forms a binary tree”. It will automatically contact the police if two directly-linked houses were broken into on the same night.</p>
-<p>Determine the maximum amount of money the thief can rob tonight without alerting the police.</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>小偷又找到了新的目标，这条街上的房子呈二叉树排列，同一晚上相邻的两层被偷会引发警报。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>递归，深度优先搜索（DFS<br>当遍历到某一层时，偷当前层和不偷的最大值。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func rob(_ root: TreeNode?) -&gt; Int &#123;</div><div class="line">        func dfs(tree: TreeNode?) -&gt; (Int, Int) &#123;</div><div class="line">            guard let t = tree else &#123; return (0, 0) &#125;</div><div class="line">            let left = dfs(tree: t.left)</div><div class="line">            let right = dfs(tree: t.right)</div><div class="line">            let noRob = max(left.0, left.1) + max(right.0, right.1)</div><div class="line">            let rob = t.val + left.0 + right.0</div><div class="line">            return (noRob, rob)</div><div class="line">        &#125;</div><div class="line">        let ans = dfs(tree: root)</div><div class="line">        return max(ans.0, ans.1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1966,7 +1972,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">43</span>
+                <span class="site-state-item-count">44</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
