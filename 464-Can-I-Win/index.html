@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta name="description" content="464. Can I Win题目描述In the “100 game,” two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins. What if we ch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="748. Shortest Completing Word">
-<meta property="og:url" content="https://ffib.github.io/748-Shortest-Completing-Word/index.html">
+<meta property="og:title" content="464 Can I Win">
+<meta property="og:url" content="https://ffib.github.io/464-Can-I-Win/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta property="og:description" content="464. Can I Win题目描述In the “100 game,” two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins. What if we ch">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T12:24:52.621Z">
+<meta property="og:updated_time" content="2018-03-14T03:06:19.134Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="748. Shortest Completing Word">
-<meta name="twitter:description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta name="twitter:title" content="464 Can I Win">
+<meta name="twitter:description" content="464. Can I Win题目描述In the “100 game,” two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins. What if we ch">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/748-Shortest-Completing-Word/"/>
+  <link rel="canonical" href="https://ffib.github.io/464-Can-I-Win/"/>
 
 
 
 
 
-  <title>748. Shortest Completing Word | FFIB</title>
+  <title>464 Can I Win | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/748-Shortest-Completing-Word/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/464-Can-I-Win/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">748. Shortest Completing Word</h1>
+          <h1 class="post-title" itemprop="name headline">464 Can I Win</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:48:15+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:56:09+08:00">
+                2018-03-14
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/748-Shortest-Completing-Word/#comments" itemprop="discussionUrl">
+                <a href="/464-Can-I-Win/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="748-Shortest-Completing-Word/" itemprop="commentCount"></span>
+                        data-disqus-identifier="464-Can-I-Win/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,20 +367,18 @@
       
 
       
-        <h2 id="748-Shortest-Completing-Word"><a href="#748-Shortest-Completing-Word" class="headerlink" title="748. Shortest Completing Word"></a><a href="https://leetcode.com/problems/shortest-completing-word/description/" target="_blank" rel="external">748. Shortest Completing Word</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string licensePlate</p>
-<p>Here, for letters we ignore case. For example, “P” on the licensePlate still matches “p” on the word.</p>
-<p>It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.</p>
-<p>The license plate might have the same letter occurring multiple times. For example, given a licensePlate of “PP”, the word “pair” does not complete the licensePlate, but the word “supper” does.</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]</div><div class="line">Output: &quot;steps&quot;</div><div class="line">Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.</div><div class="line">Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.</div><div class="line">Also note that we ignored case for the purposes of comparing whether a letter exists in the word.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]</div><div class="line">Output: &quot;pest&quot;</div><div class="line">Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.</div><div class="line">We return the one that occurred first.</div></pre></td></tr></table></figure>
-<p>Note:<br>licensePlate will be a string with length in range [1, 7].<br>licensePlate will contain digits, spaces, or letters (uppercase or lowercase).<br>words will have a length in the range [10, 1000].<br>Every words[i] will consist of lowercase letters, and have length in range [1, 15].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<code>licensePlate</code>，在<code>words</code>中寻找包含了车牌上所有字符的元素。返回最短的匹配元素，如果有多个，则返回第一个。</p>
+        <h2 id="464-Can-I-Win"><a href="#464-Can-I-Win" class="headerlink" title="464. Can I Win"></a><a href="https://leetcode.com/problems/can-i-win/description/" target="_blank" rel="external">464. Can I Win</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>In the “100 game,” two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins.</p>
+<p>What if we change the game so that players cannot re-use integers?</p>
+<p>For example, two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total &gt;= 100.</p>
+<p>Given an integer maxChoosableInteger and another integer desiredTotal, determine if the first player to move can force a win, assuming both players play optimally.</p>
+<p>You can always assume that maxChoosableInteger will not be larger than 20 and desiredTotal will not be larger than 300.</p>
+<p>Example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">maxChoosableInteger = 10</div><div class="line">desiredTotal = 11</div><div class="line"></div><div class="line">Output:</div><div class="line">false</div><div class="line"></div><div class="line">Explanation:</div><div class="line">No matter which integer the first player choose, the first player will lose.</div><div class="line">The first player can choose an integer from 1 up to 10.</div><div class="line">If the first player choose 1, the second player can only choose integers from 2 up to 10.</div><div class="line">The second player will win by choosing 10 and get a total = 11, which is &gt;= desiredTotal.</div><div class="line">Same with other integers chosen by the first player, the second player will always win.</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>提供两个整数 <code>maxChoosableInteger</code> 和 <code>desiredTotal</code> 两个玩家轮流从 <code>1~maxChoosableInteger</code>,直到 <code>总和 &gt;= desiredTotal</code>，确定第一个玩家是否能获胜。 <code>1~maxChoosableInteger</code> 不能重复选择。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>暴力搜索，辅助哈希表。</p>
+<p>通过 <code>visited</code> 数组记录是否数字是否已经被访问过。<br><code>map</code> 记录当前组合是否被访问过。<br>简单粗暴的 <code>DFS</code>。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -&gt; String &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        var ans = &quot;&quot;</div><div class="line">        let express = try! NSRegularExpression(pattern: &quot;[a-z]&quot;, options: .caseInsensitive)</div><div class="line">        </div><div class="line">        for n in licensePlate.lowercased() &#123;</div><div class="line">            let s = String(n)</div><div class="line">            //正则匹配字母</div><div class="line">            if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))</div><div class="line">               .count &gt;= 1&#123;</div><div class="line">                dict[n] = (dict[n] ?? 0) + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for word in words &#123;</div><div class="line">            var tmp = dict</div><div class="line">            </div><div class="line">            for char in word &#123;</div><div class="line">                if let count = tmp[char] &#123;</div><div class="line">                    tmp[char] = count - 1</div><div class="line">                    if count &lt;= 1 &#123;</div><div class="line">                        tmp.removeValue(forKey: char)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if tmp.isEmpty &#123;</div><div class="line">                if ans.isEmpty &#123; ans = word &#125;</div><div class="line">                //判断最小匹配元素</div><div class="line">                ans = ans.count &lt;= word.count ? ans : word</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func canIWin(_ maxChoosableInteger: Int, _ desiredTotal: Int) -&gt; Bool &#123;</div><div class="line">        if desiredTotal &lt;= maxChoosableInteger &#123; return true &#125;</div><div class="line">        if (1+maxChoosableInteger)*maxChoosableInteger/2 &lt; desiredTotal &#123; return false &#125;</div><div class="line">        var visited = Array(repeating: false, count: maxChoosableInteger)</div><div class="line">        var map = [Int: Bool]()</div><div class="line"></div><div class="line">        func dfs(target: Int) -&gt; Bool &#123;</div><div class="line">            let key = (visited.reduce(0) &#123; (res, v) -&gt; Int in</div><div class="line">                var next = res &lt;&lt; 1</div><div class="line">                if v &#123; next |= 1 &#125;</div><div class="line">                return next</div><div class="line">            &#125;)</div><div class="line">            if let v = map[key] &#123; return v &#125;</div><div class="line">            for (i, v) in visited.enumerated() &#123;</div><div class="line">                if !v &#123;</div><div class="line">                    visited[i] = true</div><div class="line">                    if target &lt;= i + 1 || !dfs(target: target - i - 1) &#123;</div><div class="line">                        map[key] = true</div><div class="line">                        visited[i] = false</div><div class="line">                        return true</div><div class="line">                    &#125;</div><div class="line">                    visited[i] = false</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            map[key] = false</div><div class="line">            return false</div><div class="line">        &#125;</div><div class="line">        return dfs(target: desiredTotal)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -404,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/718-Maximum-Length-of-Repeated-Subarray/" rel="next" title="718. Maximum Length of Repeated Subarray">
-                <i class="fa fa-chevron-left"></i> 718. Maximum Length of Repeated Subarray
+              <a href="/658-Find-K-Closest-Elements/" rel="next" title="658 Find K Closest Elements">
+                <i class="fa fa-chevron-left"></i> 658 Find K Closest Elements
               </a>
             
           </div>
@@ -413,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/655-Print-Binary-Tree/" rel="prev" title="655. Print Binary Tree">
-                655. Print Binary Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#748-Shortest-Completing-Word"><span class="nav-text">748. Shortest Completing Word</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#464-Can-I-Win"><span class="nav-text">464. Can I Win</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +707,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/748-Shortest-Completing-Word/';
-          this.page.identifier = '748-Shortest-Completing-Word/';
-          this.page.title = '748. Shortest Completing Word';
+          this.page.url = 'https://ffib.github.io/464-Can-I-Win/';
+          this.page.identifier = '464-Can-I-Win/';
+          this.page.title = '464 Can I Win';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
