@@ -260,6 +260,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" itemprop="url">712 Minimum ASCII Delete Sum for Two Strings</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T21:29:50+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="712-Minimum-ASCII-Delete-Sum-for-Two-Strings"><a href="#712-Minimum-ASCII-Delete-Sum-for-Two-Strings" class="headerlink" title="712. Minimum ASCII Delete Sum for Two Strings"></a><a href="https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/description/" target="_blank" rel="external">712. Minimum ASCII Delete Sum for Two Strings</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot;</div><div class="line">Output: 231</div><div class="line">Explanation: Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.</div><div class="line">Deleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.</div><div class="line">At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot;</div><div class="line">Output: 403</div><div class="line">Explanation: Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,</div><div class="line">adds 100[d]+101[e]+101[e] to the sum.  Deleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.</div><div class="line">At the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.</div><div class="line">If instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>0 &lt; s1.length, s2.length &lt;= 1000.</li>
+<li>All elements of each string will have an ASCII value in [97, 122].</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定两个字符串，删除其中一些字符使得两个字符相等。<br>删除字符ASCII和最小的。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>动态规划<br>使用数组<code>dp</code>记录<code>s1</code>前<code>i</code>项ASCII和。<br>遍历<code>s2</code>, 使用<code>tmp</code>记录删除字符ASCII和最小。添加规则为:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如果相等，则tmp 添加dp[j - 1]，</div><div class="line">如果不相等，则有两种选择。第一种：删除s2[i - 1]ASCII再加上前i - 1项内最小的ASCII和；第二种：删除s1[j - 1]再加上前j  - 1项内最小的ASCII和</div><div class="line">if s2[i - 1] == s1[j - 1] &#123;</div><div class="line">    tmp.append(dp[j - 1])</div><div class="line">&#125;else &#123;</div><div class="line">    tmp.append(min(dp[j] + Int(s2[i - 1].value), tmp[j - 1] + Int(s1[j - 1].value)))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minimumDeleteSum(_ s1: String, _ s2: String) -&gt; Int &#123;</div><div class="line">        var dp = [0]</div><div class="line">        var arr1 = Array(s1.unicodeScalars)</div><div class="line">        var arr2 = Array(s2.unicodeScalars)</div><div class="line">        </div><div class="line">        for char in s1.unicodeScalars &#123;</div><div class="line">            dp.append(dp.last! + Int(char.value))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for i in 1...arr2.count &#123;</div><div class="line">            var tmp = [dp[0] + Int(arr2[i - 1].value)]</div><div class="line">            for j in 1...arr1.count &#123;</div><div class="line">                if arr2[i - 1] == arr1[j - 1] &#123;</div><div class="line">                    tmp.append(dp[j - 1])</div><div class="line">                &#125;else &#123;</div><div class="line">                    tmp.append(min(dp[j] + Int(arr2[i - 1].value), tmp[j - 1] + Int(arr1[j - 1].value)))</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            dp = tmp</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return dp.last!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/84-Largest-Rectangle-in-Histogram/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1724,166 +1889,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/746-Min-Cost-Climbing-Stairs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/746-Min-Cost-Climbing-Stairs/" itemprop="url">746. Min Cost Climbing Stairs</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:44:56+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/746-Min-Cost-Climbing-Stairs/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="746-Min-Cost-Climbing-Stairs/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="746-Min-Cost-Climbing-Stairs"><a href="#746-Min-Cost-Climbing-Stairs" class="headerlink" title="746. Min Cost Climbing Stairs"></a><a href="https://leetcode.com/problems/min-cost-climbing-stairs/description/" target="_blank" rel="external">746. Min Cost Climbing Stairs</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).</p>
-<p>Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: cost = [10, 15, 20]</div><div class="line">Output: 15</div><div class="line">Explanation: Cheapest is start on cost[1], pay that cost and go to the top.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</div><div class="line">Output: 6</div><div class="line">Explanation: Cheapest is start on cost[0], and only step on 1s, skipping cost[3].</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>上楼梯，可以走一步也可以走两步，每一级台阶都是需要付出代价的，求花最少代价上楼梯。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minCostClimbingStairs(_ cost: [Int]) -&gt; Int &#123;</div><div class="line">        guard cost.count &gt; 1 else &#123; return cost.last ?? 0 &#125;</div><div class="line">        var dp = [cost[0], cost[1]]</div><div class="line">        for i in 2..&lt;cost.count &#123;</div><div class="line">            dp.append(min(dp[i - 1], dp[i - 2]) + cost[i])</div><div class="line">        &#125;</div><div class="line">        return min(dp[dp.count - 1], dp[dp.count - 2])</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1934,7 +1939,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

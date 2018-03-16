@@ -260,6 +260,182 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Ugly-Number/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Ugly-Number/" itemprop="url">Ugly Number</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T10:56:24+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Ugly-Number/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="Ugly-Number/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="263-Ugly-Number"><a href="#263-Ugly-Number" class="headerlink" title="263. Ugly Number"></a><a href="https://leetcode.com/problems/ugly-number/description/" target="_blank" rel="external">263. Ugly Number</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Write a program to check whether a given number is an ugly number.</p>
+<p>Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.</p>
+<p>Note that 1 is typically treated as an ugly number.</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>丑陋数即由主要因子 <code>2、3、5</code> 相乘得到，<code>1</code> 为特殊的丑陋数。例如：6和8是丑陋数，而14不是，因为丑陋因子不包括 <code>7</code></p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过递归，对目标数进行取余，判断是否能被整除，以此循环。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func isUgly(_ num: Int) -&gt; Bool &#123;</div><div class="line">        guard num &gt; 0 else &#123; return false &#125;</div><div class="line"></div><div class="line">        if num == 1 &#123; return true &#125;</div><div class="line">        else if num % 2 == 0 &#123; return isUgly(num / 2) &#125;</div><div class="line">        else if num % 3 == 0 &#123; return isUgly(num / 3) &#125;</div><div class="line">        else if num % 5 == 0 &#123; return isUgly(num / 5) &#125;</div><div class="line"></div><div class="line">        return num == 1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="264-Ugly-Number-II"><a href="#264-Ugly-Number-II" class="headerlink" title="264. Ugly Number II"></a><a href="https://leetcode.com/problems/ugly-number-ii/description/" target="_blank" rel="external">264. Ugly Number II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Write a program to find the n-th ugly number.</p>
+<p>Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 1, 2, 3, 4, 5, 6, 8, 9, 10, 12 is the sequence of the first 10 ugly numbers.</p>
+<p>Note that 1 is typically treated as an ugly number, and n does not exceed 1690.</p>
+<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>例如 <code>1、2、3、4、5、6、8、9、10、12</code> 。按照大小排列，求 n-th 丑陋数。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>从上述的例子可以看出 丑陋数由下列数组成<br>2 <em> 1, 2 </em> 2, 2 <em> 3, 2 </em> 4…..<br>3 <em> 1, 3 </em> 2, 3 <em> 3, 3 </em> 4…..<br>5 <em> 1, 5 </em> 2, 5 <em> 3, 5 </em> 4…..<br>就是在每一列求最小，例如第一次 <code>2 3 5</code>中<code>2</code> 是最小，则第二次就变成 <code>4 3 5</code>求最小，以此类推。</p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func nthUglyNumber(_ n: Int) -&gt; Int &#123;</div><div class="line">        guard n &gt; 6 else &#123; return n &#125;</div><div class="line"></div><div class="line">        var uglyNums = Array(repeating: 0, count: n)</div><div class="line">        uglyNums[0] = 1</div><div class="line">        var f2 = 2, f3 = 3, f5 = 5</div><div class="line">        var i2 = 0, i3 = 0, i5 = 0</div><div class="line"></div><div class="line">        for i in 1..&lt;n &#123;</div><div class="line">            let num = min(f2, f3, f5)</div><div class="line">            uglyNums[i] = num</div><div class="line"></div><div class="line">            if f2 == num &#123;</div><div class="line">                i2 += 1</div><div class="line">                f2 = 2 * uglyNums[i2]</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            if f3 == num &#123;</div><div class="line">                i3 += 1</div><div class="line">                f3 = 3 * uglyNums[i3]</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            if f5 == num &#123;</div><div class="line">                i5 += 1</div><div class="line">                f5 = 5 * uglyNums[i5]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return uglyNums.last!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="313-Super-Ugly-Number"><a href="#313-Super-Ugly-Number" class="headerlink" title="313. Super Ugly Number"></a><a href="https://leetcode.com/problems/super-ugly-number/description/" target="_blank" rel="external">313. Super Ugly Number</a></h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>Write a program to find the nth super ugly number.</p>
+<p>Super ugly numbers are positive numbers whose all prime factors are in the given prime list primes of size k. For example, [1, 2, 4, 7, 8, 13, 14, 16, 19, 26, 28, 32] is the sequence of the first 12 super ugly numbers given primes = [2, 7, 13, 19] of size 4.</p>
+<p>Note:<br>(1) 1 is a super ugly number for any given primes.<br>(2) The given numbers in primes are in ascending order.<br>(3) 0 &lt; k ≤ 100, 0 &lt; n ≤ 106, 0 &lt; primes[i] &lt; 1000.<br>(4) The nth super ugly number is guaranteed to fit in a 32-bit signed integer.</p>
+<h3 id="题目大意-2"><a href="#题目大意-2" class="headerlink" title="题目大意"></a>题目大意</h3><p>实际上是 <code>Ugly Number II</code> 的变形，丑陋因子不固定，由 <code>primes</code> 参数提供。</p>
+<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>实现思路与 <code>Ugly Number II</code> 一致，只是把 <code>2 3 5</code> 变成了 <code>primes</code>数组。</p>
+</blockquote>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func nthSuperUglyNumber(_ n: Int, _ primes: [Int]) -&gt; Int &#123;</div><div class="line">        var uglyNums = Array(repeating: Int.max, count: n)</div><div class="line">        var indexs = Array(repeating: 0, count: primes.count)</div><div class="line">        uglyNums[0] = 1</div><div class="line">        for i in 0..&lt;n &#123;</div><div class="line">            for j in 0..&lt;primes.count &#123;</div><div class="line">                uglyNums[i] = min(uglyNums[i], primes[j] * uglyNums[indexs[j]])</div><div class="line">            &#125;</div><div class="line">            for j in 0..&lt;primes.count &#123;</div><div class="line">                while primes[j] * uglyNums[indexs[j]] &lt;= uglyNums[i] &#123; indexs[j] += 1 &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return uglyNums.last!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/525-Contiguous-Array/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1756,171 +1932,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" itemprop="url">712 Minimum ASCII Delete Sum for Two Strings</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T21:29:50+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/712-Minimum-ASCII-Delete-Sum-for-Two-Strings/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="712-Minimum-ASCII-Delete-Sum-for-Two-Strings/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="712-Minimum-ASCII-Delete-Sum-for-Two-Strings"><a href="#712-Minimum-ASCII-Delete-Sum-for-Two-Strings" class="headerlink" title="712. Minimum ASCII Delete Sum for Two Strings"></a><a href="https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/description/" target="_blank" rel="external">712. Minimum ASCII Delete Sum for Two Strings</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two strings s1, s2, find the lowest ASCII sum of deleted characters to make two strings equal.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: s1 = &quot;sea&quot;, s2 = &quot;eat&quot;</div><div class="line">Output: 231</div><div class="line">Explanation: Deleting &quot;s&quot; from &quot;sea&quot; adds the ASCII value of &quot;s&quot; (115) to the sum.</div><div class="line">Deleting &quot;t&quot; from &quot;eat&quot; adds 116 to the sum.</div><div class="line">At the end, both strings are equal, and 115 + 116 = 231 is the minimum sum possible to achieve this.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: s1 = &quot;delete&quot;, s2 = &quot;leet&quot;</div><div class="line">Output: 403</div><div class="line">Explanation: Deleting &quot;dee&quot; from &quot;delete&quot; to turn the string into &quot;let&quot;,</div><div class="line">adds 100[d]+101[e]+101[e] to the sum.  Deleting &quot;e&quot; from &quot;leet&quot; adds 101[e] to the sum.</div><div class="line">At the end, both strings are equal to &quot;let&quot;, and the answer is 100+101+101+101 = 403.</div><div class="line">If instead we turned both strings into &quot;lee&quot; or &quot;eet&quot;, we would get answers of 433 or 417, which are higher.</div></pre></td></tr></table></figure>
-<p>Note:</p>
-<ul>
-<li>0 &lt; s1.length, s2.length &lt;= 1000.</li>
-<li>All elements of each string will have an ASCII value in [97, 122].</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定两个字符串，删除其中一些字符使得两个字符相等。<br>删除字符ASCII和最小的。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>使用数组<code>dp</code>记录<code>s1</code>前<code>i</code>项ASCII和。<br>遍历<code>s2</code>, 使用<code>tmp</code>记录删除字符ASCII和最小。添加规则为:</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如果相等，则tmp 添加dp[j - 1]，</div><div class="line">如果不相等，则有两种选择。第一种：删除s2[i - 1]ASCII再加上前i - 1项内最小的ASCII和；第二种：删除s1[j - 1]再加上前j  - 1项内最小的ASCII和</div><div class="line">if s2[i - 1] == s1[j - 1] &#123;</div><div class="line">    tmp.append(dp[j - 1])</div><div class="line">&#125;else &#123;</div><div class="line">    tmp.append(min(dp[j] + Int(s2[i - 1].value), tmp[j - 1] + Int(s1[j - 1].value)))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minimumDeleteSum(_ s1: String, _ s2: String) -&gt; Int &#123;</div><div class="line">        var dp = [0]</div><div class="line">        var arr1 = Array(s1.unicodeScalars)</div><div class="line">        var arr2 = Array(s2.unicodeScalars)</div><div class="line">        </div><div class="line">        for char in s1.unicodeScalars &#123;</div><div class="line">            dp.append(dp.last! + Int(char.value))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for i in 1...arr2.count &#123;</div><div class="line">            var tmp = [dp[0] + Int(arr2[i - 1].value)]</div><div class="line">            for j in 1...arr1.count &#123;</div><div class="line">                if arr2[i - 1] == arr1[j - 1] &#123;</div><div class="line">                    tmp.append(dp[j - 1])</div><div class="line">                &#125;else &#123;</div><div class="line">                    tmp.append(min(dp[j] + Int(arr2[i - 1].value), tmp[j - 1] + Int(arr1[j - 1].value)))</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            dp = tmp</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return dp.last!</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1971,7 +1982,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">55</span>
+                <span class="site-state-item-count">56</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
