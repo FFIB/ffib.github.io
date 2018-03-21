@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="740. Delete and Earn题目描述 Given an array nums of integers, you can perform operations on the array.  In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete">
+<meta name="description" content="752. Open the Lock题目描述You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’. The wheels can rotate freely and wrap around: f">
 <meta property="og:type" content="article">
-<meta property="og:title" content="740. Delete and Earn">
-<meta property="og:url" content="https://ffib.github.io/740-Delete-and-Earn/index.html">
+<meta property="og:title" content="752. Open the Lock">
+<meta property="og:url" content="https://ffib.github.io/752-Open-the-Lock/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="740. Delete and Earn题目描述 Given an array nums of integers, you can perform operations on the array.  In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete">
+<meta property="og:description" content="752. Open the Lock题目描述You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’. The wheels can rotate freely and wrap around: f">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T09:21:24.149Z">
+<meta property="og:updated_time" content="2018-03-21T03:54:33.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="740. Delete and Earn">
-<meta name="twitter:description" content="740. Delete and Earn题目描述 Given an array nums of integers, you can perform operations on the array.  In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete">
+<meta name="twitter:title" content="752. Open the Lock">
+<meta name="twitter:description" content="752. Open the Lock题目描述You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’. The wheels can rotate freely and wrap around: f">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/740-Delete-and-Earn/"/>
+  <link rel="canonical" href="https://ffib.github.io/752-Open-the-Lock/"/>
 
 
 
 
 
-  <title>740. Delete and Earn | FFIB</title>
+  <title>752. Open the Lock | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/740-Delete-and-Earn/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/752-Open-the-Lock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">740. Delete and Earn</h1>
+          <h1 class="post-title" itemprop="name headline">752. Open the Lock</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:20:22+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-21T11:34:05+08:00">
+                2018-03-21
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/740-Delete-and-Earn/#comments" itemprop="discussionUrl">
+                <a href="/752-Open-the-Lock/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="740-Delete-and-Earn/" itemprop="commentCount"></span>
+                        data-disqus-identifier="752-Open-the-Lock/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,18 +367,30 @@
       
 
       
-        <h2 id="740-Delete-and-Earn"><a href="#740-Delete-and-Earn" class="headerlink" title="740. Delete and Earn"></a><a href="https://leetcode.com/problems/delete-and-earn/description/" target="_blank" rel="external">740. Delete and Earn</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p> Given an array nums of integers, you can perform operations on the array.</p>
-<p> In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete every element equal to nums[i] - 1 or nums[i] + 1.</p>
-<p> You start with 0 points. Return the maximum number of points you can earn by applying such operations.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: nums = [3, 4, 2]</div><div class="line">Output: 6</div><div class="line">Explanation:</div><div class="line">Delete 4 to earn 4 points, consequently 3 is also deleted.</div><div class="line">Then, delete 2 to earn 2 points. 6 total points are earned.</div></pre></td></tr></table></figure>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: nums = [2, 2, 3, 3, 3, 4]</div><div class="line">Output: 9</div><div class="line">Explanation:</div><div class="line">Delete 3 to earn 3 points, deleting both 2&apos;s and the 4.</div><div class="line">Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.</div><div class="line">9 total points are earned.</div></pre></td></tr></table></figure>
-<p> Note:</p>
-<p> The length of nums is at most 20000.<br> Each element nums[i] is an integer in the range [1, 10000].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个数组nums，可以执行如下操作：<br>在每次操作中，必须删除所有等于nums[i]- 1或nums[i]+ 1的元素，记录数组内剩余数字的总和<br>循环操作，求最大值。</p>
+        <h2 id="752-Open-the-Lock"><a href="#752-Open-the-Lock" class="headerlink" title="752. Open the Lock"></a><a href="https://leetcode.com/problems/open-the-lock/description/" target="_blank" rel="external">752. Open the Lock</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You have a lock in front of you with 4 circular wheels. Each wheel has 10 slots: ‘0’, ‘1’, ‘2’, ‘3’, ‘4’, ‘5’, ‘6’, ‘7’, ‘8’, ‘9’. The wheels can rotate freely and wrap around: for example we can turn ‘9’ to be ‘0’, or ‘0’ to be ‘9’. Each move consists of turning one wheel one slot.</p>
+<p>The lock initially starts at ‘0000’, a string representing the state of the 4 wheels.</p>
+<p>You are given a list of deadends dead ends, meaning if the lock displays any of these codes, the wheels of the lock will stop turning and you will be unable to open it.</p>
+<p>Given a target representing the value of the wheels that will unlock the lock, return the minimum total number of turns required to open the lock, or -1 if it is impossible.</p>
+<p><strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: deadends = [&quot;0201&quot;,&quot;0101&quot;,&quot;0102&quot;,&quot;1212&quot;,&quot;2002&quot;], target = &quot;0202&quot;</div><div class="line">Output: 6</div><div class="line">Explanation:</div><div class="line">A sequence of valid moves would be &quot;0000&quot; -&gt; &quot;1000&quot; -&gt; &quot;1100&quot; -&gt; &quot;1200&quot; -&gt; &quot;1201&quot; -&gt; &quot;1202&quot; -&gt; &quot;0202&quot;.</div><div class="line">Note that a sequence like &quot;0000&quot; -&gt; &quot;0001&quot; -&gt; &quot;0002&quot; -&gt; &quot;0102&quot; -&gt; &quot;0202&quot; would be invalid,</div><div class="line">because the wheels of the lock become stuck after the display becomes the dead end &quot;0102&quot;.</div></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: deadends = [&quot;8888&quot;], target = &quot;0009&quot;</div><div class="line">Output: 1</div><div class="line">Explanation:</div><div class="line">We can turn the last wheel in reverse to move from &quot;0000&quot; -&gt; &quot;0009&quot;.</div></pre></td></tr></table></figure>
+<p><strong>Example 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: deadends = [&quot;8887&quot;,&quot;8889&quot;,&quot;8878&quot;,&quot;8898&quot;,&quot;8788&quot;,&quot;8988&quot;,&quot;7888&quot;,&quot;9888&quot;], target = &quot;8888&quot;</div><div class="line">Output: -1</div><div class="line">Explanation:</div><div class="line">We can&apos;t reach the target without getting stuck.</div></pre></td></tr></table></figure>
+<p><strong>Example 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: deadends = [&quot;0000&quot;], target = &quot;8888&quot;</div><div class="line">Output: -1</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>The length of deadends will be in the range [1, 500].</li>
+<li>target will not be in the list deadends.</li>
+<li>Every string in deadends and the string target will be a string of 4 digits from the 10,000 possibilities ‘0000’ to ‘9999’.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>密码锁解锁，从 <code>0000</code> 开始，移动每个齿轮，直到匹配到目标数字组合，求需要移动的步数。<br>其中 <code>deadends</code> 表示不能够访问的数字组合； <code>0</code> 可以转到 <code>9</code>, <code>9</code> 也可以转到 <code>0</code>。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>dict[num]储存数字num的个数<br>maxNum表示数组内的最大值<br>dp表示删除不大于num的所有数字的最大值</p>
+<p>BFS</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">func deleteAndEarn(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">    var dict = [Int: Int]()</div><div class="line">    var maxNum = 0</div><div class="line">    for num in nums &#123;</div><div class="line">        dict[num] = (dict[num] ?? 0) + 1</div><div class="line">        maxNum = max(maxNum, num)</div><div class="line">    &#125;</div><div class="line">    //为防止数组越界</div><div class="line">    var dp = Array(repeating: 0, count: maxNum + 3)</div><div class="line">    for num in 1...maxNum + 1 &#123;</div><div class="line">        dp[num] = max(dp[num - 1], (num &gt; 2 ? dp[num - 2] : 0) + (dict[num] ?? 0) *</div><div class="line">num)</div><div class="line">    &#125;</div><div class="line">    return dp[maxNum]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func openLock(_ deadends: [String], _ target: String) -&gt; Int &#123;</div><div class="line">        if deadends.contains(&quot;0000&quot;) &#123; return -1 &#125;</div><div class="line">        var queue = [&quot;0000&quot;]</div><div class="line">        var visited = Set(deadends + queue)</div><div class="line">        var step = 1</div><div class="line"></div><div class="line">        while !queue.isEmpty &#123;</div><div class="line">            var temp = [String]()</div><div class="line">            for status in queue &#123;</div><div class="line">                let chars = status.utf8</div><div class="line"></div><div class="line">                for (i, char) in chars.enumerated() &#123;</div><div class="line">                    let pre = String(chars.prefix(i))!</div><div class="line">                    let suf = String(chars.suffix(4-i-1))!</div><div class="line">                    for j in [1, 9] &#123;   //需要即能正向转动齿轮，亦可反向转动齿轮。</div><div class="line">                        let e = (Int(char) - 48 + j) % 10</div><div class="line">                        let str = pre  + &quot;\(e)&quot; + suf</div><div class="line">                        if target == str &#123; return step &#125;</div><div class="line">                        if !visited.contains(str) &#123;</div><div class="line">                            visited.insert(str)</div><div class="line">                            temp.append(str)</div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            queue = temp</div><div class="line">            step += 1</div><div class="line">        &#125;</div><div class="line">        return -1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -402,8 +414,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/669-Trim-a-Binary-Search-Tree/" rel="next" title="669. Trim a Binary Search Tree">
-                <i class="fa fa-chevron-left"></i> 669. Trim a Binary Search Tree
+              <a href="/744-Find-Smallest-Letter-Greater-Than-Target/" rel="next" title="744. Find Smallest Letter Greater Than Target">
+                <i class="fa fa-chevron-left"></i> 744. Find Smallest Letter Greater Than Target
               </a>
             
           </div>
@@ -411,10 +423,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/733-Flood-Fill/" rel="prev" title="733. Flood Fill">
-                733. Flood Fill <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -546,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#740-Delete-and-Earn"><span class="nav-text">740. Delete and Earn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#752-Open-the-Lock"><span class="nav-text">752. Open the Lock</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -711,9 +719,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/740-Delete-and-Earn/';
-          this.page.identifier = '740-Delete-and-Earn/';
-          this.page.title = '740. Delete and Earn';
+          this.page.url = 'https://ffib.github.io/752-Open-the-Lock/';
+          this.page.identifier = '752-Open-the-Lock/';
+          this.page.title = '752. Open the Lock';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
