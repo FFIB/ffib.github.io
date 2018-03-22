@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="96. Unique Binary Search Trees题目描述Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? 12345678For example,Given n = 3, there are a total of 5 unique BST&amp;apos;s.">
+<meta name="description" content="698. Partition to K Equal Sum Subsets题目描述Given an array of integers nums and a positive integer k, find whether it’s possible to divide this array into k non-empty subsets whose sums are all equal. Ex">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Unique Binary Search Tree">
-<meta property="og:url" content="https://ffib.github.io/Unique-Binary-Search-Tree/index.html">
+<meta property="og:title" content="698. Partition to K Equal Sum Subsets">
+<meta property="og:url" content="https://ffib.github.io/698-Partition-to-K-Equal-Sum-Subsets/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="96. Unique Binary Search Trees题目描述Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? 12345678For example,Given n = 3, there are a total of 5 unique BST&amp;apos;s.">
+<meta property="og:description" content="698. Partition to K Equal Sum Subsets题目描述Given an array of integers nums and a positive integer k, find whether it’s possible to divide this array into k non-empty subsets whose sums are all equal. Ex">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T12:37:33.156Z">
+<meta property="og:updated_time" content="2018-03-22T03:28:39.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Unique Binary Search Tree">
-<meta name="twitter:description" content="96. Unique Binary Search Trees题目描述Given n, how many structurally unique BST’s (binary search trees) that store values 1…n? 12345678For example,Given n = 3, there are a total of 5 unique BST&amp;apos;s.">
+<meta name="twitter:title" content="698. Partition to K Equal Sum Subsets">
+<meta name="twitter:description" content="698. Partition to K Equal Sum Subsets题目描述Given an array of integers nums and a positive integer k, find whether it’s possible to divide this array into k non-empty subsets whose sums are all equal. Ex">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/Unique-Binary-Search-Tree/"/>
+  <link rel="canonical" href="https://ffib.github.io/698-Partition-to-K-Equal-Sum-Subsets/"/>
 
 
 
 
 
-  <title>Unique Binary Search Tree | FFIB</title>
+  <title>698. Partition to K Equal Sum Subsets | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Unique-Binary-Search-Tree/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/698-Partition-to-K-Equal-Sum-Subsets/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Unique Binary Search Tree</h1>
+          <h1 class="post-title" itemprop="name headline">698. Partition to K Equal Sum Subsets</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:31:06+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T11:12:16+08:00">
+                2018-03-22
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Unique-Binary-Search-Tree/#comments" itemprop="discussionUrl">
+                <a href="/698-Partition-to-K-Equal-Sum-Subsets/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Unique-Binary-Search-Tree/" itemprop="commentCount"></span>
+                        data-disqus-identifier="698-Partition-to-K-Equal-Sum-Subsets/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,20 +367,13 @@
       
 
       
-        <h2 id="96-Unique-Binary-Search-Trees"><a href="#96-Unique-Binary-Search-Trees" class="headerlink" title="96. Unique Binary Search Trees"></a><a href="https://leetcode.com/problems/unique-binary-search-trees/description/" target="_blank" rel="external">96. Unique Binary Search Trees</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given n, how many structurally unique BST’s (binary search trees) that store values 1…n?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example,</div><div class="line">Given n = 3, there are a total of 5 unique BST&apos;s.</div><div class="line"></div><div class="line">   1         3     3      2      1</div><div class="line">    \       /     /      / \      \</div><div class="line">     3     2     1      1   3      2</div><div class="line">    /     /       \                 \</div><div class="line">   2     1         2                 3</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一数字n，求有多少个BST组合。</p>
+        <h2 id="698-Partition-to-K-Equal-Sum-Subsets"><a href="#698-Partition-to-K-Equal-Sum-Subsets" class="headerlink" title="698. Partition to K Equal Sum Subsets"></a><a href="https://leetcode.com/problems/partition-to-k-equal-sum-subsets/description/" target="_blank" rel="external">698. Partition to K Equal Sum Subsets</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array of integers nums and a positive integer k, find whether it’s possible to divide this array into k non-empty subsets whose sums are all equal.</p>
+<p>Example 1:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: nums = [4, 3, 2, 3, 5, 2, 1], k = 4</div><div class="line">Output: True</div><div class="line">Explanation: It&apos;s possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.</div></pre></td></tr></table></figure></p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将数组平均分成 <code>k</code> 个子序列，每个子序列和相同。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>如果n=1，ans=1。<br>如果n=2，ans=2。<br>如果n=3，ans=5。<br>如果n=4，ans=14。<br>可以发现规律：<br>f(0)=1<br>f(1)=f(0)<br>f(2)=f(0)<em>f(1) + f(1)</em>f(0)<br>f(3)=f(0)<em>f(2) + f(1)</em>f(1) + f(2)<em>f(0)<br>f(4)=f(0)</em>f(3) + f(1)<em>f(2) + f(2)</em>f(1) + f(3)<em>f(0)<br>.<br>.<br>.<br>f(n)=f(0)</em>f(n-1) + f(1)<em>f(n-2) + …+f(n-1)</em>f(0)</p>
+<p>递归遍历数组，用 <code>visited</code> 标记访问过的元素。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numTrees(_ n: Int) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: 0, count: n + 1)</div><div class="line">        dp[0] = 1</div><div class="line">        for i in 1...n &#123;</div><div class="line">            for j in 0..&lt;i &#123;</div><div class="line">                dp[i] += dp[j] * dp[i - 1 - j]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return dp[n]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="95-Unique-Binary-Search-Trees-II"><a href="#95-Unique-Binary-Search-Trees-II" class="headerlink" title="95. Unique Binary Search Trees II"></a><a href="">95. Unique Binary Search Trees II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an integer n, generate all structurally unique BST’s (binary search trees) that store values 1…n.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example,</div><div class="line">Given n = 3, your program should return all 5 unique BST&apos;s shown below.</div><div class="line"></div><div class="line">   1         3     3      2      1</div><div class="line">    \       /     /      / \      \</div><div class="line">     3     2     1      1   3      2</div><div class="line">    /     /       \                 \</div><div class="line">   2     1         2                 3</div></pre></td></tr></table></figure>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一数字n，返回BST组合。跟I不同的是这里需要返回具体的BST。</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>使用递归生成左右节点，再将所有左右节点加在根节点。</p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func generateTrees(_ n: Int) -&gt; [TreeNode?] &#123;</div><div class="line">        </div><div class="line">        func recursion(min: Int, max: Int) -&gt; [TreeNode?] &#123;</div><div class="line">            var ans = [TreeNode?]()</div><div class="line">            guard min &lt;= max else&#123; return [nil] &#125;</div><div class="line">            for i in min...max &#123;</div><div class="line">                let left = recursion(min: min, max: i - 1)</div><div class="line">                let right = recursion(min: i + 1, max: max)</div><div class="line">                for l in left &#123;</div><div class="line">                    for r in right &#123;</div><div class="line">                        let t = TreeNode(i)</div><div class="line">                        t.left = l</div><div class="line">                        t.right = r</div><div class="line">                        ans.append(t)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return ans</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        guard n != 0 else&#123; return [] &#125;</div><div class="line">        return recursion(min: 1, max: n)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func canPartitionKSubsets(_ nums: [Int], _ k: Int) -&gt; Bool &#123;</div><div class="line">        let sum = nums.reduce(0, +)</div><div class="line">        var visted = Array(repeating: false, count: nums.count)</div><div class="line">        guard nums.count &gt; k, sum % k == 0 else &#123; return false &#125;</div><div class="line">        let target = sum / k</div><div class="line">        </div><div class="line">        func divide(k: Int, currentSum: Int, currentNum: Int, start: Int) -&gt; Bool &#123;</div><div class="line">            if k == 1 &#123; return true &#125;</div><div class="line">            if currentSum == target &amp;&amp; currentNum &gt; 0 &#123;</div><div class="line">                return divide(k: k - 1, currentSum: 0, currentNum: 0, start: 0)</div><div class="line">            &#125;</div><div class="line">            for i in start..&lt;nums.count &#123;</div><div class="line">                if !visted[i] &#123;</div><div class="line">                    if nums[i] + currentSum &gt; target &#123; continue &#125;</div><div class="line">                    visted[i] = true</div><div class="line">                    if divide(k: k, currentSum: currentSum + nums[i], currentNum: currentNum + 1, start: i + 1) &#123;</div><div class="line">                        return true</div><div class="line">                    &#125;</div><div class="line">                    visted[i] = false</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return false</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return divide(k: k, currentSum: 0, currentNum: 0, start: 0)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -404,8 +397,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/129-Sum-Root-to-Leaf-Numbers/" rel="next" title="129. Sum Root to Leaf Numbers">
-                <i class="fa fa-chevron-left"></i> 129. Sum Root to Leaf Numbers
+              <a href="/752-Open-the-Lock/" rel="next" title="752. Open the Lock">
+                <i class="fa fa-chevron-left"></i> 752. Open the Lock
               </a>
             
           </div>
@@ -413,10 +406,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/House-Robber-I-II/" rel="prev" title="House Robber I, II">
-                House Robber I, II <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +537,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#96-Unique-Binary-Search-Trees"><span class="nav-text">96. Unique Binary Search Trees</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#95-Unique-Binary-Search-Trees-II"><span class="nav-text">95. Unique Binary Search Trees II</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述-1"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意-1"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路-1"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码-1"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#698-Partition-to-K-Equal-Sum-Subsets"><span class="nav-text">698. Partition to K Equal Sum Subsets</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +702,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/Unique-Binary-Search-Tree/';
-          this.page.identifier = 'Unique-Binary-Search-Tree/';
-          this.page.title = 'Unique Binary Search Tree';
+          this.page.url = 'https://ffib.github.io/698-Partition-to-K-Equal-Sum-Subsets/';
+          this.page.identifier = '698-Partition-to-K-Equal-Sum-Subsets/';
+          this.page.title = '698. Partition to K Equal Sum Subsets';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
