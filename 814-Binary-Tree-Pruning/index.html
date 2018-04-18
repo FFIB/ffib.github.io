@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta name="description" content="814. Binary Tree Pruning题目描述We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1. Return the same tree where every subtree (of the given tree) n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="748. Shortest Completing Word">
-<meta property="og:url" content="https://ffib.github.io/748-Shortest-Completing-Word/index.html">
+<meta property="og:title" content="814. Binary Tree Pruning">
+<meta property="og:url" content="https://ffib.github.io/814-Binary-Tree-Pruning/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta property="og:description" content="814. Binary Tree Pruning题目描述We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1. Return the same tree where every subtree (of the given tree) n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T12:24:52.621Z">
+<meta property="og:updated_time" content="2018-04-18T07:34:55.241Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="748. Shortest Completing Word">
-<meta name="twitter:description" content="748. Shortest Completing Word题目描述Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string li">
+<meta name="twitter:title" content="814. Binary Tree Pruning">
+<meta name="twitter:description" content="814. Binary Tree Pruning题目描述We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1. Return the same tree where every subtree (of the given tree) n">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/748-Shortest-Completing-Word/"/>
+  <link rel="canonical" href="https://ffib.github.io/814-Binary-Tree-Pruning/"/>
 
 
 
 
 
-  <title>748. Shortest Completing Word | FFIB</title>
+  <title>814. Binary Tree Pruning | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/748-Shortest-Completing-Word/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/814-Binary-Tree-Pruning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">748. Shortest Completing Word</h1>
+          <h1 class="post-title" itemprop="name headline">814. Binary Tree Pruning</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:48:15+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-18T15:30:15+08:00">
+                2018-04-18
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/748-Shortest-Completing-Word/#comments" itemprop="discussionUrl">
+                <a href="/814-Binary-Tree-Pruning/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="748-Shortest-Completing-Word/" itemprop="commentCount"></span>
+                        data-disqus-identifier="814-Binary-Tree-Pruning/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,20 +367,22 @@
       
 
       
-        <h2 id="748-Shortest-Completing-Word"><a href="#748-Shortest-Completing-Word" class="headerlink" title="748. Shortest Completing Word"></a><a href="https://leetcode.com/problems/shortest-completing-word/description/" target="_blank" rel="external">748. Shortest Completing Word</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string licensePlate</p>
-<p>Here, for letters we ignore case. For example, “P” on the licensePlate still matches “p” on the word.</p>
-<p>It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.</p>
-<p>The license plate might have the same letter occurring multiple times. For example, given a licensePlate of “PP”, the word “pair” does not complete the licensePlate, but the word “supper” does.</p>
+        <h2 id="814-Binary-Tree-Pruning"><a href="#814-Binary-Tree-Pruning" class="headerlink" title="814. Binary Tree Pruning"></a><a href="https://leetcode.com/problems/binary-tree-pruning/description/" target="_blank" rel="external">814. Binary Tree Pruning</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>We are given the head node root of a binary tree, where additionally every node’s value is either a 0 or a 1.</p>
+<p>Return the same tree where every subtree (of the given tree) not containing a 1 has been removed.</p>
+<p>(Recall that the subtree of a node X is X, plus every node that is a descendant of X.)</p>
 <p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]</div><div class="line">Output: &quot;steps&quot;</div><div class="line">Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.</div><div class="line">Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.</div><div class="line">Also note that we ignored case for the purposes of comparing whether a letter exists in the word.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,null,0,0,1]</div><div class="line">Output: [1,null,0,null,1]</div><div class="line"> </div><div class="line">Explanation: </div><div class="line">Only the red nodes satisfy the property &quot;every subtree not containing a 1&quot;.</div><div class="line">The diagram on the right represents the answer.</div></pre></td></tr></table></figure>
 <p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]</div><div class="line">Output: &quot;pest&quot;</div><div class="line">Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.</div><div class="line">We return the one that occurred first.</div></pre></td></tr></table></figure>
-<p>Note:<br>licensePlate will be a string with length in range [1, 7].<br>licensePlate will contain digits, spaces, or letters (uppercase or lowercase).<br>words will have a length in the range [10, 1000].<br>Every words[i] will consist of lowercase letters, and have length in range [1, 15].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<code>licensePlate</code>，在<code>words</code>中寻找包含了车牌上所有字符的元素。返回最短的匹配元素，如果有多个，则返回第一个。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,0,1,0,0,0,1]</div><div class="line">Output: [1,null,1,null,1]</div></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,1,0,1,1,0,1,0]</div><div class="line">Output: [1,1,0,1,1,null,1]</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<p>The binary tree will have at most 100 nodes.<br>The value of each node will only be 0 or 1.</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定以二叉树，每个节点值为 0 或者 1。<br>删除每个不包含 1 的子树。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>暴力搜索，辅助哈希表。</p>
+<p>遍历二叉树，如果根节点值为 1 或者 左子树不为空  或者 右子树不为空，返回 根节点，否则返回nil。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -&gt; String &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        var ans = &quot;&quot;</div><div class="line">        let express = try! NSRegularExpression(pattern: &quot;[a-z]&quot;, options: .caseInsensitive)</div><div class="line">        </div><div class="line">        for n in licensePlate.lowercased() &#123;</div><div class="line">            let s = String(n)</div><div class="line">            //正则匹配字母</div><div class="line">            if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))</div><div class="line">               .count &gt;= 1&#123;</div><div class="line">                dict[n] = (dict[n] ?? 0) + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for word in words &#123;</div><div class="line">            var tmp = dict</div><div class="line">            </div><div class="line">            for char in word &#123;</div><div class="line">                if let count = tmp[char] &#123;</div><div class="line">                    tmp[char] = count - 1</div><div class="line">                    if count &lt;= 1 &#123;</div><div class="line">                        tmp.removeValue(forKey: char)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if tmp.isEmpty &#123;</div><div class="line">                if ans.isEmpty &#123; ans = word &#125;</div><div class="line">                //判断最小匹配元素</div><div class="line">                ans = ans.count &lt;= word.count ? ans : word</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func pruneTree(_ root: TreeNode?) -&gt; TreeNode? &#123;</div><div class="line">        guard let tree = root else &#123; return nil &#125;</div><div class="line">        tree.left = pruneTree(tree.left)</div><div class="line">        tree.right = pruneTree(tree.right)</div><div class="line">        return (tree.val == 1 || root?.left != nil || root?.right != nil) ? tree : nil</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -404,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/718-Maximum-Length-of-Repeated-Subarray/" rel="next" title="718. Maximum Length of Repeated Subarray">
-                <i class="fa fa-chevron-left"></i> 718. Maximum Length of Repeated Subarray
+              <a href="/783-Minimum-Distance-Between-BST-Nodes/" rel="next" title="783. Minimum Distance Between BST Nodes">
+                <i class="fa fa-chevron-left"></i> 783. Minimum Distance Between BST Nodes
               </a>
             
           </div>
@@ -413,10 +415,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/655-Print-Binary-Tree/" rel="prev" title="655. Print Binary Tree">
-                655. Print Binary Tree <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +546,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#748-Shortest-Completing-Word"><span class="nav-text">748. Shortest Completing Word</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#814-Binary-Tree-Pruning"><span class="nav-text">814. Binary Tree Pruning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +711,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/748-Shortest-Completing-Word/';
-          this.page.identifier = '748-Shortest-Completing-Word/';
-          this.page.title = '748. Shortest Completing Word';
+          this.page.url = 'https://ffib.github.io/814-Binary-Tree-Pruning/';
+          this.page.identifier = '814-Binary-Tree-Pruning/';
+          this.page.title = '814. Binary Tree Pruning';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
