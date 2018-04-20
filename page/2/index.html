@@ -260,6 +260,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/659-Split-Array-into-Consecutive-Subsequences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/659-Split-Array-into-Consecutive-Subsequences/" itemprop="url">659. Split Array into Consecutive Subsequences</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T10:34:01+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/659-Split-Array-into-Consecutive-Subsequences/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="659-Split-Array-into-Consecutive-Subsequences/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="659-Split-Array-into-Consecutive-Subsequences"><a href="#659-Split-Array-into-Consecutive-Subsequences" class="headerlink" title="659. Split Array into Consecutive Subsequences"></a><a href="https://leetcode.com/problems/split-array-into-consecutive-subsequences/description/" target="_blank" rel="external">659. Split Array into Consecutive Subsequences</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are given an integer array sorted in ascending order (may contain duplicates), you need to split them into several subsequences, where each subsequences consist of at least 3 consecutive integers. Return whether you can make such a split.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,3,4,5]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line">You can split them into two consecutive subsequences : </div><div class="line">1, 2, 3</div><div class="line">3, 4, 5</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,3,4,4,5,5]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line">You can split them into two consecutive subsequences : </div><div class="line">1, 2, 3, 4, 5</div><div class="line">3, 4, 5</div></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,4,4,5]</div><div class="line">Output: False</div></pre></td></tr></table></figure>
+<p>Note:<br>The length of the input is in range of [1, 10000]</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将一有序数组，拆分成多个递增子序列。（每个子序列至少三个）</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>一个字典 <code>dict</code> 记录剩余 <code>num</code> 的个数<br>另一个字典 <code>tail</code> 则记录当前的 <code>num</code> 是否可以被拼接到之前的子序列。<br>如果不可以则重新启动一个新的序列，但是新的序列需要满足至少有三个 <code>num</code> 。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func isPossible(_ nums: [Int]) -&gt; Bool &#123;</div><div class="line">        var dict = [Int: Int]()</div><div class="line">        var tail = [Int:Int]()</div><div class="line">        for num in nums &#123;</div><div class="line">            dict[num] = (dict[num] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line">        for num in nums &#123;</div><div class="line">            if let c = dict[num], c == 0 &#123;</div><div class="line">                continue</div><div class="line">            &#125; else if let c = tail[num], c &gt; 0 &#123;</div><div class="line">                tail[num] = c - 1</div><div class="line">                tail[num + 1] = (tail[num + 1] ?? 0) + 1</div><div class="line">            &#125; else if let c1 = dict[num + 1], c1 &gt; 0, let c2 = dict[num + 2], c2 &gt; 0 &#123;</div><div class="line">                dict[num + 1] = c1 - 1</div><div class="line">                dict[num + 2] = c2 - 1</div><div class="line">                tail[num + 3] = (tail[num + 3] ?? 0) + 1</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">            dict[num]! -= 1</div><div class="line">        &#125;</div><div class="line">        return true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/649-Dota2-Senate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1669,169 +1833,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/130-Surrounded-Regions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/130-Surrounded-Regions/" itemprop="url">130 Surrounded Regions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:45:27+08:00">
-                2018-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/130-Surrounded-Regions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="130-Surrounded-Regions/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="130-Surrounded-Regions"><a href="#130-Surrounded-Regions" class="headerlink" title="130. Surrounded Regions"></a><a href="https://leetcode.com/problems/surrounded-regions/description/" target="_blank" rel="external">130. Surrounded Regions</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a 2D board containing ‘X’ and ‘O’ (the letter O), capture all regions surrounded by ‘X’.</p>
-<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
-<p>For example,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X O O X</div><div class="line">X X O X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
-<p>After running your function, the board should be:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将矩阵中，被<code>X</code>包围的所有<code>O</code>都变为<code>X</code>。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>从四边开始遍历，如果边缘有<code>O</code>,则继续进行广度遍历，将相连的<code>O</code>标记为<code>#</code>。<br>遍历矩阵，则剩下的<code>O</code>便为被<code>X</code>包围的，即修改为<code>X</code>；将标记为<code>#</code>的修改为<code>O</code>。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">func solve(_ board: inout [[Character]]) &#123;</div><div class="line"></div><div class="line">        func bfs(x: Int, y: Int) &#123;</div><div class="line">            guard board[x][y] == &quot;O&quot; else &#123; return &#125;</div><div class="line">            board[x][y] = &quot;#&quot;</div><div class="line">            var queue = [(x, y)]</div><div class="line">            while !queue.isEmpty &#123;</div><div class="line">                let top = queue.removeLast()</div><div class="line">                if top.0 &gt; 0 &amp;&amp; board[top.0 - 1][top.1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0 - 1][top.1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0 - 1, top.1))</div><div class="line">                &#125;</div><div class="line">                if top.0 &lt; board.count - 1 &amp;&amp; board[top.0 + 1][top.1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0 + 1][top.1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0 + 1, top.1))</div><div class="line">                &#125;</div><div class="line">                if top.1 &gt; 0 &amp;&amp; board[top.0][top.1 - 1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0][top.1 - 1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0, top.1 - 1))</div><div class="line">                &#125;</div><div class="line">                if top.1 &lt; board[0].count - 1 &amp;&amp; board[top.0][top.1 + 1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0][top.1 + 1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0, top.1 + 1))</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        guard board.count &gt; 2 &amp;&amp; board[0].count &gt; 2 else &#123; return &#125;</div><div class="line"></div><div class="line">        for j in 0..&lt;board[0].count &#123;</div><div class="line">            bfs(x: 0, y: j)</div><div class="line">            bfs(x: board.count - 1, y: j)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for i in 1..&lt;board.count - 1 &#123;</div><div class="line">            bfs(x: i, y: 0)</div><div class="line">            bfs(x: i, y: board[0].count - 1)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for i in 0..&lt;board.count &#123;</div><div class="line">            for j in 0..&lt;board[i].count &#123;</div><div class="line">                if board[i][j] == &quot;O&quot; &#123;</div><div class="line">                    board[i][j] = &quot;X&quot;</div><div class="line">                &#125;else if board[i][j] == &quot;#&quot; &#123;</div><div class="line">                    board[i][j] = &quot;O&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1882,7 +1883,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">61</span>
+                <span class="site-state-item-count">62</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
