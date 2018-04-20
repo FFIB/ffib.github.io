@@ -260,6 +260,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/807-Max-Increase-to-Keep-City-Skyline/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/807-Max-Increase-to-Keep-City-Skyline/" itemprop="url">807. Max Increase to Keep City Skyline</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T17:06:36+08:00">
+                2018-04-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/807-Max-Increase-to-Keep-City-Skyline/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="807-Max-Increase-to-Keep-City-Skyline/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="807-Max-Increase-to-Keep-City-Skyline"><a href="#807-Max-Increase-to-Keep-City-Skyline" class="headerlink" title="807. Max Increase to Keep City Skyline"></a><a href="https://leetcode.com/problems/max-increase-to-keep-city-skyline/description/" target="_blank" rel="external">807. Max Increase to Keep City Skyline</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>In a 2 dimensional array grid, each value grid[i][j] represents the height of a building located there. We are allowed to increase the height of any number of buildings, by any amount (the amounts can be different for different buildings). Height 0 is considered to be a building as well. </p>
+<p>At the end, the “skyline” when viewed from all four directions of the grid, i.e. top, bottom, left, and right, must be the same as the skyline of the original grid. A city’s skyline is the outer contour of the rectangles formed by all the buildings when viewed from a distance. See the following example.</p>
+<p>What is the maximum total sum that the height of the buildings can be increased?</p>
+<p>Example:<br>Input: grid = [[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]<br>Output: 35<br>Explanation:<br>The grid is:<br>[ [3, 0, 8, 4],<br>  [2, 4, 5, 7],<br>  [9, 2, 6, 3],<br>  [0, 3, 1, 0] ]</p>
+<p>The skyline viewed from top or bottom is: [9, 4, 8, 7]<br>The skyline viewed from left or right is: [8, 7, 9, 3]</p>
+<p>The grid after increasing the height of buildings without affecting skylines is:</p>
+<p>gridNew = [ [8, 4, 8, 7],<br>            [7, 4, 7, 7],<br>            [9, 4, 8, 7],<br>            [3, 3, 3, 3] ]</p>
+<p>Notes:</p>
+<ul>
+<li>1 &lt; grid.length = grid[0].length &lt;= 50.</li>
+<li>All heights grid[i][j] are in the range [0, 100].</li>
+<li>All buildings in grid[i][j] occupy the entire grid cell: that is, they are a 1 x 1 x grid[i][j] rectangular prism. </li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>二维数组表示一组建筑的高度<br>横向和纵向的最高的高度定为天际线<br>将建筑的高度提高到不影响天际线的最大高度<br>求高度提升的总和</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>分别求出每一行、每一列的最大高度，并且以 <code>maxRow</code> 、 <code>maxColumn</code>数组储存。<br>根据 <code>maxRow</code> 和 <code>maxColumn</code> 求每一个建筑物能够提升的最大高度。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func maxIncreaseKeepingSkyline(_ grid: [[Int]]) -&gt; Int &#123;</div><div class="line">        var maxRow = grid.map&#123; return $0.max()! &#125;</div><div class="line">        var maxColumn = [Int]()</div><div class="line">        for i in 0..&lt;grid[0].count &#123;</div><div class="line">            var maxLine = -1</div><div class="line">            for j in 0..&lt;grid.count &#123;</div><div class="line">                maxLine = max(maxLine, grid[j][i])</div><div class="line">            &#125;</div><div class="line">            maxColumn.append(maxLine)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;grid.count &#123;</div><div class="line">            for j in 0..&lt;grid[i].count &#123;</div><div class="line">                ans += min(maxRow[i], maxColumn[j]) - grid[i][j]</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/809-Expressive-Words/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1704,170 +1873,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/795-Number-of-Subarrays-with-Bounded-Maximum/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/795-Number-of-Subarrays-with-Bounded-Maximum/" itemprop="url">795. Number of Subarrays with Bounded Maximum</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T09:51:09+08:00">
-                2018-03-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/795-Number-of-Subarrays-with-Bounded-Maximum/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="795-Number-of-Subarrays-with-Bounded-Maximum/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="795-Number-of-Subarrays-with-Bounded-Maximum"><a href="#795-Number-of-Subarrays-with-Bounded-Maximum" class="headerlink" title="795. Number of Subarrays with Bounded Maximum"></a><a href="https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/" target="_blank" rel="external">795. Number of Subarrays with Bounded Maximum</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>We are given an array A of positive integers, and two positive integers L and R (L &lt;= R).</p>
-<p>Return the number of (contiguous, non-empty) subarrays such that the value of the maximum array element in that subarray is at least L and at most R.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example :</div><div class="line">Input: </div><div class="line">A = [2, 1, 4, 3]</div><div class="line">L = 2</div><div class="line">R = 3</div><div class="line">Output: 3</div><div class="line">Explanation: There are three subarrays that meet the requirements: [2], [2, 1], [3].</div></pre></td></tr></table></figure>
-<p>Note:</p>
-<ul>
-<li>L, R  and A[i] will be an integer in the range [0, 10^9].</li>
-<li>The length of A will be in the range of [1, 50000].</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求最大值 <code>&gt;= L</code>、<code>&lt;= R</code>的所有子序列。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>通过 <code>&gt; R</code> 将数组分割成多个子序列。<br>再通过 <code>&lt; L</code> 将数组分割计算，确保每个子序列中都存在至少一个满足 <code>&gt;= L &amp;&amp; &lt;= R</code>。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numSubarrayBoundedMax(_ A: [Int], _ L: Int, _ R: Int) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        var lastIndex = 0</div><div class="line">        for (i, a) in (A+[R+1]).enumerated() &#123;</div><div class="line"></div><div class="line">            if a &gt; R &#123;</div><div class="line">                let c = i - lastIndex</div><div class="line">                var last = 0</div><div class="line">                for (j, subA) in A[lastIndex..&lt;i].enumerated() &#123;</div><div class="line">                    if subA &gt;= L &#123;</div><div class="line">                        ans += (j - last + 1) * (c - j)</div><div class="line">                        last = j + 1</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                lastIndex = i + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1918,7 +1923,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-count">63</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
