@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="655. Print Binary Tree题目描述Print a binary tree in an m*n 2D string array following these rules:  The row number m should be equal to the height of the given binary tree. The column number n should alwa">
+<meta name="description" content="817. Linked List Components题目描述We are given head, the head node of a linked list containing unique integer values. We are also given the list G, a subset of the values in the linked list. Return the n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="655. Print Binary Tree">
-<meta property="og:url" content="https://ffib.github.io/655-Print-Binary-Tree/index.html">
+<meta property="og:title" content="817. Linked List Components">
+<meta property="og:url" content="https://ffib.github.io/817-Linked-List-Components/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="655. Print Binary Tree题目描述Print a binary tree in an m*n 2D string array following these rules:  The row number m should be equal to the height of the given binary tree. The column number n should alwa">
+<meta property="og:description" content="817. Linked List Components题目描述We are given head, the head node of a linked list containing unique integer values. We are also given the list G, a subset of the values in the linked list. Return the n">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-21T11:13:04.542Z">
+<meta property="og:updated_time" content="2018-04-24T03:59:19.825Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="655. Print Binary Tree">
-<meta name="twitter:description" content="655. Print Binary Tree题目描述Print a binary tree in an m*n 2D string array following these rules:  The row number m should be equal to the height of the given binary tree. The column number n should alwa">
+<meta name="twitter:title" content="817. Linked List Components">
+<meta name="twitter:description" content="817. Linked List Components题目描述We are given head, the head node of a linked list containing unique integer values. We are also given the list G, a subset of the values in the linked list. Return the n">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/655-Print-Binary-Tree/"/>
+  <link rel="canonical" href="https://ffib.github.io/817-Linked-List-Components/"/>
 
 
 
 
 
-  <title>655. Print Binary Tree | FFIB</title>
+  <title>817. Linked List Components | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/655-Print-Binary-Tree/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/817-Linked-List-Components/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">655. Print Binary Tree</h1>
+          <h1 class="post-title" itemprop="name headline">817. Linked List Components</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:49:11+08:00">
-                2018-01-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T11:52:06+08:00">
+                2018-04-24
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/655-Print-Binary-Tree/#comments" itemprop="discussionUrl">
+                <a href="/817-Linked-List-Components/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="655-Print-Binary-Tree/" itemprop="commentCount"></span>
+                        data-disqus-identifier="817-Linked-List-Components/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,31 +367,25 @@
       
 
       
-        <h2 id="655-Print-Binary-Tree"><a href="#655-Print-Binary-Tree" class="headerlink" title="655. Print Binary Tree"></a><a href="https://leetcode.com/problems/print-binary-tree/description/" target="_blank" rel="external">655. Print Binary Tree</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Print a binary tree in an m*n 2D string array following these rules:</p>
+        <h2 id="817-Linked-List-Components"><a href="#817-Linked-List-Components" class="headerlink" title="817. Linked List Components"></a><a href="">817. Linked List Components</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>We are given head, the head node of a linked list containing unique integer values.</p>
+<p>We are also given the list G, a subset of the values in the linked list.</p>
+<p>Return the number of connected components in G, where two values are connected if they appear consecutively in the linked list.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">head: 0-&gt;1-&gt;2-&gt;3</div><div class="line">G = [0, 1, 3]</div><div class="line">Output: 2</div><div class="line">Explanation: </div><div class="line">0 and 1 are connected, so [0, 1] and [3] are the two connected components.</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">head: 0-&gt;1-&gt;2-&gt;3-&gt;4</div><div class="line">G = [0, 3, 1, 4]</div><div class="line">Output: 2</div><div class="line">Explanation: </div><div class="line">0 and 1 are connected, 3 and 4 are connected, so [0, 1] and [3, 4] are the two connected components.</div></pre></td></tr></table></figure>
+<p>Note:</p>
 <ul>
-<li>The row number m should be equal to the height of the given binary tree.</li>
-<li>The column number n should always be an odd number.</li>
-<li>The root node’s value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don’t need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don’t need to leave space for both of them.</li>
-<li>Each unused space should contain an empty string “”.</li>
-<li>Print the subtrees following the same rules.</li>
+<li>If N is the length of the linked list given by head, 1 &lt;= N &lt;= 10000.</li>
+<li>The value of each node in the linked list will be in the range [0, N - 1].</li>
+<li>1 &lt;= G.length &lt;= 10000.</li>
+<li>G is a subset of all values in the linked list.</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    /</div><div class="line">   2</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;1&quot;, &quot;&quot;],</div><div class="line"> [&quot;2&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    / \</div><div class="line">   2   3</div><div class="line">    \</div><div class="line">     4</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;3&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;&quot;, &quot;4&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Example 3:</div><div class="line">Input:</div><div class="line">      1</div><div class="line">     / \</div><div class="line">    2   5</div><div class="line">   / </div><div class="line">  3 </div><div class="line"> / </div><div class="line">4 </div><div class="line">Output:</div><div class="line"></div><div class="line">[[&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;5&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;3&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;4&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<p>Note: The height of binary tree is in the range of [1, 10].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<code>m * n</code>的二位数组。<br>规则如下：</p>
-<ul>
-<li>行数m为二叉树的深度</li>
-<li>列数n必须是以奇数</li>
-<li>根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。如果左右子树都不存在，则不需要保留任何空间。</li>
-<li>每个未使用的空间需要以空字符串表示。</li>
-<li>重复以上操作输出子树。</li>
-</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求链表中的连通分量个数。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>1、需先求出树的高度。<br>2、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。<br>3、递归遍历左右子树，采用双指针，求出节点的下标。</p>
+<p>当 <code>g</code> 中不包含链表中的节点时，则代表一个连通分量。<br>移除已检索过的节点值，减少 <code>contains</code> 的复杂度。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func printTree(_ root: TreeNode?) -&gt; [[String]] &#123;</div><div class="line"></div><div class="line">        func findDepth(root: TreeNode?) -&gt; Int &#123;</div><div class="line">            guard let node = root else &#123; return 0 &#125;</div><div class="line">            return 1 + max(findDepth(root: node.left), findDepth(root: node.right))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        let height = findDepth(root: root)</div><div class="line">        var width = (1 &lt;&lt; height) - 1</div><div class="line">        var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)</div><div class="line">        </div><div class="line">        </div><div class="line">        func transform(root: TreeNode?, level: Int, l: Int, r: Int) &#123;</div><div class="line">            guard let node = root else &#123; return &#125;</div><div class="line">            let mid = l + (r - l) / 2</div><div class="line">            ans[level][mid] = &quot;\(node.val)&quot;</div><div class="line">            transform(root: node.left, level: level + 1, l: l, r: mid - 1)</div><div class="line">            transform(root: node.right, level: level + 1, l: mid + 1, r: r)</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        transform(root: root, level: 0, l: 0, r: width - 1)</div><div class="line">        </div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numComponents(_ head: ListNode?, _ G: [Int]) -&gt; Int &#123;</div><div class="line">        var pre = head</div><div class="line">        var g = Set(G)</div><div class="line">        var ans = 0</div><div class="line">        var flag = false</div><div class="line">        while let node = pre &#123;</div><div class="line">            if !g.contains(node.val) &#123;</div><div class="line">                ans += flag ? 1 : 0</div><div class="line">                flag = false</div><div class="line">            &#125;else &#123;</div><div class="line">                g.remove(node.val)</div><div class="line">                flag = true</div><div class="line">            &#125;</div><div class="line">            pre = pre?.next</div><div class="line">        &#125;</div><div class="line">        return flag ? ans + 1 : ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
       
     </div>
     
@@ -415,8 +409,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/748-Shortest-Completing-Word/" rel="next" title="748. Shortest Completing Word">
-                <i class="fa fa-chevron-left"></i> 748. Shortest Completing Word
+              <a href="/804-Unique-Morse-Code-Words/" rel="next" title="804. Unique Morse Code Words">
+                <i class="fa fa-chevron-left"></i> 804. Unique Morse Code Words
               </a>
             
           </div>
@@ -425,8 +419,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/623-Add-One-Row-to-Tree/" rel="prev" title="623. Add One Row to Tree">
-                623. Add One Row to Tree <i class="fa fa-chevron-right"></i>
+              <a href="/781-Rabbits-in-Forest/" rel="prev" title="781. Rabbits in Forest">
+                781. Rabbits in Forest <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -559,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#655-Print-Binary-Tree"><span class="nav-text">655. Print Binary Tree</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#817-Linked-List-Components"><span class="nav-text">817. Linked List Components</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -724,9 +718,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/655-Print-Binary-Tree/';
-          this.page.identifier = '655-Print-Binary-Tree/';
-          this.page.title = '655. Print Binary Tree';
+          this.page.url = 'https://ffib.github.io/817-Linked-List-Components/';
+          this.page.identifier = '817-Linked-List-Components/';
+          this.page.title = '817. Linked List Components';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
