@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="754. Reach a Number题目描述You are standing at position 0 on an infinite number line. There is a goal at position target. On each move, you can either go left or right. During the n-th move (starting from">
+<meta name="description" content="821. Shortest Distance to a Character题目描述 Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.  Example 1:  Input: S =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="754. Reach a Number">
-<meta property="og:url" content="https://ffib.github.io/754-Reach-a-Number/index.html">
+<meta property="og:title" content="821. Shortest Distance to a Character">
+<meta property="og:url" content="https://ffib.github.io/821-Shortest-Distance-to-a-Character/index.html">
 <meta property="og:site_name" content="FFIB">
-<meta property="og:description" content="754. Reach a Number题目描述You are standing at position 0 on an infinite number line. There is a goal at position target. On each move, you can either go left or right. During the n-th move (starting from">
+<meta property="og:description" content="821. Shortest Distance to a Character题目描述 Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.  Example 1:  Input: S =">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-02-01T01:58:29.675Z">
+<meta property="og:updated_time" content="2018-04-28T06:44:08.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="754. Reach a Number">
-<meta name="twitter:description" content="754. Reach a Number题目描述You are standing at position 0 on an infinite number line. There is a goal at position target. On each move, you can either go left or right. During the n-th move (starting from">
+<meta name="twitter:title" content="821. Shortest Distance to a Character">
+<meta name="twitter:description" content="821. Shortest Distance to a Character题目描述 Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.  Example 1:  Input: S =">
 
 
 
@@ -133,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://ffib.github.io/754-Reach-a-Number/"/>
+  <link rel="canonical" href="https://ffib.github.io/821-Shortest-Distance-to-a-Character/"/>
 
 
 
 
 
-  <title>754. Reach a Number | FFIB</title>
+  <title>821. Shortest Distance to a Character | FFIB</title>
   
 
 
@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/754-Reach-a-Number/">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/821-Shortest-Distance-to-a-Character/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="FFIB">
@@ -279,7 +279,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">754. Reach a Number</h1>
+          <h1 class="post-title" itemprop="name headline">821. Shortest Distance to a Character</h1>
         
 
         <div class="post-meta">
@@ -291,8 +291,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T09:47:00+08:00">
-                2018-01-31
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-28T14:39:13+08:00">
+                2018-04-28
               </time>
             
 
@@ -332,9 +332,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/754-Reach-a-Number/#comments" itemprop="discussionUrl">
+                <a href="/821-Shortest-Distance-to-a-Character/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="754-Reach-a-Number/" itemprop="commentCount"></span>
+                        data-disqus-identifier="821-Shortest-Distance-to-a-Character/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,19 +367,20 @@
       
 
       
-        <h2 id="754-Reach-a-Number"><a href="#754-Reach-a-Number" class="headerlink" title="754. Reach a Number"></a><a href="https://leetcode.com/problems/reach-a-number/" target="_blank" rel="external">754. Reach a Number</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are standing at position 0 on an infinite number line. There is a goal at position target.</p>
-<p>On each move, you can either go left or right. During the n-th move (starting from 1), you take n steps.</p>
-<p>Return the minimum number of steps required to reach the destination.</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: target = 3</div><div class="line">Output: 2</div><div class="line">Explanation:</div><div class="line">On the first move we step from 0 to 1.</div><div class="line">On the second step we step from 1 to 3.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: target = 2</div><div class="line">Output: 3</div><div class="line">Explanation:</div><div class="line">On the first move we step from 0 to 1.</div><div class="line">On the second move we step  from 1 to -1.</div><div class="line">On the third move we step from -1 to 2.</div></pre></td></tr></table></figure>
-<p>Note:<br>target will be a non-zero integer in the range [-10^9, 10^9].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>向右或者向左移动 <code>N</code> 次， 每一次移动 <code>N</code> 步，求至少需要移动多少步才能终点。 </p>
+        <h2 id="821-Shortest-Distance-to-a-Character"><a href="#821-Shortest-Distance-to-a-Character" class="headerlink" title="821. Shortest Distance to a Character"></a><a href="https://leetcode.com/problems/shortest-distance-to-a-character/description/" target="_blank" rel="external">821. Shortest Distance to a Character</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p> Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.</p>
+<p> Example 1:</p>
+<p> Input: S = “loveleetcode”, C = ‘e’<br> Output: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]</p>
+<p> Note:</p>
+<ul>
+<li>S string length is in [1, 10000].</li>
+<li>C is a single character, and guaranteed to be in string S.</li>
+<li>All letters in S and C are lowercase.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定字符串 <code>S</code> 和字符 <code>C</code> ，求 <code>S</code> 中每个字符距离 <code>C</code> 字符最小距离。</p>
 <h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>按照数学思想，先找规律。<br>2:  1 - 2 + 3               sum = 3, N = 2 + 1,<br>3:  1 + 2                sum = 3, N = 3,<br>4:  1 + 2 - 3 + 4            sum = 6, N = 3 + 1,<br>5:  1 - 2 - 3 + 4 + 5        sum = 6, N = 3 + 2,<br>6:  1 + 2 + 3                sum = 6, N = 3,<br>7:  1 + 2 + 3 - 4 + 5    sum = 10, N = 4 + 1,<br>8:  -1 + 2 + 3 + 4        sum = 10, N = 4,<br>9:  1 + 2 - 3 + 4 + 5    sum = 10, N = 4 + 1,<br>10: 1 + 2 + 3 + 4            sum = 10, N = 5,<br>可得规律：if (sum - target) % 2 == 0   返回 n 即可<br>if n % 2 == 1 return  n + 1<br>else return n + 2</p>
+<p>正向反向遍历，求最小。</p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func reachNumber(_ target: Int) -&gt; Int &#123;</div><div class="line">        var sum = 0</div><div class="line">        var n = 0</div><div class="line">        let target = abs(target)</div><div class="line">        while sum &lt; target &#123;</div><div class="line">            sum += n</div><div class="line">            n += 1</div><div class="line">        &#125;</div><div class="line">        if (sum - target) % 2 == 0 &#123;</div><div class="line">            return n - 1</div><div class="line">        &#125;else &#123;</div><div class="line">            if n % 2 == 1 &#123; return n &#125;</div><div class="line">            else &#123; return n + 1 &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestToChar(_ S: String, _ C: Character) -&gt; [Int] &#123;</div><div class="line">        var ans = Array(repeating: S.count, count: S.count)</div><div class="line">        var last = -(ans.count * 2 + 1)</div><div class="line">        for (i, char) in S.enumerated() &#123;</div><div class="line">            if char == C &#123; last = i &#125;</div><div class="line">            ans[i] = min(i - last, ans[i])</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        last = ans.count * 2 + 1</div><div class="line">        for (i, char) in S.enumerated().reversed() &#123;</div><div class="line">            if char == C &#123; last = i &#125;</div><div class="line">            ans[i] = min(last - i, ans[i])</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -404,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/130-Surrounded-Regions/" rel="next" title="130 Surrounded Regions">
-                <i class="fa fa-chevron-left"></i> 130 Surrounded Regions
+              <a href="/811-Subdomain-Visit-Count/" rel="next" title="811. Subdomain Visit Count">
+                <i class="fa fa-chevron-left"></i> 811. Subdomain Visit Count
               </a>
             
           </div>
@@ -413,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/43-Multiply-String/" rel="prev" title="43 Multiply String">
-                43 Multiply String <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -548,7 +545,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#754-Reach-a-Number"><span class="nav-text">754. Reach a Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#821-Shortest-Distance-to-a-Character"><span class="nav-text">821. Shortest Distance to a Character</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目描述"><span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#题目大意"><span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-text">代码</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -713,9 +710,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://ffib.github.io/754-Reach-a-Number/';
-          this.page.identifier = '754-Reach-a-Number/';
-          this.page.title = '754. Reach a Number';
+          this.page.url = 'https://ffib.github.io/821-Shortest-Distance-to-a-Character/';
+          this.page.identifier = '821-Shortest-Distance-to-a-Character/';
+          this.page.title = '821. Shortest Distance to a Character';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://ffib-github-io.disqus.com/embed.js';
