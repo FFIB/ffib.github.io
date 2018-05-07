@@ -260,6 +260,1131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/718-Maximum-Length-of-Repeated-Subarray/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/718-Maximum-Length-of-Repeated-Subarray/" itemprop="url">718. Maximum Length of Repeated Subarray</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:47:08+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/718-Maximum-Length-of-Repeated-Subarray/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="718-Maximum-Length-of-Repeated-Subarray/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="718-Maximum-Length-of-Repeated-Subarray"><a href="#718-Maximum-Length-of-Repeated-Subarray" class="headerlink" title="718. Maximum Length of Repeated Subarray"></a><a href="https://leetcode.com/problems/maximum-length-of-repeated-subarray/description/" target="_blank" rel="external">718. Maximum Length of Repeated Subarray</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two integer arrays A and B, return the maximum length of an subarray that appears in both arrays.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:</div><div class="line">A: [1,2,3,2,1]</div><div class="line">B: [3,2,1,4,7]</div><div class="line">Output: 3</div><div class="line">Explanation: </div><div class="line">The repeated subarray with maximum length is [3, 2, 1].</div></pre></td></tr></table></figure>
+<p>Note:<br>1 &lt;= len(A), len(B) &lt;= 1000<br>0 &lt;= A[i], B[i] &lt; 100</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求两个数组内的最长重复子数组。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>动态规划<br>遍历数组，找到A和B中数值相等的下标，分别记为i和j，则需将<code>dp[i][j]</code>置为1，如果<code>i + 1</code>和<code>j + 1</code>数值也相同，则此时<code>dp[i+1][j+1]</code>的值应为2。<br>故有动态规划方程式<code>dp[i + 1][j + 1] = dp[i][j] + 1</code></p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLength(_ A: [Int], _ B: [Int]) -&gt; Int &#123;</div><div class="line">        var dp = Array(repeating: Array(repeating: 0, count: B.count + 1), count: A.count + 1)</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;A.count &#123;</div><div class="line">            for j in 0..&lt;B.count &#123;</div><div class="line">                if A[i] == B[j] &#123;</div><div class="line">                    dp[i + 1][j + 1] = dp[i][j] + 1</div><div class="line">                    ans = max(ans, dp[i + 1][j + 1])</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/522-Longest-Uncommon-Subsequence-II/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/522-Longest-Uncommon-Subsequence-II/" itemprop="url">522. Longest Uncommon Subsequence II</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:46:07+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/522-Longest-Uncommon-Subsequence-II/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="522-Longest-Uncommon-Subsequence-II/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="522-Longest-Uncommon-Subsequence-II"><a href="#522-Longest-Uncommon-Subsequence-II" class="headerlink" title="522. Longest Uncommon Subsequence II"></a><a href="https://leetcode.com/problems/longest-uncommon-subsequence-ii/description/" target="_blank" rel="external">522. Longest Uncommon Subsequence II</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a list of strings, you need to find the longest uncommon subsequence among them. The longest uncommon subsequence is defined as the longest subsequence of one of these strings and this subsequence should not be any subsequence of the other strings.</p>
+<p>A subsequence is a sequence that can be derived from one sequence by deleting some characters without changing the order of the remaining elements. Trivially, any string is a subsequence of itself and an empty string is a subsequence of any string.</p>
+<p>The input will be a list of strings, and the output needs to be the length of the longest uncommon subsequence. If the longest uncommon subsequence doesn’t exist, return -1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: &quot;aba&quot;, &quot;cdc&quot;, &quot;eae&quot;</div><div class="line">Output: 3</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<p>All the given strings’ lengths will not exceed 10.<br>The length of the given list will be in the range of [2, 50].</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一组字符串，求最长不公共子序列。<br>子序列可以通过删除一些字符而不改变其余元素顺序的新序列。<br>空字符串不属于任何字符串的子序列</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>辅助字典，优化数组遍历。<br>根据字符串长度对数组进行排序，简化遍历。<br>再次遍历数组，判断当前字符串是否是数组内其他字符串的子字符串。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findLUSlength(_ strs: [String]) -&gt; Int &#123;</div><div class="line">        </div><div class="line">        func isSubstring(s: String, t: String) -&gt; Bool &#123;</div><div class="line">            var arr1 = Array(s)</div><div class="line">            var arr2 = Array(t)</div><div class="line">            var index1 = 0</div><div class="line">            var index2 = 0</div><div class="line">            while index1 &lt; arr1.count &amp;&amp; index2 &lt; arr2.count &#123;</div><div class="line">                if arr1[index1] == arr2[index2] &#123;</div><div class="line">                    index1 += 1</div><div class="line">                &#125;</div><div class="line">                index2 += 1</div><div class="line">            &#125;</div><div class="line">            return index1 == arr1.count</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        var dict = [String: Int]()</div><div class="line">        for str in strs &#123;</div><div class="line">            dict[str] = (dict[str] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        let sortStrs = strs.sorted&#123; $0.count &gt; $1.count &#125;</div><div class="line">        for (i, s) in sortStrs.enumerated() &#123;</div><div class="line">            guard dict[s] == 1 else &#123; continue &#125;</div><div class="line">            var flag = true</div><div class="line">            </div><div class="line">            for j in 0..&lt;i &#123;</div><div class="line">                if isSubstring(s: s, t: sortStrs[j]) &#123;</div><div class="line">                    flag = false</div><div class="line">                    break</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">    </div><div class="line">            if flag &#123; return s.count &#125;</div><div class="line">            </div><div class="line">        &#125;</div><div class="line">        return -1</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/746-Min-Cost-Climbing-Stairs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/746-Min-Cost-Climbing-Stairs/" itemprop="url">746. Min Cost Climbing Stairs</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:44:56+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/746-Min-Cost-Climbing-Stairs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="746-Min-Cost-Climbing-Stairs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="746-Min-Cost-Climbing-Stairs"><a href="#746-Min-Cost-Climbing-Stairs" class="headerlink" title="746. Min Cost Climbing Stairs"></a><a href="https://leetcode.com/problems/min-cost-climbing-stairs/description/" target="_blank" rel="external">746. Min Cost Climbing Stairs</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>On a staircase, the i-th step has some non-negative cost cost[i] assigned (0 indexed).</p>
+<p>Once you pay the cost, you can either climb one or two steps. You need to find minimum cost to reach the top of the floor, and you can either start from the step with index 0, or the step with index 1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: cost = [10, 15, 20]</div><div class="line">Output: 15</div><div class="line">Explanation: Cheapest is start on cost[1], pay that cost and go to the top.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]</div><div class="line">Output: 6</div><div class="line">Explanation: Cheapest is start on cost[0], and only step on 1s, skipping cost[3].</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>上楼梯，可以走一步也可以走两步，每一级台阶都是需要付出代价的，求花最少代价上楼梯。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>动态规划</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func minCostClimbingStairs(_ cost: [Int]) -&gt; Int &#123;</div><div class="line">        guard cost.count &gt; 1 else &#123; return cost.last ?? 0 &#125;</div><div class="line">        var dp = [cost[0], cost[1]]</div><div class="line">        for i in 2..&lt;cost.count &#123;</div><div class="line">            dp.append(min(dp[i - 1], dp[i - 2]) + cost[i])</div><div class="line">        &#125;</div><div class="line">        return min(dp[dp.count - 1], dp[dp.count - 2])</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/98-Validate-Binary-Search-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/98-Validate-Binary-Search-Tree/" itemprop="url">98. Validate Binary Search Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:42:47+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/98-Validate-Binary-Search-Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="98-Validate-Binary-Search-Tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="98-Validate-Binary-Search-Tree"><a href="#98-Validate-Binary-Search-Tree" class="headerlink" title="98. Validate Binary Search Tree"></a><a href="https://leetcode.com/problems/validate-binary-search-tree/description/" target="_blank" rel="external">98. Validate Binary Search Tree</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, determine if it is a valid binary search tree (BST).</p>
+<p>Assume a BST is defined as follows:</p>
+<p>The left subtree of a node contains only nodes with keys less than the node’s key.<br>The right subtree of a node contains only nodes with keys greater than the node’s key.<br>Both the left and right subtrees must also be binary search trees.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">    2</div><div class="line">   / \</div><div class="line">  1   3</div><div class="line">Binary tree [2,1,3], return true.</div><div class="line">Example 2:</div><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line">Binary tree [1,2,3], return false.</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>校验是否是二叉搜索树。<br><br>校验规则：<br><br>左子树的所有节点值都比根节点小；<br><br>右子树的所有节点值都比根节点大；<br><br>左子树和右子树也是二叉搜索树</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>DFS，根据题目所述的规则进行判定即可。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func isValidBST(_ root: TreeNode?) -&gt; Bool &#123;</div><div class="line">        </div><div class="line">        guard let tree = root else &#123; return true &#125;</div><div class="line">        </div><div class="line">        var ans = true</div><div class="line">        var rootVal = tree.val</div><div class="line">        </div><div class="line">        func dfs(_ t: TreeNode, min: Int, max: Int) &#123;</div><div class="line">            </div><div class="line">            if let left = t.left &#123;</div><div class="line">                //是否小于根节点，通过max判定左子树是否都小于根节点</div><div class="line">                if left.val &gt;= t.val || left.val &lt;= min || left.val &gt;= max &#123;</div><div class="line">                    ans = false</div><div class="line">                    return</div><div class="line">                &#125;</div><div class="line">                dfs(left, min: min, max: t.val)</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if let right = t.right &#123;</div><div class="line">                //是否大于根节点，通过min判定右子树是否都大于根节点</div><div class="line">                if right.val &lt;= t.val || right.val &lt;= min || right.val &gt;= max &#123;</div><div class="line">                    ans = false</div><div class="line">                    return</div><div class="line">                &#125;</div><div class="line">                dfs(right, min: t.val, max: max)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        dfs(tree, min: Int.min, max: Int.max)</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/738-Monotone-Increasing-Digits/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/738-Monotone-Increasing-Digits/" itemprop="url">738. Monotone Increasing Digits</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:41:23+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/738-Monotone-Increasing-Digits/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="738-Monotone-Increasing-Digits/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="738-Monotone-Increasing-Digits"><a href="#738-Monotone-Increasing-Digits" class="headerlink" title="738. Monotone Increasing Digits"></a><a href="https://leetcode.com/problems/monotone-increasing-digits/description/" target="_blank" rel="external">738. Monotone Increasing Digits</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a non-negative integer N, find the largest number that is less than or equal to N with monotone increasing digits.</p>
+<p> (Recall that an integer has monotone increasing digits if and only if each pair of adjacent digits x and y satisfy x &lt;= y.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: N = 10</div><div class="line">Output: 9</div><div class="line">Example 2:</div><div class="line">Input: N = 1234</div><div class="line">Output: 1234</div><div class="line">Example 3:</div><div class="line">Input: N = 332</div><div class="line">Output: 299</div></pre></td></tr></table></figure>
+<p> Note: N is an integer in the range [0, 10^9].</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一整数N，找到小于等于N的最大单调递增数字。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>由高位到低位遍历整数N，找到第一个递减的数字。<br>记录最后一个连续相等的数字和下标记为v，直至第一个递减数字。例如12334551，我们只需要记录第一个5及其下标即可。<br>将v以后的所有数替换为0，再减一，加上递减之前的数字即可。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">func monotoneIncreasingDigits(_ N: Int) -&gt; Int &#123;</div><div class="line">       let s = &quot;\(N)&quot;</div><div class="line">       var ans = 0</div><div class="line">       var v = (-1, -1)</div><div class="line">       var flag = false</div><div class="line">       for (i, char) in s.enumerated() &#123;</div><div class="line">           guard i + 1 &lt; s.count else &#123;</div><div class="line">               break</div><div class="line">           &#125;</div><div class="line">           let n = Int(String(char))!</div><div class="line">           let next = Int(String(s[s.index(s.startIndex, offsetBy: i + 1)]))!</div><div class="line">           if n &gt; next &#123;</div><div class="line">               flag = true</div><div class="line">               if v.0 == -1 || v.1 &lt; n&#123;</div><div class="line">                   v = (i, n)</div><div class="line">               &#125;</div><div class="line">               break</div><div class="line">           &#125;else if n == next &amp;&amp; v.1 != n&#123;</div><div class="line">               v = (i, n)</div><div class="line">           &#125;</div><div class="line">           ans = ans * 10 + n</div><div class="line">       &#125;</div><div class="line">       guard flag else &#123;</div><div class="line">           return N</div><div class="line">       &#125;</div><div class="line">       var digit = 1</div><div class="line">       let power = s.count - v.0 - 1</div><div class="line">       //由于leetcode使用pow函数报错，借以此代替幂操作</div><div class="line">       for _ in 0..&lt;power &#123; digit *= 10 &#125;</div><div class="line">       return v.1 * digit - 1 + N / digit / 10 * digit * 10</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/739-Daily-Temperatures/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/739-Daily-Temperatures/" itemprop="url">739. Daily Temperatures</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:40:16+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/739-Daily-Temperatures/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="739-Daily-Temperatures/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="739-Daily-Temperatures"><a href="#739-Daily-Temperatures" class="headerlink" title="739. Daily Temperatures"></a><a href="https://leetcode.com/problems/daily-temperatures/description/" target="_blank" rel="external">739. Daily Temperatures</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a list of daily temperatures, produce a list that, for each day in the input, tells you how many days you would have to wait until a warmer temperature. If there is no future day for which this is possible, put 0 instead.</p>
+<p>For example, given the list temperatures = [73, 74, 75, 71, 69, 72, 76, 73], your output should be [1, 1, 4, 2, 1, 1, 0, 0].</p>
+<p>Note: The length of temperatures will be in the range [1, 30000].<br>          Each temperature will be an integer in the range [30, 100].</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>  给定一组每日的气温，每一天最少需要等到多少天温度才能升高，如果没有，则输出0.</p>
+<p>例如，每日温度=[73,74,75,71,69,72,76,73]，你的输出应该是[1,1,4,2,1,1,0,0]。</p>
+<p>注:温度的长度范围为[1,30000]。<br>每个温度将是范围内的整数[30,100]。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>采用Stack + tuple的方式<br>建立元祖代表下标和温度，使用<code>Array</code>代替<code>Stack</code><br>遍历温度列表，将下标和温度压栈。<br>循环判断栈顶温度是否大于当前温度，如果大于则出栈，否则停止循环。<br>通过上述操作维护了一个递增栈。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">func dailyTemperatures(_ temperatures: [Int]) -&gt; [Int] &#123;</div><div class="line">    var stack = [(index: Int, value: Int)]()</div><div class="line">    var ans = Array(repeating: 0, count: temperatures.count)</div><div class="line">    for (i, t) in temperatures.enumerated() &#123;</div><div class="line">        while !stack.isEmpty &amp;&amp; stack.last!.value &lt; t &#123;</div><div class="line">            let top = stack.removeLast()</div><div class="line">            ans[top.index] = i - top.index</div><div class="line">        &#125;</div><div class="line">        stack.append((index: i,value: t))</div><div class="line">    &#125;</div><div class="line">    return ans</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/606-Construct-String-from-Binary-Tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/606-Construct-String-from-Binary-Tree/" itemprop="url">606. Construct String from Binary Tree</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:39:04+08:00">
+                2018-01-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/606-Construct-String-from-Binary-Tree/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="606-Construct-String-from-Binary-Tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="606-Construct-String-from-Binary-Tree"><a href="#606-Construct-String-from-Binary-Tree" class="headerlink" title="606. Construct String from Binary Tree"></a><a href="https://leetcode.com/problems/construct-string-from-binary-tree/description/" target="_blank" rel="external">606. Construct String from Binary Tree</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You need to construct a string consists of parenthesis and integers from a binary tree with the preorder traversing way.</p>
+<p>The null node needs to be represented by empty parenthesis pair “()”. And you need to omit all the empty parenthesis pairs that don’t affect the one-to-one mapping relationship between the string and the original binary tree.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: Binary tree: [1,2,3,4]</div><div class="line">       1</div><div class="line">     /   \</div><div class="line">    2     3</div><div class="line">   /    </div><div class="line">  4     </div><div class="line"></div><div class="line">Output: &quot;1(2(4))(3)&quot;</div><div class="line">Explanation: Originallay it needs to be &quot;1(2(4)())(3()())&quot;, </div><div class="line">but you need to omit all the unnecessary empty parenthesis pairs. </div><div class="line">And it will be &quot;1(2(4))(3)&quot;.</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: Binary tree: [1,2,3,null,4]</div><div class="line">       1</div><div class="line">     /   \</div><div class="line">    2     3</div><div class="line">     \  </div><div class="line">      4 </div><div class="line"></div><div class="line">Output: &quot;1(2()(4))(3)&quot;</div><div class="line"></div><div class="line">Explanation: Almost the same as the first example, </div><div class="line">except we can&apos;t omit the first parenthesis pair to break the one-to-one mapping relationship between the input and the output.</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将二叉树转换为字符串，转换规则为root(left)(right)，以此类推</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>递归<br>ps:不知道该咋说，代码一目了然。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func tree2str(_ t: TreeNode?) -&gt; String &#123;</div><div class="line">        guard let tree = t else &#123; return &quot;&quot; &#125;</div><div class="line">        if tree.left == nil &amp;&amp; tree.right == nil &#123; return &quot;\(tree.val)&quot; &#125;</div><div class="line">        else if tree.left == nil &#123; return &quot;\(tree.val)&quot; + &quot;()&quot; + &quot;(\(tree2str(tree.right)))&quot; &#125;</div><div class="line">        else if tree.right == nil &#123; return &quot;\(tree.val)&quot; + &quot;(\(tree2str(tree.left)))&quot; &#125;</div><div class="line">        else &#123; return &quot;\(tree.val)&quot; + &quot;(\(tree2str(tree.left)))&quot; + &quot;(\(tree2str(tree.right)))&quot; &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/450-Delete-Node-in-a-BST/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -738,1179 +1863,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/129-Sum-Root-to-Leaf-Numbers/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/129-Sum-Root-to-Leaf-Numbers/" itemprop="url">129. Sum Root to Leaf Numbers</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:29:50+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/129-Sum-Root-to-Leaf-Numbers/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="129-Sum-Root-to-Leaf-Numbers/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="129-Sum-Root-to-Leaf-Numbers"><a href="#129-Sum-Root-to-Leaf-Numbers" class="headerlink" title="129. Sum Root to Leaf Numbers"></a><a href="https://leetcode.com/problems/sum-root-to-leaf-numbers/description/" target="_blank" rel="external">129. Sum Root to Leaf Numbers</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree containing digits from 0-9 only, each root-to-leaf path could represent a number.</p>
-<p>An example is the root-to-leaf path 1-&gt;2-&gt;3 which represents the number 123.</p>
-<p>Find the total sum of all root-to-leaf numbers.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">For example,</div><div class="line"></div><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line">The root-to-leaf path 1-&gt;2 represents the number 12.</div><div class="line">The root-to-leaf path 1-&gt;3 represents the number 13.</div><div class="line"></div><div class="line">Return the sum = 12 + 13 = 25.</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>根节点到子节点的路径代表一个数，求所有路径的数值的和。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">    1</div><div class="line">   / \</div><div class="line">  2   3</div><div class="line"></div><div class="line">根节点到子节点的路径 1-&gt;2 代表数值：12</div><div class="line">根节点到子节点的路径 1-&gt;3 代表数值：13</div><div class="line">返回结果 25</div></pre></td></tr></table></figure>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>DFS(深度优先搜索)<br>遍历左右子树，直到左右子树都为nil。则代表这一路径的数值已经组合完毕。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func sumNumbers(_ root: TreeNode?) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        func dfs(tree: TreeNode?, pre: Int) -&gt; Int &#123;</div><div class="line">            guard let t = tree else &#123; return 0 &#125;</div><div class="line">            let n = pre * 10 + t.val</div><div class="line">            if t.left == nil &amp;&amp; t.right == nil &#123;</div><div class="line">                return n</div><div class="line">            &#125;</div><div class="line">            return dfs(tree: t.left, pre: n) + dfs(tree: t.right, pre: n)</div><div class="line">        &#125;</div><div class="line">        return dfs(tree: root, pre: 0)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Construct-Binary-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Construct-Binary-Tree/" itemprop="url">Construct Binary Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:28:23+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Construct-Binary-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Construct-Binary-Tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal"><a href="#105-Construct-Binary-Tree-from-Preorder-and-Inorder-Traversal" class="headerlink" title="105. Construct Binary Tree from Preorder and Inorder Traversal"></a><a href="https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/" target="_blank" rel="external">105. Construct Binary Tree from Preorder and Inorder Traversal</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given preorder and inorder traversal of a tree, construct the binary tree.</p>
-<p>Note:<br>You may assume that duplicates do not exist in the tree.</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>根据前序和中序，构建二叉树。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>由于前序遍历的规则是：根-&gt;左-&gt;右，所以前序遍历的第一个元素为根节点，根据这一特性，将中序数组分为左子树和右子树。重复以上操作。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func buildTree(_ preorder: [Int], _ inorder: [Int]) -&gt; TreeNode? &#123;</div><div class="line">       var dict = [Int: Int]() //参考leetcode上的最优解决方案，优化</div><div class="line">        for (i, n) in inorder.enumerated() &#123;</div><div class="line">            dict[n] = i</div><div class="line">        &#125;</div><div class="line">        func build(preIndex: Int, start: Int, end: Int) -&gt; TreeNode? &#123;</div><div class="line">            guard start &lt;= end else &#123; return nil &#125;</div><div class="line">            </div><div class="line">            let root = TreeNode(preorder[preIndex])</div><div class="line">            let index = dict[preorder[preIndex]] ?? 0</div><div class="line">            </div><div class="line">            if index &gt; start &#123;</div><div class="line">                root.left = build(preIndex: preIndex + 1, start: start, end: index - 1)</div><div class="line">            &#125;</div><div class="line">            if index &lt; end &#123;</div><div class="line">                //由于preIndex + 1之后，首元素其实是左子树，所以需要加上当前inorder数组中，左子树的个数，才能将首元素变为右子树。</div><div class="line">                root.right = build(preIndex: preIndex + index - start + 1, start: index + 1, end: end)</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            return root</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return build(preIndex: 0, start: 0, end: inorder.count - 1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="106-Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal"><a href="#106-Construct-Binary-Tree-from-Inorder-and-Postorder-Traversal" class="headerlink" title="106. Construct Binary Tree from Inorder and Postorder Traversal"></a><a href="https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description/" target="_blank" rel="external">106. Construct Binary Tree from Inorder and Postorder Traversal</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given inorder and postorder traversal of a tree, construct the binary tree.</p>
-<p>Note:<br>You may assume that duplicates do not exist in the tree.</p>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>根据后序和中序，构建二叉树</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>与前序和中序构建树的思路差不多。<br>需要使用后序特性，最后一个数为根节点。将前序数组分为左右两个子树。</p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">   func buildTree(_ inorder: [Int], _ postorder: [Int]) -&gt; TreeNode? &#123;</div><div class="line">        var dict = [Int: Int]() //参考leetcode上的最优解决方案，优化</div><div class="line">        for (i, n) in inorder.enumerated() &#123;</div><div class="line">            dict[n] = i</div><div class="line">        &#125;</div><div class="line">        func build(postStart: Int, postEnd: Int, inStart: Int, inEnd: Int) -&gt; TreeNode? &#123;</div><div class="line">            guard inStart &lt;= inEnd &amp;&amp; postStart &lt;= postEnd else &#123; return nil &#125;</div><div class="line">            </div><div class="line">            let root = TreeNode(postorder[postEnd])</div><div class="line">            let index = dict[postorder[postEnd]] ?? 0</div><div class="line">            </div><div class="line">            if index &gt; inStart &#123;</div><div class="line">                root.left = build(postStart: postStart, postEnd: postStart + index - inStart - 1, inStart: inStart, inEnd: index - 1)</div><div class="line">            &#125;</div><div class="line">            if index &lt; inEnd &#123;</div><div class="line">                root.right = build(postStart: postStart + index - inStart, postEnd: postEnd - 1, inStart: index + 1, inEnd: inEnd)</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            return root</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        return build(postStart: 0, postEnd: postorder.count - 1, inStart: 0, inEnd: inorder.count - 1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Binary-Tree-Traversal（二叉树遍历）/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Binary-Tree-Traversal（二叉树遍历）/" itemprop="url">Binary Tree Traversal（二叉树遍历）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:25:34+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Binary-Tree-Traversal（二叉树遍历）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Binary-Tree-Traversal（二叉树遍历）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="144-Binary-Tree-Preorder-Traversal"><a href="#144-Binary-Tree-Preorder-Traversal" class="headerlink" title="144. Binary Tree Preorder Traversal"></a><a href="https://leetcode.com/problems/binary-tree-preorder-traversal/description/" target="_blank" rel="external">144. Binary Tree Preorder Traversal</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the preorder traversal of its nodes’ values.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree [1,null,2,3],</div><div class="line">   1</div><div class="line">    \</div><div class="line">     2</div><div class="line">    /</div><div class="line">   3</div><div class="line">return [1,2,3].</div><div class="line"></div><div class="line">Note: Recursive solution is trivial, could you do it iteratively?</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>二叉树前序遍历</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>迭代，辅助栈<br>由于栈的特性，需先将右子树压栈</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func preorderTraversal(_ root: TreeNode?) -&gt; [Int] &#123;</div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        var stack = [root]</div><div class="line">        var ans = [Int]()</div><div class="line">        while !stack.isEmpty &#123;</div><div class="line">            let tree = stack.removeLast()</div><div class="line">            ans.append(tree.val)</div><div class="line">            if let right = tree.right &#123;</div><div class="line">                stack.append(right)</div><div class="line">            &#125;</div><div class="line">            if let left = tree.left &#123;</div><div class="line">                stack.append(left)</div><div class="line">            &#125; </div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="94-Binary-Tree-Inorder-Traversal"><a href="#94-Binary-Tree-Inorder-Traversal" class="headerlink" title="94. Binary Tree Inorder Traversal"></a><a href="">94. Binary Tree Inorder Traversal</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the inorder traversal of its nodes’ values.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree [1,null,2,3],</div><div class="line">   1</div><div class="line">    \</div><div class="line">     2</div><div class="line">    /</div><div class="line">   3</div><div class="line">return [1,3,2].</div><div class="line"></div><div class="line">Note: Recursive solution is trivial, could you do it iteratively?</div></pre></td></tr></table></figure>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>二叉树中序遍历</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>迭代，辅助栈<br>优先搜索左节点，当左节点为空时，再遍历根节点和右节点，循环以上步骤，采用辅助栈，保存根节点。</p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func inorderTraversal(_ root: TreeNode?) -&gt; [Int] &#123;</div><div class="line">        var stack = [TreeNode?]()</div><div class="line">        var ans = [Int]()</div><div class="line">        var tree = root</div><div class="line">        while tree != nil || !stack.isEmpty &#123;</div><div class="line">            while tree != nil &#123;</div><div class="line">                stack.append(tree)</div><div class="line">                tree = tree?.left</div><div class="line">            &#125;</div><div class="line">            tree = stack.removeLast()</div><div class="line">            ans.append(tree!.val)</div><div class="line">            tree = tree?.right</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="145-Binary-Tree-Postorder-Traversal"><a href="#145-Binary-Tree-Postorder-Traversal" class="headerlink" title="145. Binary Tree Postorder Traversal"></a><a href="https://leetcode.com/problems/binary-tree-postorder-traversal/description/" target="_blank" rel="external">145. Binary Tree Postorder Traversal</a></h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the postorder traversal of its nodes’ values.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree &#123;1,#,2,3&#125;,</div><div class="line">   1</div><div class="line">    \</div><div class="line">     2</div><div class="line">    /</div><div class="line">   3</div><div class="line">return [3,2,1].</div><div class="line"></div><div class="line">Note: Recursive solution is trivial, could you do it iteratively?</div></pre></td></tr></table></figure>
-<h3 id="题目大意-2"><a href="#题目大意-2" class="headerlink" title="题目大意"></a>题目大意</h3><p>二叉树后序遍历</p>
-<h3 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>迭代，辅助栈<br>遍历左右节点，当左右节点都为nil，或者左右节点都已被访问，可以输出当前节点的值，并出栈。根据栈先入后出的特性，需先将右节点压入栈。</p>
-</blockquote>
-<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func postorderTraversal(_ root: TreeNode?) -&gt; [Int] &#123;</div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        var stack = [root]</div><div class="line">        var pre = root</div><div class="line">        var ans = [Int]()</div><div class="line">        </div><div class="line">        while !stack.isEmpty &#123;</div><div class="line">            if let tree = stack.last &#123;</div><div class="line">                if (tree.left == nil &amp;&amp; tree.right == nil)</div><div class="line">                    || (tree.left != nil &amp;&amp; tree.left! === pre)</div><div class="line">                    || (tree.right != nil &amp;&amp; tree.right! === pre) &#123;</div><div class="line">                    ans.append(tree.val)</div><div class="line">                    stack.removeLast()</div><div class="line">                    pre = tree</div><div class="line">                &#125;else &#123;</div><div class="line">                    if let right = tree.right &#123;</div><div class="line">                        stack.append(right)</div><div class="line">                    &#125;</div><div class="line">                    if let left = tree.left &#123;</div><div class="line">                        stack.append(left)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="102-Binary-Tree-Level-Order-Traversal"><a href="#102-Binary-Tree-Level-Order-Traversal" class="headerlink" title="102. Binary Tree Level Order Traversal"></a><a href="https://leetcode.com/problems/binary-tree-level-order-traversal/description/" target="_blank" rel="external">102. Binary Tree Level Order Traversal</a></h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the level order traversal of its nodes’ values. (ie, from left to right, level by level).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree [3,9,20,null,null,15,7],</div><div class="line">    3</div><div class="line">   / \</div><div class="line">  9  20</div><div class="line">    /  \</div><div class="line">   15   7</div><div class="line">return its level order traversal as:</div><div class="line">[</div><div class="line">  [3],</div><div class="line">  [9,20],</div><div class="line">  [15,7]</div><div class="line">]</div></pre></td></tr></table></figure>
-<h3 id="题目大意-3"><a href="#题目大意-3" class="headerlink" title="题目大意"></a>题目大意</h3><p>二叉树层序遍历</p>
-<h3 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>第一种采用递归， BFS(广度优先搜索)</p>
-</blockquote>
-<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func levelOrder(_ root: TreeNode?) -&gt; [[Int]] &#123;</div><div class="line">        var res = [[Int]]()</div><div class="line">        levelOperation(res: &amp;res, root: root, level: 0)</div><div class="line">        return res</div><div class="line">    &#125;</div><div class="line">    func levelOperation(res: inout [[Int]], root: TreeNode?, level: Int) &#123;</div><div class="line">        guard let tree = root else&#123;</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line">        if level &gt;= res.count &#123;</div><div class="line">            res.append([])</div><div class="line">        &#125;</div><div class="line">        res[level].append(tree.val)</div><div class="line">        levelOperation(res: &amp;res, root: tree.left, level: level + 1)</div><div class="line">        levelOperation(res: &amp;res, root: tree.right, level: level + 1)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>第二种迭代，BFS(广度优先搜索)<br>利用Swift特性元祖，建立队列，将节点当前层数保留在队列。<br>给定ans变量作为结果，如果节点层数大于ans的数量，则先添加一个空数组到ans内，防止数组越界的情况。</p>
-</blockquote>
-<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func levelOrder(_ root: TreeNode?) -&gt; [[Int]] &#123;</div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        var ans = [[Int]]()</div><div class="line">        var queue = [(0, root)]</div><div class="line">        while !queue.isEmpty &#123;</div><div class="line">            let tree = queue.removeFirst()</div><div class="line">            if tree.0 &gt;= ans.count &#123;</div><div class="line">                ans.append([Int]())</div><div class="line">            &#125;</div><div class="line">            ans[tree.0].append(tree.1.val)</div><div class="line">            if let left = tree.1.left &#123;</div><div class="line">                queue.append((tree.0 + 1, left))</div><div class="line">            &#125;</div><div class="line">            if let right = tree.1.right &#123;</div><div class="line">                queue.append((tree.0 + 1, right))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="107-Binary-Tree-Level-Order-Traversal-II"><a href="#107-Binary-Tree-Level-Order-Traversal-II" class="headerlink" title="107. Binary Tree Level Order Traversal II"></a><a href="https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/" target="_blank" rel="external">107. Binary Tree Level Order Traversal II</a></h2><h3 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the bottom-up level order traversal of its nodes’ values. (ie, from left to right, level by level from leaf to root).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree [3,9,20,null,null,15,7],</div><div class="line">    3</div><div class="line">   / \</div><div class="line">  9  20</div><div class="line">    /  \</div><div class="line">   15   7</div><div class="line">return its bottom-up level order traversal as:</div><div class="line">[</div><div class="line">  [15,7],</div><div class="line">  [9,20],</div><div class="line">  [3]</div><div class="line">]</div></pre></td></tr></table></figure>
-<h3 id="题目大意-4"><a href="#题目大意-4" class="headerlink" title="题目大意"></a>题目大意</h3><p>层序遍历，从底至上返回。</p>
-<h3 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>和层序遍历思路差不多。<br>不同在于添加进数组时，需要插入到数组头。</p>
-</blockquote>
-<h3 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func levelOrderBottom(_ root: TreeNode?) -&gt; [[Int]] &#123;</div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        var ans = [[Int]]()</div><div class="line">        var queue = [(0, root)]</div><div class="line">        while !queue.isEmpty &#123;</div><div class="line">            let tree = queue.removeFirst()</div><div class="line">            if tree.0 &gt;= ans.count &#123;</div><div class="line">                ans.insert([Int](), at: 0)</div><div class="line">            &#125;</div><div class="line">            ans[ans.count - tree.0 - 1].append(tree.1.val) //与层序遍历的区别</div><div class="line">            if let left = tree.1.left &#123;</div><div class="line">                queue.append((tree.0 + 1, left))</div><div class="line">            &#125;</div><div class="line">            if let right = tree.1.right &#123;</div><div class="line">                queue.append((tree.0 + 1, right))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="103-Binary-Tree-Zigzag-Level-Order-Traversal"><a href="#103-Binary-Tree-Zigzag-Level-Order-Traversal" class="headerlink" title="103. Binary Tree Zigzag Level Order Traversal"></a><a href="https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/description/" target="_blank" rel="external">103. Binary Tree Zigzag Level Order Traversal</a></h2><h3 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, return the zigzag level order traversal of its nodes’ values. (ie, from left to right, then right to left for the next level and alternate between).</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given binary tree [3,9,20,null,null,15,7],</div><div class="line">    3</div><div class="line">   / \</div><div class="line">  9  20</div><div class="line">    /  \</div><div class="line">   15   7</div><div class="line">return its zigzag level order traversal as:</div><div class="line">[</div><div class="line">  [3],</div><div class="line">  [20,9],</div><div class="line">  [15,7]</div><div class="line">]</div></pre></td></tr></table></figure>
-<h3 id="题目大意-5"><a href="#题目大意-5" class="headerlink" title="题目大意"></a>题目大意</h3><p>z型层序遍历二叉树，并以二维数组作为结果返回</p>
-<h3 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>与层序遍历思路差不多。<br>不同点在于，需根据节点层数决定，ans添加节点值的方式（是insert还是append）。</p>
-</blockquote>
-<h3 id="代码-6"><a href="#代码-6" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func zigzagLevelOrder(_ root: TreeNode?) -&gt; [[Int]] &#123;</div><div class="line">        guard let tree = root else &#123;</div><div class="line">            return []</div><div class="line">        &#125;</div><div class="line">        var ans = [[Int]]()</div><div class="line">        var queue = [(0, tree)]</div><div class="line">        while !queue.isEmpty &#123;</div><div class="line">            let t = queue.removeFirst()</div><div class="line">            if t.0 &gt;= ans.count &#123;</div><div class="line">                ans.append([Int]())</div><div class="line">            &#125;</div><div class="line">            if t.0 % 2 == 0 &#123;</div><div class="line">                ans[t.0].append(t.1.val)</div><div class="line">            &#125;else &#123;</div><div class="line">                ans[t.0].insert(t.1.val, at: 0)</div><div class="line">            &#125;</div><div class="line">            if let left = t.1.left &#123;</div><div class="line">                queue.append((t.0 + 1, left))</div><div class="line">            &#125;</div><div class="line">            if let right = t.1.right &#123;</div><div class="line">                queue.append((t.0 + 1, right))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/199-Binary-Tree-Right-Side-View/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/199-Binary-Tree-Right-Side-View/" itemprop="url">199. Binary Tree Right Side View</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:24:06+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/199-Binary-Tree-Right-Side-View/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="199-Binary-Tree-Right-Side-View/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="199-Binary-Tree-Right-Side-View"><a href="#199-Binary-Tree-Right-Side-View" class="headerlink" title="199. Binary Tree Right Side View"></a><a href="https://leetcode.com/problems/binary-tree-right-side-view/description/" target="_blank" rel="external">199. Binary Tree Right Side View</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, imagine yourself standing on the right side of it, return the values of the nodes you can see ordered from top to bottom.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">For example:</div><div class="line">Given the following binary tree,</div><div class="line">   1            &lt;---</div><div class="line"> /   \</div><div class="line">2     3         &lt;---</div><div class="line"> \     \</div><div class="line">  5     4       &lt;---</div><div class="line">You should return [1, 3, 4].</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一二叉树，求二叉树的右视图。<br>例如，从右边看二叉树，你应该返回结果为：[1, 3, 4]。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>层序遍历，辅助栈。<br>只将当前层的最右节点加入数组，通过flag参数标记当前层是否已经有节点被加入到数组内。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func rightSideView(_ root: TreeNode?) -&gt; [Int] &#123;</div><div class="line">        guard let tree = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        var ans = [Int]()</div><div class="line">        var stack = [(0, tree)]</div><div class="line">        var flag = 0</div><div class="line">        </div><div class="line">        while !stack.isEmpty &#123;</div><div class="line">            let t = stack.removeLast()</div><div class="line">            if t.0 == flag &#123;</div><div class="line">                ans.append(t.1.val)</div><div class="line">                flag = t.0 + 1</div><div class="line">            &#125;</div><div class="line">            if let l = t.1.left &#123;</div><div class="line">                stack.append((t.0 + 1, l))</div><div class="line">            &#125;</div><div class="line">            if let r = t.1.right &#123;</div><div class="line">                stack.append((t.0 + 1, r))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/662-Maximum-Width-of-Binary-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/662-Maximum-Width-of-Binary-Tree/" itemprop="url">662. Maximum Width of Binary Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:22:52+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/662-Maximum-Width-of-Binary-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="662-Maximum-Width-of-Binary-Tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="662-Maximum-Width-of-Binary-Tree"><a href="#662-Maximum-Width-of-Binary-Tree" class="headerlink" title="662. Maximum Width of Binary Tree"></a><a href="https://leetcode.com/problems/maximum-width-of-binary-tree/description/" target="_blank" rel="external">662. Maximum Width of Binary Tree</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary tree, write a function to get the maximum width of the given tree. The width of a tree is the maximum width among all levels. The binary tree has the same structure as a full binary tree, but some nodes are null.</p>
-<p>The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: </div><div class="line"></div><div class="line">           1</div><div class="line">         /   \</div><div class="line">        3     2</div><div class="line">       / \     \  </div><div class="line">      5   3     9 </div><div class="line"></div><div class="line">Output: 4</div><div class="line">Explanation: The maximum width existing in the third level with the length 4 (5,3,null,9).</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: </div><div class="line"></div><div class="line">          1</div><div class="line">         /  </div><div class="line">        3    </div><div class="line">       / \       </div><div class="line">      5   3     </div><div class="line"></div><div class="line">Output: 2</div><div class="line">Explanation: The maximum width existing in the third level with the length 2 (5,3).</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 3:</div><div class="line">Input: </div><div class="line"></div><div class="line">          1</div><div class="line">         / \</div><div class="line">        3   2 </div><div class="line">       /        </div><div class="line">      5      </div><div class="line"></div><div class="line">Output: 2</div><div class="line">Explanation: The maximum width existing in the second level with the length 2 (3,2).</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">Example 4:</div><div class="line">Input: </div><div class="line"></div><div class="line">          1</div><div class="line">         / \</div><div class="line">        3   2</div><div class="line">       /     \  </div><div class="line">      5       9 </div><div class="line">     /         \</div><div class="line">    6           7</div><div class="line">Output: 8</div><div class="line">Explanation:The maximum width existing in the fourth level with the length 8 (6,null,null,null,null,null,null,7).</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个二叉树，求每层最左节点到最右节点距离的最大值。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>层序遍历，辅助队列，左节点的个数则为：i <em> 2,右节点的个数则为：i </em> 2 + 1<br>队列的首元素和末元素的差值 + 1即为宽度。<br>刚开始用的Int，但是会越界，于是改用Double.</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func widthOfBinaryTree(_ root: TreeNode?) -&gt; Int &#123;</div><div class="line">        guard let root = root else &#123; return 0 &#125;</div><div class="line">        var queue = [(0.0, root)]</div><div class="line">        var ans = 0.0</div><div class="line">        while !queue.isEmpty &#123;</div><div class="line">            let width = queue.last!.0 - queue.first!.0 + 1</div><div class="line">            ans = max(ans, width)</div><div class="line">            </div><div class="line">            var tmp = [(Double, TreeNode)]()</div><div class="line">            for (i, node) in queue &#123;</div><div class="line">                if let left = node.left &#123; tmp.append((i * 2.0, left)) &#125;</div><div class="line">                if let right = node.right &#123; tmp.append((i * 2.0 + 1.0, right)) &#125;</div><div class="line">            &#125;</div><div class="line">            queue = tmp</div><div class="line">        &#125;</div><div class="line">        return Int(ans)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/733-Flood-Fill/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/733-Flood-Fill/" itemprop="url">733. Flood Fill</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:21:47+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/733-Flood-Fill/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="733-Flood-Fill/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="733-Flood-Fill"><a href="#733-Flood-Fill" class="headerlink" title="733. Flood Fill"></a><a href="https://leetcode.com/problems/flood-fill/description/" target="_blank" rel="external">733. Flood Fill</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>An image is represented by a 2-D array of integers, each integer representing the pixel value of the image (from 0 to 65535).</p>
-<p> Given a coordinate (sr, sc) representing the starting pixel (row and column) of the flood fill, and a pixel value newColor, “flood fill” the image.</p>
-<p> To perform a “flood fill”, consider the starting pixel, plus any pixels connected 4-directionally to the starting pixel of the same color as the starting pixel, plus any pixels connected 4-directionally to those pixels (also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.</p>
-<p> At the end, return the modified image.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:</div><div class="line">image = [[1,1,1],[1,1,0],[1,0,1]]</div><div class="line">sr = 1, sc = 1, newColor = 2</div><div class="line">Output: [[2,2,2],[2,2,0],[2,0,1]]</div><div class="line">Explanation:</div><div class="line">From the center of the image (with position (sr, sc) = (1, 1)), all pixels connected</div><div class="line">by a path of the same color as the starting pixel are colored with the new color.</div><div class="line">Note the bottom corner is not colored 2, because it is not 4-directionally connected</div><div class="line">to the starting pixel.</div></pre></td></tr></table></figure>
-<p> Note:</p>
-<p> The length of image and image[0] will be in the range [1, 50].<br> The given starting pixel will satisfy 0 &lt;= sr &lt; image.length and 0 &lt;= sc &lt; image[0].length.<br> The value of each color in image[i][j] and newColor will be an integer in [0, 65535].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>经典算法：洪水填充<br>(sr, sc)代表起始点，改变起始点的像素，再以起始点为中心的四个方向，像素点与起始点像素相同的点作为起始点，以此类推。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>采用BFS或者DFS</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><h5 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -&gt; [[Int]]</div><div class="line">&#123;</div><div class="line">    let dxs = [1, -1, 0, 0]</div><div class="line">    let dys = [0, 0, 1, -1]</div><div class="line">    let originColor = image[sr][sc]</div><div class="line"></div><div class="line">    func floodFillWithDFS(image: inout [[Int]], x: Int, y: Int) &#123;</div><div class="line">        guard image[x][y] == originColor else &#123;</div><div class="line">            return</div><div class="line">        &#125;</div><div class="line">        image[x][y] = newColor</div><div class="line">        for (dx, dy) in zip(dxs, dys) &#123;</div><div class="line">            let targetX = dx + x</div><div class="line">            let targetY = dy + y</div><div class="line">            guard targetX &gt;= 0, targetX &lt; image.count,</div><div class="line">                targetY &gt;= 0, targetY &lt; image[targetX].count else &#123;</div><div class="line">                continue</div><div class="line">            &#125;</div><div class="line">            floodFillWithDFS(image: &amp;image, x: targetX, y: targetY)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    guard image[sr][sc] != newColor else &#123;</div><div class="line">        return image</div><div class="line">    &#125;</div><div class="line">    var ans = image</div><div class="line">    floodFillWithDFS(image: &amp;ans, x: sr, y: sc)</div><div class="line">    return ans</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h5 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">func floodFill(_ image: [[Int]], _ sr: Int, _ sc: Int, _ newColor: Int) -&gt; [[Int]] &#123;</div><div class="line">    var queue = [(sr, sc)]</div><div class="line">    let color = image[sr][sc]</div><div class="line">    let dxs = [1, -1, 0, 0]</div><div class="line">    let dys = [0, 0, 1, -1]</div><div class="line">    var ans = image</div><div class="line">    ans[sr][sc] = newColor</div><div class="line">    while !queue.isEmpty &#123;</div><div class="line">        let (x, y) = queue.removeLast()</div><div class="line">        for (dx, dy) in zip(dxs, dys) &#123;</div><div class="line">            let targetX = dx + x</div><div class="line">            let targetY = dy + y</div><div class="line">            guard targetX &gt;= 0, targetX &lt; image.count,</div><div class="line">                targetY &gt;= 0, targetY &lt; image[targetX].count else &#123;</div><div class="line">                continue</div><div class="line">            &#125;</div><div class="line">            if color == image[targetX][targetY], </div><div class="line">                ans[targetX][targetY] != newColor &#123;</div><div class="line">                ans[targetX][targetY] = newColor</div><div class="line">                queue.append((targetX, targetY))</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    return ans</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/740-Delete-and-Earn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/740-Delete-and-Earn/" itemprop="url">740. Delete and Earn</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:20:22+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/740-Delete-and-Earn/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="740-Delete-and-Earn/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="740-Delete-and-Earn"><a href="#740-Delete-and-Earn" class="headerlink" title="740. Delete and Earn"></a><a href="https://leetcode.com/problems/delete-and-earn/description/" target="_blank" rel="external">740. Delete and Earn</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p> Given an array nums of integers, you can perform operations on the array.</p>
-<p> In each operation, you pick any nums[i] and delete it to earn nums[i] points. After, you must delete every element equal to nums[i] - 1 or nums[i] + 1.</p>
-<p> You start with 0 points. Return the maximum number of points you can earn by applying such operations.</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: nums = [3, 4, 2]</div><div class="line">Output: 6</div><div class="line">Explanation:</div><div class="line">Delete 4 to earn 4 points, consequently 3 is also deleted.</div><div class="line">Then, delete 2 to earn 2 points. 6 total points are earned.</div></pre></td></tr></table></figure>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: nums = [2, 2, 3, 3, 3, 4]</div><div class="line">Output: 9</div><div class="line">Explanation:</div><div class="line">Delete 3 to earn 3 points, deleting both 2&apos;s and the 4.</div><div class="line">Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.</div><div class="line">9 total points are earned.</div></pre></td></tr></table></figure>
-<p> Note:</p>
-<p> The length of nums is at most 20000.<br> Each element nums[i] is an integer in the range [1, 10000].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个数组nums，可以执行如下操作：<br>在每次操作中，必须删除所有等于nums[i]- 1或nums[i]+ 1的元素，记录数组内剩余数字的总和<br>循环操作，求最大值。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>动态规划<br>dict[num]储存数字num的个数<br>maxNum表示数组内的最大值<br>dp表示删除不大于num的所有数字的最大值</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">func deleteAndEarn(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">    var dict = [Int: Int]()</div><div class="line">    var maxNum = 0</div><div class="line">    for num in nums &#123;</div><div class="line">        dict[num] = (dict[num] ?? 0) + 1</div><div class="line">        maxNum = max(maxNum, num)</div><div class="line">    &#125;</div><div class="line">    //为防止数组越界</div><div class="line">    var dp = Array(repeating: 0, count: maxNum + 3)</div><div class="line">    for num in 1...maxNum + 1 &#123;</div><div class="line">        dp[num] = max(dp[num - 1], (num &gt; 2 ? dp[num - 2] : 0) + (dict[num] ?? 0) *</div><div class="line">num)</div><div class="line">    &#125;</div><div class="line">    return dp[maxNum]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1961,7 +1913,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">78</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
