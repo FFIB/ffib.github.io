@@ -260,6 +260,313 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/649-Dota2-Senate/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/649-Dota2-Senate/" itemprop="url">649. Dota2 Senate</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T10:52:35+08:00">
+                2018-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/649-Dota2-Senate/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="649-Dota2-Senate/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="649-Dota2-Senate"><a href="#649-Dota2-Senate" class="headerlink" title="649. Dota2 Senate"></a><a href="https://leetcode.com/problems/dota2-senate/description/" target="_blank" rel="external">649. Dota2 Senate</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>In the world of Dota2, there are two parties: the Radiant and the Dire.</p>
+<p>The Dota2 senate consists of senators coming from two parties. Now the senate wants to make a decision about a change in the Dota2 game. The voting for this change is a round-based procedure. In each round, each senator can exercise one of the two rights:</p>
+<p>Ban one senator’s right:<br>A senator can make another senator lose all his rights in this and all the following rounds.<br>Announce the victory:<br>If this senator found the senators who still have rights to vote are all from the same party, he can announce the victory and make the decision about the change in the game.<br>Given a string representing each senator’s party belonging. The character ‘R’ and ‘D’ represent the Radiant party and the Dire party respectively. Then if there are n senators, the size of the given string will be n.</p>
+<p>The round-based procedure starts from the first senator to the last senator in the given order. This procedure will last until the end of voting. All the senators who have lost their rights will be skipped during the procedure.</p>
+<p>Suppose every senator is smart enough and will play the best strategy for his own party, you need to predict which party will finally announce the victory and make the change in the Dota2 game. The output should be Radiant or Dire.</p>
+<p>Example 1:<br>Input: “RD”<br>Output: “Radiant”<br>Explanation: The first senator comes from Radiant and he can just ban the next senator’s right in the round 1.<br>And the second senator can’t exercise any rights any more since his right has been banned.<br>And in the round 2, the first senator can just announce the victory since he is the only guy in the senate who can vote.<br>Example 2:<br>Input: “RDD”<br>Output: “Dire”<br>Explanation:<br>The first senator comes from Radiant and he can just ban the next senator’s right in the round 1.<br>And the second senator can’t exercise any rights anymore since his right has been banned.<br>And the third senator comes from Dire and he can ban the first senator’s right in the round 1.<br>And in the round 2, the third senator can just announce the victory since he is the only guy in the senate who can vote</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>有两个阵营，分别是 <code>R</code> 和 <code>D</code> ，使用最佳策略对其他阵营进行禁言。求最终可以发言的阵营。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过模拟每一轮投票，直到只剩下一个阵营，flag为正则表示 <code>R</code> 占据优势，flag为负则表示<code>D</code>占据优势。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func predictPartyVictory(_ senate: String) -&gt; String &#123;</div><div class="line">        var senates = Array(senate)</div><div class="line">        var flag = 0</div><div class="line"></div><div class="line">        while Set(senates).count &gt; 1 &#123;</div><div class="line">            var tmpSenates = [Character]()</div><div class="line"></div><div class="line">            for s in senates &#123;</div><div class="line">                if s == &quot;R&quot; &#123;</div><div class="line">                    if flag &gt;= 0 &#123; tmpSenates.append(&quot;R&quot;) &#125;</div><div class="line">                    flag += 1</div><div class="line">                &#125;else &#123;</div><div class="line">                    if flag &lt;= 0 &#123; tmpSenates.append(&quot;D&quot;) &#125;</div><div class="line">                    flag -= 1</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            senates = tmpSenates</div><div class="line">        &#125;</div><div class="line">        return senates[0] == &quot;D&quot; ? &quot;Dire&quot; : &quot;Radiant&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/771-Jewels-and-Stones/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/771-Jewels-and-Stones/" itemprop="url">771. Jewels and Stones</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T10:08:37+08:00">
+                2018-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/771-Jewels-and-Stones/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="771-Jewels-and-Stones/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Jewels-and-Stones"><a href="#Jewels-and-Stones" class="headerlink" title="Jewels and Stones"></a><a href="https://leetcode.com/submissions/detail/142872452/" target="_blank" rel="external">Jewels and Stones</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You’re given strings J representing the types of stones that are jewels, and S representing the stones you have.  Each character in S is a type of stone you have.  You want to know how many of the stones you have are also jewels.</p>
+<p>The letters in J are guaranteed distinct, and all characters in J and S are letters. Letters are case sensitive, so “a” is considered a different type of stone from “A”.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: J = &quot;aA&quot;, S = &quot;aAAbbbb&quot;</div><div class="line">Output: 3</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: J = &quot;z&quot;, S = &quot;ZZ&quot;</div><div class="line">Output: 0</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>S and J will consist of letters and have length at most 50.</li>
+<li>The characters in J are distinct.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求 <code>S</code> 中有多少个 <code>J</code> 中的字母，区分大小写。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>辅助字典，暴力搜索</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numJewelsInStones(_ J: String, _ S: String) -&gt; Int &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        for char in J &#123;</div><div class="line">            dict[char] = 1</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var ans = 0</div><div class="line">        for char in S &#123;</div><div class="line">            if dict[char] != nil &#123;</div><div class="line">                ans += 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/638-Shopping-Offers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1566,354 +1873,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/592-Fraction-Addition-and-Subtraction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/592-Fraction-Addition-and-Subtraction/" itemprop="url">592 Fraction Addition and Subtraction</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T11:52:04+08:00">
-                2018-01-24
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/592-Fraction-Addition-and-Subtraction/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="592-Fraction-Addition-and-Subtraction/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="592-Fraction-Addition-and-Subtraction"><a href="#592-Fraction-Addition-and-Subtraction" class="headerlink" title="592. Fraction Addition and Subtraction"></a><a href="https://leetcode.com/problems/fraction-addition-and-subtraction/description/" target="_blank" rel="external">592. Fraction Addition and Subtraction</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a string representing an expression of fraction addition and subtraction, you need to return the calculation result in string format. The final result should be irreducible fraction. If your final result is an integer, say 2, you need to change it to the format of fraction that has denominator 1. So in this case, 2 should be converted to 2/1.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:&quot;-1/2+1/2&quot;</div><div class="line">Output: &quot;0/1&quot;</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;-1/2+1/2+1/3&quot;</div><div class="line">Output: &quot;1/3&quot;</div></pre></td></tr></table></figure>
-<p>Example 3:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;1/3-1/2&quot;</div><div class="line">Output: &quot;-1/6&quot;</div></pre></td></tr></table></figure>
-<p>Example 4:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;5/3+1/3&quot;</div><div class="line">Output: &quot;2/1&quot;</div></pre></td></tr></table></figure>
-<p>Note:</p>
-<ul>
-<li>The input string only contains ‘0’ to ‘9’, ‘/‘, ‘+’ and ‘-‘. So does the output.</li>
-<li>Each fraction (input and output) has format ±numerator/denominator. If the first input fraction or the output is positive, then ‘+’ will be omitted.</li>
-<li>The input only contains valid irreducible fractions, where the numerator and denominator of each fraction will always be in the range [1,10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.</li>
-<li>The number of given fractions will be in the range [1,10].</li>
-<li>The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>通过字符串完成表达式的计算。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>将”+” 和 “-“作为数字的正负号。<br>采用<a href="https://zh.wikipedia.org/wiki/輾轉相除法" target="_blank" rel="external"><strong>欧几里得算法</strong></a>求最大公约数，对分数进行约分。<br>利用<code>tuple</code>记录分子和分母。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func greatestCommonDivisor(m: Int, d: Int) -&gt; Int &#123;</div><div class="line">        return m == 0 ? d : greatestCommonDivisor(m: d % m, d: m)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func fractionAddition(_ expression: String) -&gt; String &#123;</div><div class="line">        var ans = (0, 1)</div><div class="line">        var score = (0, 0)</div><div class="line">        var symbol = 1</div><div class="line">        var num = 0</div><div class="line">        for (i, e) in expression.enumerated() &#123;</div><div class="line">            if e == &quot;-&quot; || e == &quot;+&quot; &#123;</div><div class="line">                symbol = e == &quot;-&quot; ? -1 : 1</div><div class="line">            &#125; else if e == &quot;/&quot; &#123;</div><div class="line">                score.0 = symbol * num</div><div class="line">                num = 0</div><div class="line">            &#125; else &#123;</div><div class="line">                num = num * 10 + Int(String(e))!</div><div class="line">            &#125;</div><div class="line">            if ((e == &quot;-&quot; || e == &quot;+&quot;) &amp;&amp; num != 0)  || i == expression.count - 1 &#123;</div><div class="line">                score.1 = num</div><div class="line">                ans = (score.0 * ans.1 + score.1 * ans.0, (score.1 * ans.1))</div><div class="line">                let gcd = greatestCommonDivisor(m: abs(ans.0), d: ans.1)</div><div class="line">                ans = (ans.0 / gcd, ans.1 / gcd)</div><div class="line">                num = 0</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return &quot;\(ans.0)&quot; + &quot;/&quot; + &quot;\(ans.1)&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Hamming-Distance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Hamming-Distance/" itemprop="url">Hamming Distance</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T10:09:05+08:00">
-                2018-01-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Hamming-Distance/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Hamming-Distance/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="461-Hamming-Distance"><a href="#461-Hamming-Distance" class="headerlink" title="461. Hamming Distance"></a><a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank" rel="external">461. Hamming Distance</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Given two integers x and y, calculate the Hamming distance.</p>
-<p>Note:<br>0 ≤ x, y &lt; 231.</p>
-<p>Example:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div></pre></td></tr></table></figure>
-<p>The above arrows point to positions where the corresponding bits are different.</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>汉明距离，两个二进制数不相等的位的个数。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>按位异或，求得不相等的位。<br>遍历，按位与求其个数。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func hammingDistance(_ x: Int, _ y: Int) -&gt; Int &#123;</div><div class="line">        var xor = x^y</div><div class="line">        var count = 0</div><div class="line">        while xor != 0 &#123;</div><div class="line">            xor = (xor - 1) &amp; xor</div><div class="line">            count += 1</div><div class="line">        &#125;</div><div class="line">        return count</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="477-Total-Hamming-Distance"><a href="#477-Total-Hamming-Distance" class="headerlink" title="477. Total Hamming Distance"></a><a href="https://leetcode.com/problems/total-hamming-distance/description/" target="_blank" rel="external">477. Total Hamming Distance</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
-<p>Now your job is to find the total Hamming distance between all pairs of the given numbers.</p>
-<p>Example:<br>Input: 4, 14, 2</p>
-<p>Output: 6</p>
-<p>Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just<br>showing the four bits relevant in this case). So the answer will be:<br>HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.<br>Note:<br>Elements of the given array are in the range of 0 to 10^9<br>Length of the array will not exceed 10^4.</p>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>计算数组内所有数值的汉明距离。</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>由题目例子看:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;14: 1110</div><div class="line">&gt;4 : 0100</div><div class="line">&gt;2 : 0010</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>第一列的汉明距离是2，第二列的汉明距离是2，第三列的汉明距离是2，第四列的汉明距离是0。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;14: 1110</div><div class="line">&gt;10: 1010</div><div class="line">&gt;2 : 0010</div><div class="line">&gt;1 : 0001</div><div class="line">&gt;</div></pre></td></tr></table></figure>
-<p>第一列的汉明距离是4，第二列的汉明距离是3，第三列的汉明距离是3，第四列的汉明距离是3。<br>记每一列的1的个数为count，可得规律：(nums.count - count) * count </p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func totalHammingDistance(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;32 &#123;</div><div class="line">            var count = 0</div><div class="line">            for num in nums &#123;</div><div class="line">                count += (num &gt;&gt; i &amp; 1)</div><div class="line">            &#125;</div><div class="line">            ans += (nums.count - count) * count</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1964,7 +1923,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

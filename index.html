@@ -260,6 +260,348 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/822-Card-Flipping-Game/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/822-Card-Flipping-Game/" itemprop="url">822. Card Flipping Game</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T12:04:08+08:00">
+                2018-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/822-Card-Flipping-Game/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="822-Card-Flipping-Game/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="822-Card-Flipping-Game"><a href="#822-Card-Flipping-Game" class="headerlink" title="822. Card Flipping Game"></a><a href="https://leetcode.com/problems/card-flipping-game/description/" target="_blank" rel="external">822. Card Flipping Game</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>On a table are N cards, with a positive integer printed on the front and back of each card (possibly different).</p>
+<p>We flip any number of cards, and after we choose one card. </p>
+<p>If the number X on the back of the chosen card is not on the front of any card, then this number X is good.</p>
+<p>What is the smallest number that is good?  If no number is good, output 0.</p>
+<p>Here, fronts[i] and backs[i] represent the number on the front and back of card i. </p>
+<p>A flip swaps the front and back numbers, so the value on the front is now on the back and vice versa.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: fronts = [1,2,4,4,7], backs = [1,3,4,1,3]</div><div class="line">Output: 2</div><div class="line">Explanation: If we flip the second card, the fronts are [1,3,4,4,7] and the backs are [1,2,4,1,3].</div><div class="line">We choose the second card, which has number 2 on the back, and it isn&apos;t on the front of any card, so 2 is good.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>1 &lt;= fronts.length == backs.length &lt;= 1000.</li>
+<li>1 &lt;= fronts[i] &lt;= 2000.</li>
+<li>1 &lt;= backs[i] &lt;= 2000.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>每张牌的正反面都有一个数，随意翻牌，找出一个最小的数与其他牌当前的正面数值不相等。<br><code>front</code> 代表牌正面的数值，<code>back</code> 代表牌背面的数值。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>如果正反面数值相同，则无论我们如何翻这张牌，正面的牌一定不符合条件。<br>找出正反面数值相同。将数值存在集合内。<br>遍历 <code>front</code> 和 <code>back</code> ，找到不在集合中存在的最小数。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func flipgame(_ fronts: [Int], _ backs: [Int]) -&gt; Int &#123;</div><div class="line">        var same = Set&lt;Int&gt;()</div><div class="line">        for (front, back) in zip(fronts, backs) &#123;</div><div class="line">            if front == back &#123;</div><div class="line">                same.insert(front)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var ans = Int.max</div><div class="line">        for (front, back) in zip(fronts, backs) &#123;</div><div class="line">            if !same.contains(front)&#123; ans = min(ans, front) &#125;</div><div class="line">            if !same.contains(back) &#123; ans = min(ans, back) &#125;</div><div class="line">        &#125;</div><div class="line">        return ans == Int.max ? 0 : ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/819-Most-Common-Word/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/819-Most-Common-Word/" itemprop="url">819. Most Common Word</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T12:03:37+08:00">
+                2018-05-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/819-Most-Common-Word/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="819-Most-Common-Word/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="819-Most-Common-Word"><a href="#819-Most-Common-Word" class="headerlink" title="819. Most Common Word"></a><a href="">819. Most Common Word</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a paragraph and a list of banned words, return the most frequent word that is not in the list of banned words.  It is guaranteed there is at least one word that isn’t banned, and that the answer is unique.</p>
+<p>Words in the list of banned words are given in lowercase, and free of punctuation.  Words in the paragraph are not case sensitive.  The answer is in lowercase.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input: </div><div class="line">paragraph = &quot;Bob hit a ball, the hit BALL flew far after it was hit.&quot;</div><div class="line">banned = [&quot;hit&quot;]</div><div class="line">Output: &quot;ball&quot;</div><div class="line">Explanation: </div><div class="line">&quot;hit&quot; occurs 3 times, but it is a banned word.</div><div class="line">&quot;ball&quot; occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph. </div><div class="line">Note that words in the paragraph are not case sensitive,</div><div class="line">that punctuation is ignored (even if adjacent to words, such as &quot;ball,&quot;), </div><div class="line">and that &quot;hit&quot; isn&apos;t the answer even though it occurs more because it is banned.</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>1 &lt;= paragraph.length &lt;= 1000.</li>
+<li>1 &lt;= banned.length &lt;= 100.</li>
+<li>1 &lt;= banned[i].length &lt;= 10.</li>
+<li>The answer is unique, and written in lowercase (even if its occurrences in paragraph may have uppercase symbols, and even if it is a proper noun.)</li>
+<li>paragraph only consists of letters, spaces, or the punctuation symbols !?’,;.</li>
+<li>Different words in paragraph are always separated by a space.</li>
+<li>There are no hyphens or hyphenated words.</li>
+<li>Words only consist of letters, never apostrophes or other punctuation symbols.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求除 <code>banned</code> 内含有的单词以外，出现频次做多的单词。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>暴力搜索，字典辅助。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">     func mostCommonWord(_ paragraph: String, _ banned: [String]) -&gt; String &#123;</div><div class="line">        let words = paragraph.split &#123; (c) -&gt; Bool in</div><div class="line">            return &quot; [!?&apos;,;.]&quot;.contains(c)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var dict = [String: Int]()</div><div class="line">        for word in words &#123;</div><div class="line">            let str = String(word).lowercased()</div><div class="line">            dict[str] = (dict[str] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var ans = &quot;&quot;</div><div class="line">        var frequency = 0</div><div class="line">        for (k, v) in dict &#123;</div><div class="line">            if !banned.contains(k) &#123;</div><div class="line">                ans = frequency &gt; v ? ans : k</div><div class="line">                frequency = max(frequency, v)</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/789-Escape-The-Ghosts/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1632,342 +1974,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/821-Shortest-Distance-to-a-Character/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/821-Shortest-Distance-to-a-Character/" itemprop="url">821. Shortest Distance to a Character</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-28T14:39:13+08:00">
-                2018-04-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/821-Shortest-Distance-to-a-Character/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="821-Shortest-Distance-to-a-Character/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="821-Shortest-Distance-to-a-Character"><a href="#821-Shortest-Distance-to-a-Character" class="headerlink" title="821. Shortest Distance to a Character"></a><a href="https://leetcode.com/problems/shortest-distance-to-a-character/description/" target="_blank" rel="external">821. Shortest Distance to a Character</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p> Given a string S and a character C, return an array of integers representing the shortest distance from the character C in the string.</p>
-<p> Example 1:</p>
-<p> Input: S = “loveleetcode”, C = ‘e’<br> Output: [3, 2, 1, 0, 1, 0, 0, 1, 2, 2, 1, 0]</p>
-<p> Note:</p>
-<ul>
-<li>S string length is in [1, 10000].</li>
-<li>C is a single character, and guaranteed to be in string S.</li>
-<li>All letters in S and C are lowercase.</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定字符串 <code>S</code> 和字符 <code>C</code> ，求 <code>S</code> 中每个字符距离 <code>C</code> 字符最小距离。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>正向反向遍历，求最小。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestToChar(_ S: String, _ C: Character) -&gt; [Int] &#123;</div><div class="line">        var ans = Array(repeating: S.count, count: S.count)</div><div class="line">        var last = -(ans.count * 2 + 1)</div><div class="line">        for (i, char) in S.enumerated() &#123;</div><div class="line">            if char == C &#123; last = i &#125;</div><div class="line">            ans[i] = min(i - last, ans[i])</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        last = ans.count * 2 + 1</div><div class="line">        for (i, char) in S.enumerated().reversed() &#123;</div><div class="line">            if char == C &#123; last = i &#125;</div><div class="line">            ans[i] = min(last - i, ans[i])</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/811-Subdomain-Visit-Count/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/811-Subdomain-Visit-Count/" itemprop="url">811. Subdomain Visit Count</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-25T11:52:50+08:00">
-                2018-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/811-Subdomain-Visit-Count/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="811-Subdomain-Visit-Count/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="811-Subdomain-Visit-Count"><a href="#811-Subdomain-Visit-Count" class="headerlink" title="811. Subdomain Visit Count"></a><a href="">811. Subdomain Visit Count</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>A website domain like “discuss.leetcode.com” consists of various subdomains. At the top level, we have “com”, at the next level, we have “leetcode.com”, and at the lowest level, “discuss.leetcode.com”. When we visit a domain like “discuss.leetcode.com”, we will also visit the parent domains “leetcode.com” and “com” implicitly.</p>
-<p>Now, call a “count-paired domain” to be a count (representing the number of visits this domain received), followed by a space, followed by the address. An example of a count-paired domain might be “9001 discuss.leetcode.com”.</p>
-<p>We are given a list cpdomains of count-paired domains. We would like a list of count-paired domains, (in the same format as the input, and in any order), that explicitly counts the number of visits to each subdomain.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input: </div><div class="line">[&quot;9001 discuss.leetcode.com&quot;]</div><div class="line">Output: </div><div class="line">[&quot;9001 discuss.leetcode.com&quot;, &quot;9001 leetcode.com&quot;, &quot;9001 com&quot;]</div><div class="line">Explanation: </div><div class="line">We only have one website domain: &quot;discuss.leetcode.com&quot;. As discussed above, the subdomain &quot;leetcode.com&quot; and &quot;com&quot; will also be visited. So they will all be visited 9001 times.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input: </div><div class="line">[&quot;900 google.mail.com&quot;, &quot;50 yahoo.com&quot;, &quot;1 intel.mail.com&quot;, &quot;5 wiki.org&quot;]</div><div class="line">Output: </div><div class="line">[&quot;901 mail.com&quot;,&quot;50 yahoo.com&quot;,&quot;900 google.mail.com&quot;,&quot;5 wiki.org&quot;,&quot;5 org&quot;,&quot;1 intel.mail.com&quot;,&quot;951 com&quot;]</div><div class="line">Explanation: </div><div class="line">We will visit &quot;google.mail.com&quot; 900 times, &quot;yahoo.com&quot; 50 times, &quot;intel.mail.com&quot; once and &quot;wiki.org&quot; 5 times. For the subdomains, we will visit &quot;mail.com&quot; 900 + 1 = 901 times, &quot;com&quot; 900 + 50 + 1 = 951 times, and &quot;org&quot; 5 times.</div></pre></td></tr></table></figure>
-<p>Notes:</p>
-<ul>
-<li>The length of cpdomains will not exceed 100. </li>
-<li>The length of each domain name will not exceed 100.</li>
-<li>Each address will have either 1 or 2 “.” characters.</li>
-<li>The input count in any count-paired domain will not exceed 10000.</li>
-<li>The answer output can be returned in any order.</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一组网站及其访问的次数，返回网站对应的所有子域名的访问次数。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>Hash Table</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">     func subdomainVisits(_ cpdomains: [String]) -&gt; [String] &#123;</div><div class="line">        var dict = [String: Int]()</div><div class="line"></div><div class="line">        for cpdomain in cpdomains &#123;</div><div class="line">            let countPaired = cpdomain.split(separator: &quot; &quot;)</div><div class="line">            let count = Int(countPaired[0])!</div><div class="line">            let domains = countPaired[1].split(separator: &quot;.&quot;)</div><div class="line"></div><div class="line">            var str = &quot;&quot;</div><div class="line">            for name in domains.reversed() &#123;</div><div class="line">                str = name + str</div><div class="line">                dict[str] = (dict[str] ?? 0) + count</div><div class="line">                str = &quot;.&quot; + str</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var ans = [String]()</div><div class="line">        for (k, v) in dict &#123;</div><div class="line">            ans.append(&quot;\(v) &quot; + k)</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2018,7 +2024,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -260,6 +260,354 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/592-Fraction-Addition-and-Subtraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/592-Fraction-Addition-and-Subtraction/" itemprop="url">592 Fraction Addition and Subtraction</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T11:52:04+08:00">
+                2018-01-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/592-Fraction-Addition-and-Subtraction/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="592-Fraction-Addition-and-Subtraction/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="592-Fraction-Addition-and-Subtraction"><a href="#592-Fraction-Addition-and-Subtraction" class="headerlink" title="592. Fraction Addition and Subtraction"></a><a href="https://leetcode.com/problems/fraction-addition-and-subtraction/description/" target="_blank" rel="external">592. Fraction Addition and Subtraction</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a string representing an expression of fraction addition and subtraction, you need to return the calculation result in string format. The final result should be irreducible fraction. If your final result is an integer, say 2, you need to change it to the format of fraction that has denominator 1. So in this case, 2 should be converted to 2/1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:&quot;-1/2+1/2&quot;</div><div class="line">Output: &quot;0/1&quot;</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;-1/2+1/2+1/3&quot;</div><div class="line">Output: &quot;1/3&quot;</div></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;1/3-1/2&quot;</div><div class="line">Output: &quot;-1/6&quot;</div></pre></td></tr></table></figure>
+<p>Example 4:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input:&quot;5/3+1/3&quot;</div><div class="line">Output: &quot;2/1&quot;</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>The input string only contains ‘0’ to ‘9’, ‘/‘, ‘+’ and ‘-‘. So does the output.</li>
+<li>Each fraction (input and output) has format ±numerator/denominator. If the first input fraction or the output is positive, then ‘+’ will be omitted.</li>
+<li>The input only contains valid irreducible fractions, where the numerator and denominator of each fraction will always be in the range [1,10]. If the denominator is 1, it means this fraction is actually an integer in a fraction format defined above.</li>
+<li>The number of given fractions will be in the range [1,10].</li>
+<li>The numerator and denominator of the final result are guaranteed to be valid and in the range of 32-bit int.</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>通过字符串完成表达式的计算。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>将”+” 和 “-“作为数字的正负号。<br>采用<a href="https://zh.wikipedia.org/wiki/輾轉相除法" target="_blank" rel="external"><strong>欧几里得算法</strong></a>求最大公约数，对分数进行约分。<br>利用<code>tuple</code>记录分子和分母。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func greatestCommonDivisor(m: Int, d: Int) -&gt; Int &#123;</div><div class="line">        return m == 0 ? d : greatestCommonDivisor(m: d % m, d: m)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    func fractionAddition(_ expression: String) -&gt; String &#123;</div><div class="line">        var ans = (0, 1)</div><div class="line">        var score = (0, 0)</div><div class="line">        var symbol = 1</div><div class="line">        var num = 0</div><div class="line">        for (i, e) in expression.enumerated() &#123;</div><div class="line">            if e == &quot;-&quot; || e == &quot;+&quot; &#123;</div><div class="line">                symbol = e == &quot;-&quot; ? -1 : 1</div><div class="line">            &#125; else if e == &quot;/&quot; &#123;</div><div class="line">                score.0 = symbol * num</div><div class="line">                num = 0</div><div class="line">            &#125; else &#123;</div><div class="line">                num = num * 10 + Int(String(e))!</div><div class="line">            &#125;</div><div class="line">            if ((e == &quot;-&quot; || e == &quot;+&quot;) &amp;&amp; num != 0)  || i == expression.count - 1 &#123;</div><div class="line">                score.1 = num</div><div class="line">                ans = (score.0 * ans.1 + score.1 * ans.0, (score.1 * ans.1))</div><div class="line">                let gcd = greatestCommonDivisor(m: abs(ans.0), d: ans.1)</div><div class="line">                ans = (ans.0 / gcd, ans.1 / gcd)</div><div class="line">                num = 0</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return &quot;\(ans.0)&quot; + &quot;/&quot; + &quot;\(ans.1)&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Hamming-Distance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Hamming-Distance/" itemprop="url">Hamming Distance</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-23T10:09:05+08:00">
+                2018-01-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Hamming-Distance/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="Hamming-Distance/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="461-Hamming-Distance"><a href="#461-Hamming-Distance" class="headerlink" title="461. Hamming Distance"></a><a href="https://leetcode.com/problems/hamming-distance/description/" target="_blank" rel="external">461. Hamming Distance</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Given two integers x and y, calculate the Hamming distance.</p>
+<p>Note:<br>0 ≤ x, y &lt; 231.</p>
+<p>Example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Input: x = 1, y = 4</div><div class="line"></div><div class="line">Output: 2</div><div class="line"></div><div class="line">Explanation:</div><div class="line">1   (0 0 0 1)</div><div class="line">4   (0 1 0 0)</div><div class="line">       ↑   ↑</div></pre></td></tr></table></figure>
+<p>The above arrows point to positions where the corresponding bits are different.</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>汉明距离，两个二进制数不相等的位的个数。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>按位异或，求得不相等的位。<br>遍历，按位与求其个数。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func hammingDistance(_ x: Int, _ y: Int) -&gt; Int &#123;</div><div class="line">        var xor = x^y</div><div class="line">        var count = 0</div><div class="line">        while xor != 0 &#123;</div><div class="line">            xor = (xor - 1) &amp; xor</div><div class="line">            count += 1</div><div class="line">        &#125;</div><div class="line">        return count</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="477-Total-Hamming-Distance"><a href="#477-Total-Hamming-Distance" class="headerlink" title="477. Total Hamming Distance"></a><a href="https://leetcode.com/problems/total-hamming-distance/description/" target="_blank" rel="external">477. Total Hamming Distance</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>The Hamming distance between two integers is the number of positions at which the corresponding bits are different.</p>
+<p>Now your job is to find the total Hamming distance between all pairs of the given numbers.</p>
+<p>Example:<br>Input: 4, 14, 2</p>
+<p>Output: 6</p>
+<p>Explanation: In binary representation, the 4 is 0100, 14 is 1110, and 2 is 0010 (just<br>showing the four bits relevant in this case). So the answer will be:<br>HammingDistance(4, 14) + HammingDistance(4, 2) + HammingDistance(14, 2) = 2 + 2 + 2 = 6.<br>Note:<br>Elements of the given array are in the range of 0 to 10^9<br>Length of the array will not exceed 10^4.</p>
+<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>计算数组内所有数值的汉明距离。</p>
+<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>由题目例子看:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt;14: 1110</div><div class="line">&gt;4 : 0100</div><div class="line">&gt;2 : 0010</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>第一列的汉明距离是2，第二列的汉明距离是2，第三列的汉明距离是2，第四列的汉明距离是0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;14: 1110</div><div class="line">&gt;10: 1010</div><div class="line">&gt;2 : 0010</div><div class="line">&gt;1 : 0001</div><div class="line">&gt;</div></pre></td></tr></table></figure>
+<p>第一列的汉明距离是4，第二列的汉明距离是3，第三列的汉明距离是3，第四列的汉明距离是3。<br>记每一列的1的个数为count，可得规律：(nums.count - count) * count </p>
+</blockquote>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func totalHammingDistance(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        for i in 0..&lt;32 &#123;</div><div class="line">            var count = 0</div><div class="line">            for num in nums &#123;</div><div class="line">                count += (num &gt;&gt; i &amp; 1)</div><div class="line">            &#125;</div><div class="line">            ans += (nums.count - count) * count</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/725-Split-Linked-List-in-Parts/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1561,347 +1909,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/655-Print-Binary-Tree/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/655-Print-Binary-Tree/" itemprop="url">655. Print Binary Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:49:11+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/655-Print-Binary-Tree/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="655-Print-Binary-Tree/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="655-Print-Binary-Tree"><a href="#655-Print-Binary-Tree" class="headerlink" title="655. Print Binary Tree"></a><a href="https://leetcode.com/problems/print-binary-tree/description/" target="_blank" rel="external">655. Print Binary Tree</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Print a binary tree in an m*n 2D string array following these rules:</p>
-<ul>
-<li>The row number m should be equal to the height of the given binary tree.</li>
-<li>The column number n should always be an odd number.</li>
-<li>The root node’s value (in string format) should be put in the exactly middle of the first row it can be put. The column and the row where the root node belongs will separate the rest space into two parts (left-bottom part and right-bottom part). You should print the left subtree in the left-bottom part and print the right subtree in the right-bottom part. The left-bottom part and the right-bottom part should have the same size. Even if one subtree is none while the other is not, you don’t need to print anything for the none subtree but still need to leave the space as large as that for the other subtree. However, if two subtrees are none, then you don’t need to leave space for both of them.</li>
-<li>Each unused space should contain an empty string “”.</li>
-<li>Print the subtrees following the same rules.</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    /</div><div class="line">   2</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;1&quot;, &quot;&quot;],</div><div class="line"> [&quot;2&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line">Input:</div><div class="line">     1</div><div class="line">    / \</div><div class="line">   2   3</div><div class="line">    \</div><div class="line">     4</div><div class="line">Output:</div><div class="line">[[&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;3&quot;, &quot;&quot;],</div><div class="line"> [&quot;&quot;, &quot;&quot;, &quot;4&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">Example 3:</div><div class="line">Input:</div><div class="line">      1</div><div class="line">     / \</div><div class="line">    2   5</div><div class="line">   / </div><div class="line">  3 </div><div class="line"> / </div><div class="line">4 </div><div class="line">Output:</div><div class="line"></div><div class="line">[[&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;1&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;2&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;5&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;&quot;,  &quot;3&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]</div><div class="line"> [&quot;4&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;,  &quot;&quot;, &quot;&quot;, &quot;&quot;]]</div></pre></td></tr></table></figure>
-<p>Note: The height of binary tree is in the range of [1, 10].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>转换二叉树为<code>m * n</code>的二位数组。<br>规则如下：</p>
-<ul>
-<li>行数m为二叉树的深度</li>
-<li>列数n必须是以奇数</li>
-<li>根节点的值应该放在第一行的中间。以根节点为中轴线，将二维数组分成左右两部分。左下部分输出左子树，右下部分输出右子树，并且左右子树的宽度相同。即使左子树或右子树有一个为nil，也需要为不存在的子树保留其空间。如果左右子树都不存在，则不需要保留任何空间。</li>
-<li>每个未使用的空间需要以空字符串表示。</li>
-<li>重复以上操作输出子树。</li>
-</ul>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>1、需先求出树的高度。<br>2、根据树的高度，求出n。由题目中的例子可知规则，具体看代码实现。<br>3、递归遍历左右子树，采用双指针，求出节点的下标。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func printTree(_ root: TreeNode?) -&gt; [[String]] &#123;</div><div class="line"></div><div class="line">        func findDepth(root: TreeNode?) -&gt; Int &#123;</div><div class="line">            guard let node = root else &#123; return 0 &#125;</div><div class="line">            return 1 + max(findDepth(root: node.left), findDepth(root: node.right))</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        guard let root = root else &#123; return [] &#125;</div><div class="line">        </div><div class="line">        let height = findDepth(root: root)</div><div class="line">        var width = (1 &lt;&lt; height) - 1</div><div class="line">        var ans = Array(repeating: Array(repeating: &quot;&quot;, count: width), count: height)</div><div class="line">        </div><div class="line">        </div><div class="line">        func transform(root: TreeNode?, level: Int, l: Int, r: Int) &#123;</div><div class="line">            guard let node = root else &#123; return &#125;</div><div class="line">            let mid = l + (r - l) / 2</div><div class="line">            ans[level][mid] = &quot;\(node.val)&quot;</div><div class="line">            transform(root: node.left, level: level + 1, l: l, r: mid - 1)</div><div class="line">            transform(root: node.right, level: level + 1, l: mid + 1, r: r)</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        </div><div class="line">        transform(root: root, level: 0, l: 0, r: width - 1)</div><div class="line">        </div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/748-Shortest-Completing-Word/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/748-Shortest-Completing-Word/" itemprop="url">748. Shortest Completing Word</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-21T17:48:15+08:00">
-                2018-01-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/748-Shortest-Completing-Word/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="748-Shortest-Completing-Word/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="748-Shortest-Completing-Word"><a href="#748-Shortest-Completing-Word" class="headerlink" title="748. Shortest Completing Word"></a><a href="https://leetcode.com/problems/shortest-completing-word/description/" target="_blank" rel="external">748. Shortest Completing Word</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Find the minimum length word from a given dictionary words, which has all the letters from the string licensePlate. Such a word is said to complete the given string licensePlate</p>
-<p>Here, for letters we ignore case. For example, “P” on the licensePlate still matches “p” on the word.</p>
-<p>It is guaranteed an answer exists. If there are multiple answers, return the one that occurs first in the array.</p>
-<p>The license plate might have the same letter occurring multiple times. For example, given a licensePlate of “PP”, the word “pair” does not complete the licensePlate, but the word “supper” does.</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 PSt&quot;, words = [&quot;step&quot;, &quot;steps&quot;, &quot;stripe&quot;, &quot;stepple&quot;]</div><div class="line">Output: &quot;steps&quot;</div><div class="line">Explanation: The smallest length word that contains the letters &quot;S&quot;, &quot;P&quot;, &quot;S&quot;, and &quot;T&quot;.</div><div class="line">Note that the answer is not &quot;step&quot;, because the letter &quot;s&quot; must occur in the word twice.</div><div class="line">Also note that we ignored case for the purposes of comparing whether a letter exists in the word.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Input: licensePlate = &quot;1s3 456&quot;, words = [&quot;looks&quot;, &quot;pest&quot;, &quot;stew&quot;, &quot;show&quot;]</div><div class="line">Output: &quot;pest&quot;</div><div class="line">Explanation: There are 3 smallest length words that contains the letters &quot;s&quot;.</div><div class="line">We return the one that occurred first.</div></pre></td></tr></table></figure>
-<p>Note:<br>licensePlate will be a string with length in range [1, 7].<br>licensePlate will contain digits, spaces, or letters (uppercase or lowercase).<br>words will have a length in the range [10, 1000].<br>Every words[i] will consist of lowercase letters, and have length in range [1, 15].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个车牌<code>licensePlate</code>，在<code>words</code>中寻找包含了车牌上所有字符的元素。返回最短的匹配元素，如果有多个，则返回第一个。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>暴力搜索，辅助哈希表。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func shortestCompletingWord(_ licensePlate: String, _ words: [String]) -&gt; String &#123;</div><div class="line">        var dict = [Character: Int]()</div><div class="line">        var ans = &quot;&quot;</div><div class="line">        let express = try! NSRegularExpression(pattern: &quot;[a-z]&quot;, options: .caseInsensitive)</div><div class="line">        </div><div class="line">        for n in licensePlate.lowercased() &#123;</div><div class="line">            let s = String(n)</div><div class="line">            //正则匹配字母</div><div class="line">            if express.matches(in: s, options: NSRegularExpression.MatchingOptions.reportProgress, range: NSRange(location: 0, length: 1))</div><div class="line">               .count &gt;= 1&#123;</div><div class="line">                dict[n] = (dict[n] ?? 0) + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        for word in words &#123;</div><div class="line">            var tmp = dict</div><div class="line">            </div><div class="line">            for char in word &#123;</div><div class="line">                if let count = tmp[char] &#123;</div><div class="line">                    tmp[char] = count - 1</div><div class="line">                    if count &lt;= 1 &#123;</div><div class="line">                        tmp.removeValue(forKey: char)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            </div><div class="line">            if tmp.isEmpty &#123;</div><div class="line">                if ans.isEmpty &#123; ans = word &#125;</div><div class="line">                //判断最小匹配元素</div><div class="line">                ans = ans.count &lt;= word.count ? ans : word</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1952,7 +1959,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">78</span>
+                <span class="site-state-item-count">80</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
