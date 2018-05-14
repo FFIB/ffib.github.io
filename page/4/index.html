@@ -260,6 +260,801 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/230-Kth-Smallest-Element-in-a-BST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/230-Kth-Smallest-Element-in-a-BST/" itemprop="url">230. Kth Smallest Element in a BST</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T14:48:43+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/230-Kth-Smallest-Element-in-a-BST/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="230-Kth-Smallest-Element-in-a-BST/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="230-Kth-Smallest-Element-in-a-BST"><a href="#230-Kth-Smallest-Element-in-a-BST" class="headerlink" title="230. Kth Smallest Element in a BST"></a><a href="https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/" target="_blank" rel="external">230. Kth Smallest Element in a BST</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary search tree, write a function kthSmallest to find the kth smallest element in it.</p>
+<p>Note:<br>You may assume k is always valid, 1 ≤ k ≤ BST’s total elements.</p>
+<p>Follow up:<br>What if the BST is modified (insert/delete operations) often and you need to find the kth smallest frequently? How would you optimize the kthSmallest routine?</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>找二叉搜索树中，第 <code>k</code> 个小的值。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过辅助栈，按照中序遍历二叉树。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * Definition for a binary tree node.</div><div class="line"> * public class TreeNode &#123;</div><div class="line"> *     public var val: Int</div><div class="line"> *     public var left: TreeNode?</div><div class="line"> *     public var right: TreeNode?</div><div class="line"> *     public init(_ val: Int) &#123;</div><div class="line"> *         self.val = val</div><div class="line"> *         self.left = nil</div><div class="line"> *         self.right = nil</div><div class="line"> *     &#125;</div><div class="line"> * &#125;</div><div class="line"> */</div><div class="line">class Solution &#123;</div><div class="line">    func kthSmallest(_ root: TreeNode?, _ k: Int) -&gt; Int &#123;</div><div class="line">        var tree = root</div><div class="line"></div><div class="line">        var stack = [TreeNode?]()</div><div class="line">        while tree != nil &#123;</div><div class="line">            stack.append(tree)</div><div class="line">            tree = tree?.left</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var num = 1</div><div class="line">        while !stack.isEmpty &amp;&amp; num &lt;= k &#123;</div><div class="line">            tree = stack.removeLast()</div><div class="line">            num += 1</div><div class="line"></div><div class="line">            var r = tree?.right</div><div class="line">            while r != nil &#123;</div><div class="line">                stack.append(r)</div><div class="line">                r = r?.left</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return tree?.val ?? 0</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/464-Can-I-Win/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/464-Can-I-Win/" itemprop="url">464 Can I Win</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T10:56:09+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/464-Can-I-Win/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="464-Can-I-Win/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="464-Can-I-Win"><a href="#464-Can-I-Win" class="headerlink" title="464. Can I Win"></a><a href="https://leetcode.com/problems/can-i-win/description/" target="_blank" rel="external">464. Can I Win</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>In the “100 game,” two players take turns adding, to a running total, any integer from 1..10. The player who first causes the running total to reach or exceed 100 wins.</p>
+<p>What if we change the game so that players cannot re-use integers?</p>
+<p>For example, two players might take turns drawing from a common pool of numbers of 1..15 without replacement until they reach a total &gt;= 100.</p>
+<p>Given an integer maxChoosableInteger and another integer desiredTotal, determine if the first player to move can force a win, assuming both players play optimally.</p>
+<p>You can always assume that maxChoosableInteger will not be larger than 20 and desiredTotal will not be larger than 300.</p>
+<p>Example</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Input:</div><div class="line">maxChoosableInteger = 10</div><div class="line">desiredTotal = 11</div><div class="line"></div><div class="line">Output:</div><div class="line">false</div><div class="line"></div><div class="line">Explanation:</div><div class="line">No matter which integer the first player choose, the first player will lose.</div><div class="line">The first player can choose an integer from 1 up to 10.</div><div class="line">If the first player choose 1, the second player can only choose integers from 2 up to 10.</div><div class="line">The second player will win by choosing 10 and get a total = 11, which is &gt;= desiredTotal.</div><div class="line">Same with other integers chosen by the first player, the second player will always win.</div></pre></td></tr></table></figure>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>提供两个整数 <code>maxChoosableInteger</code> 和 <code>desiredTotal</code> 两个玩家轮流从 <code>1~maxChoosableInteger</code>,直到 <code>总和 &gt;= desiredTotal</code>，确定第一个玩家是否能获胜。 <code>1~maxChoosableInteger</code> 不能重复选择。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过 <code>visited</code> 数组记录是否数字是否已经被访问过。<br><code>map</code> 记录当前组合是否被访问过。<br>简单粗暴的 <code>DFS</code>。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func canIWin(_ maxChoosableInteger: Int, _ desiredTotal: Int) -&gt; Bool &#123;</div><div class="line">        if desiredTotal &lt;= maxChoosableInteger &#123; return true &#125;</div><div class="line">        if (1+maxChoosableInteger)*maxChoosableInteger/2 &lt; desiredTotal &#123; return false &#125;</div><div class="line">        var visited = Array(repeating: false, count: maxChoosableInteger)</div><div class="line">        var map = [Int: Bool]()</div><div class="line"></div><div class="line">        func dfs(target: Int) -&gt; Bool &#123;</div><div class="line">            let key = (visited.reduce(0) &#123; (res, v) -&gt; Int in</div><div class="line">                var next = res &lt;&lt; 1</div><div class="line">                if v &#123; next |= 1 &#125;</div><div class="line">                return next</div><div class="line">            &#125;)</div><div class="line">            if let v = map[key] &#123; return v &#125;</div><div class="line">            for (i, v) in visited.enumerated() &#123;</div><div class="line">                if !v &#123;</div><div class="line">                    visited[i] = true</div><div class="line">                    if target &lt;= i + 1 || !dfs(target: target - i - 1) &#123;</div><div class="line">                        map[key] = true</div><div class="line">                        visited[i] = false</div><div class="line">                        return true</div><div class="line">                    &#125;</div><div class="line">                    visited[i] = false</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            map[key] = false</div><div class="line">            return false</div><div class="line">        &#125;</div><div class="line">        return dfs(target: desiredTotal)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/658-Find-K-Closest-Elements/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/658-Find-K-Closest-Elements/" itemprop="url">658 Find K Closest Elements</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T12:31:05+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/658-Find-K-Closest-Elements/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="658-Find-K-Closest-Elements/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="658-Find-K-Closest-Elements"><a href="#658-Find-K-Closest-Elements" class="headerlink" title="658. Find K Closest Elements"></a><a href="https://leetcode.com/problems/find-k-closest-elements/description/" target="_blank" rel="external">658. Find K Closest Elements</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a sorted array, two integers k and x, find the k closest elements to x in the array. The result should also be sorted in ascending order. If there is a tie, the smaller elements are always preferred.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,4,5], k=4, x=3</div><div class="line">Output: [1,2,3,4]</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,4,5], k=4, x=-1</div><div class="line">Output: [1,2,3,4]</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>The value k is positive and will always be smaller than the length of the sorted array.</li>
+<li>Length of the given array is positive and will not exceed 104</li>
+<li>Absolute value of elements in the array and x will not exceed 104</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>给定一个有序数组，在数组中找到与 <code>x</code> 接近的 <code>k</code> 个元素。 </p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>使用二分查找找到最接近 <code>x</code> 的数组下标 <code>index</code>。<br>从子序列 <code>index-k...index+k</code> 中找到最接近 <code>x</code> 的 <code>k</code> 个元素。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findClosestElements(_ arr: [Int], _ k: Int, _ x: Int) -&gt; [Int] &#123;</div><div class="line"></div><div class="line">        func binarySearch() -&gt; Int &#123;</div><div class="line">            var l = 0</div><div class="line">            var r = arr.count - 1</div><div class="line"></div><div class="line">            while l + 1 &lt; r &#123;</div><div class="line">                let mid = (l + r) / 2</div><div class="line">                if arr[mid] == x &#123;</div><div class="line">                    return mid</div><div class="line">                &#125;else if arr[mid] &gt; x &#123;</div><div class="line">                    r = mid</div><div class="line">                &#125;else &#123;</div><div class="line">                    l = mid</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            return r</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        guard arr.count &gt; 0 else &#123; return [] &#125;</div><div class="line"></div><div class="line">        if arr[0] &gt; x &#123; return Array(arr[0..&lt;min(k, arr.count)]) &#125;</div><div class="line">        if arr.last! &lt; x &#123; return Array(arr[max(arr.count - k, 0)..&lt;arr.count]) &#125;</div><div class="line"></div><div class="line">        let index = binarySearch()</div><div class="line">        var l = max(0, index - k)</div><div class="line">        var r = min(index + k, arr.count - 1)</div><div class="line"></div><div class="line">        while r - l != k - 1 &#123;</div><div class="line">            if x - arr[l] &gt; arr[r] - x &#123;</div><div class="line">                l += 1</div><div class="line">            &#125;else &#123;</div><div class="line">                r -= 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return Array(arr[l...r])</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/795-Number-of-Subarrays-with-Bounded-Maximum/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/795-Number-of-Subarrays-with-Bounded-Maximum/" itemprop="url">795. Number of Subarrays with Bounded Maximum</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T09:51:09+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/795-Number-of-Subarrays-with-Bounded-Maximum/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="795-Number-of-Subarrays-with-Bounded-Maximum/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="795-Number-of-Subarrays-with-Bounded-Maximum"><a href="#795-Number-of-Subarrays-with-Bounded-Maximum" class="headerlink" title="795. Number of Subarrays with Bounded Maximum"></a><a href="https://leetcode.com/problems/number-of-subarrays-with-bounded-maximum/" target="_blank" rel="external">795. Number of Subarrays with Bounded Maximum</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>We are given an array A of positive integers, and two positive integers L and R (L &lt;= R).</p>
+<p>Return the number of (contiguous, non-empty) subarrays such that the value of the maximum array element in that subarray is at least L and at most R.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example :</div><div class="line">Input: </div><div class="line">A = [2, 1, 4, 3]</div><div class="line">L = 2</div><div class="line">R = 3</div><div class="line">Output: 3</div><div class="line">Explanation: There are three subarrays that meet the requirements: [2], [2, 1], [3].</div></pre></td></tr></table></figure>
+<p>Note:</p>
+<ul>
+<li>L, R  and A[i] will be an integer in the range [0, 10^9].</li>
+<li>The length of A will be in the range of [1, 50000].</li>
+</ul>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求最大值 <code>&gt;= L</code>、<code>&lt;= R</code>的所有子序列。</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>通过 <code>&gt; R</code> 将数组分割成多个子序列。<br>再通过 <code>&lt; L</code> 将数组分割计算，确保每个子序列中都存在至少一个满足 <code>&gt;= L &amp;&amp; &lt;= R</code>。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func numSubarrayBoundedMax(_ A: [Int], _ L: Int, _ R: Int) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        var lastIndex = 0</div><div class="line">        for (i, a) in (A+[R+1]).enumerated() &#123;</div><div class="line"></div><div class="line">            if a &gt; R &#123;</div><div class="line">                let c = i - lastIndex</div><div class="line">                var last = 0</div><div class="line">                for (j, subA) in A[lastIndex..&lt;i].enumerated() &#123;</div><div class="line">                    if subA &gt;= L &#123;</div><div class="line">                        ans += (j - last + 1) * (c - j)</div><div class="line">                        last = j + 1</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">                lastIndex = i + 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/659-Split-Array-into-Consecutive-Subsequences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="FFIB">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FFIB">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/659-Split-Array-into-Consecutive-Subsequences/" itemprop="url">659. Split Array into Consecutive Subsequences</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T10:34:01+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/659-Split-Array-into-Consecutive-Subsequences/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="659-Split-Array-into-Consecutive-Subsequences/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="659-Split-Array-into-Consecutive-Subsequences"><a href="#659-Split-Array-into-Consecutive-Subsequences" class="headerlink" title="659. Split Array into Consecutive Subsequences"></a><a href="https://leetcode.com/problems/split-array-into-consecutive-subsequences/description/" target="_blank" rel="external">659. Split Array into Consecutive Subsequences</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are given an integer array sorted in ascending order (may contain duplicates), you need to split them into several subsequences, where each subsequences consist of at least 3 consecutive integers. Return whether you can make such a split.</p>
+<p>Example 1:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,3,4,5]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line">You can split them into two consecutive subsequences : </div><div class="line">1, 2, 3</div><div class="line">3, 4, 5</div></pre></td></tr></table></figure>
+<p>Example 2:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,3,4,4,5,5]</div><div class="line">Output: True</div><div class="line">Explanation:</div><div class="line">You can split them into two consecutive subsequences : </div><div class="line">1, 2, 3, 4, 5</div><div class="line">3, 4, 5</div></pre></td></tr></table></figure>
+<p>Example 3:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Input: [1,2,3,4,4,5]</div><div class="line">Output: False</div></pre></td></tr></table></figure>
+<p>Note:<br>The length of the input is in range of [1, 10000]</p>
+<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将一有序数组，拆分成多个递增子序列。（每个子序列至少三个）</p>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
+<p>一个字典 <code>dict</code> 记录剩余 <code>num</code> 的个数<br>另一个字典 <code>tail</code> 则记录当前的 <code>num</code> 是否可以被拼接到之前的子序列。<br>如果不可以则重新启动一个新的序列，但是新的序列需要满足至少有三个 <code>num</code> 。</p>
+</blockquote>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func isPossible(_ nums: [Int]) -&gt; Bool &#123;</div><div class="line">        var dict = [Int: Int]()</div><div class="line">        var tail = [Int:Int]()</div><div class="line">        for num in nums &#123;</div><div class="line">            dict[num] = (dict[num] ?? 0) + 1</div><div class="line">        &#125;</div><div class="line">        for num in nums &#123;</div><div class="line">            if let c = dict[num], c == 0 &#123;</div><div class="line">                continue</div><div class="line">            &#125; else if let c = tail[num], c &gt; 0 &#123;</div><div class="line">                tail[num] = c - 1</div><div class="line">                tail[num + 1] = (tail[num + 1] ?? 0) + 1</div><div class="line">            &#125; else if let c1 = dict[num + 1], c1 &gt; 0, let c2 = dict[num + 2], c2 &gt; 0 &#123;</div><div class="line">                dict[num + 1] = c1 - 1</div><div class="line">                dict[num + 2] = c2 - 1</div><div class="line">                tail[num + 3] = (tail[num + 3] ?? 0) + 1</div><div class="line">            &#125; else &#123;</div><div class="line">                return false</div><div class="line">            &#125;</div><div class="line">            dict[num]! -= 1</div><div class="line">        &#125;</div><div class="line">        return true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ffib.github.io/649-Dota2-Senate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1048,836 +1843,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/525-Contiguous-Array/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/525-Contiguous-Array/" itemprop="url">525. Contiguous Array</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T22:11:15+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/525-Contiguous-Array/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="525-Contiguous-Array/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="525-Contiguous-Array"><a href="#525-Contiguous-Array" class="headerlink" title="525. Contiguous Array"></a><a href="https://leetcode.com/problems/contiguous-array/description/" target="_blank" rel="external">525. Contiguous Array</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a binary array, find the maximum length of a contiguous subarray with equal number of 0 and 1.</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: [0,1]</div><div class="line">Output: 2</div><div class="line">Explanation: [0, 1] is the longest contiguous subarray with equal number of 0 and 1.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Input: [0,1,0]</div><div class="line">Output: 2</div><div class="line">Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.</div></pre></td></tr></table></figure>
-<p>Note: The length of the given binary array will not exceed 50,000.</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>求数组中 <code>0</code> 和 <code>1</code> 个数一样的最长子数组。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>主要思路是将 <code>0</code> 换成 <code>-1</code> 进行相加。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func findMaxLength(_ nums: [Int]) -&gt; Int &#123;</div><div class="line">        var dict = [0: -1]</div><div class="line">        var sum = 0</div><div class="line">        var ml = 0</div><div class="line"></div><div class="line">        for (i, num) in (nums.enumerated()) &#123;</div><div class="line">            sum += num == 0 ? -1 : 1</div><div class="line">            if let v = dict[sum] &#123;</div><div class="line">                ml = max(ml, i - v)</div><div class="line">            &#125;else &#123;</div><div class="line">                dict[sum] = i</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        return ml</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/43-Multiply-String/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/43-Multiply-String/" itemprop="url">43 Multiply String</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-01T11:27:57+08:00">
-                2018-02-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/43-Multiply-String/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="43-Multiply-String/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="43-Multiply-Strings"><a href="#43-Multiply-Strings" class="headerlink" title="43. Multiply Strings"></a><a href="https://leetcode.com/problems/multiply-strings/description/" target="_blank" rel="external">43. Multiply Strings</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given two non-negative integers num1 and num2 represented as strings, return the product of num1 and num2.</p>
-<p>Note:</p>
-<ul>
-<li>The length of both num1 and num2 is &lt; 110.</li>
-<li>Both num1 and num2 contains only digits 0-9.</li>
-<li>Both num1 and num2 does not contain any leading zero.</li>
-<li>You must not use any built-in BigInteger library or convert the inputs to integer directly.</li>
-</ul>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>大数乘法。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>模拟手算的过程，以数组 <code>pos</code> 储存结果，第一个字符串的第 <code>i</code> 位 和 第二个字符串的第 <code>j</code> 位相乘，一定是结果的的第 <code>i + j</code> 位，那么对当前结果进行取余就是 进位，即 <code>i + j + 1</code> 位。<br>最后剔除掉数组 <code>pos</code> 内所有前置位的 <code>0</code> 。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func multiply(_ num1: String, _ num2: String) -&gt; String &#123;</div><div class="line">        let s1 = Array(num1.unicodeScalars.reversed())</div><div class="line">        let s2 = Array(num2.unicodeScalars.reversed())</div><div class="line"></div><div class="line">        var pos = Array(repeating: 0, count: num1.count + num2.count)</div><div class="line"></div><div class="line">        for (i, char1) in s1.enumerated() &#123;</div><div class="line">            for (j, char2) in s2.enumerated() &#123;</div><div class="line">                let mult = Int((char1.value - 48) * (char2.value - 48))</div><div class="line">                let p1 = num1.count + num2.count - i - j - 2, p2 = num1.count + num2.count - i - j - 2 + 1</div><div class="line">                let sum = mult  + pos[p2]</div><div class="line"></div><div class="line">                pos[p1] += sum / 10</div><div class="line">                pos[p2] = sum % 10</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        var index = pos.count - 1</div><div class="line">        for (i, num) in pos.enumerated() &#123;</div><div class="line">            if num != 0 &#123;</div><div class="line">                index = i</div><div class="line">                break</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        let ans = pos[index..&lt;pos.count].reduce(&quot;&quot;, &#123; (res, num) -&gt; String in</div><div class="line">                    return res + &quot;\(num)&quot;</div><div class="line">                &#125;)</div><div class="line">        return ans.count == 0 ? &quot;0&quot; : ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/754-Reach-a-Number/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/754-Reach-a-Number/" itemprop="url">754. Reach a Number</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-31T09:47:00+08:00">
-                2018-01-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/754-Reach-a-Number/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="754-Reach-a-Number/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="754-Reach-a-Number"><a href="#754-Reach-a-Number" class="headerlink" title="754. Reach a Number"></a><a href="https://leetcode.com/problems/reach-a-number/" target="_blank" rel="external">754. Reach a Number</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>You are standing at position 0 on an infinite number line. There is a goal at position target.</p>
-<p>On each move, you can either go left or right. During the n-th move (starting from 1), you take n steps.</p>
-<p>Return the minimum number of steps required to reach the destination.</p>
-<p>Example 1:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Input: target = 3</div><div class="line">Output: 2</div><div class="line">Explanation:</div><div class="line">On the first move we step from 0 to 1.</div><div class="line">On the second step we step from 1 to 3.</div></pre></td></tr></table></figure>
-<p>Example 2:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Input: target = 2</div><div class="line">Output: 3</div><div class="line">Explanation:</div><div class="line">On the first move we step from 0 to 1.</div><div class="line">On the second move we step  from 1 to -1.</div><div class="line">On the third move we step from -1 to 2.</div></pre></td></tr></table></figure>
-<p>Note:<br>target will be a non-zero integer in the range [-10^9, 10^9].</p>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>向右或者向左移动 <code>N</code> 次， 每一次移动 <code>N</code> 步，求至少需要移动多少步才能终点。 </p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>按照数学思想，先找规律。<br>2:  1 - 2 + 3               sum = 3, N = 2 + 1,<br>3:  1 + 2                sum = 3, N = 3,<br>4:  1 + 2 - 3 + 4            sum = 6, N = 3 + 1,<br>5:  1 - 2 - 3 + 4 + 5        sum = 6, N = 3 + 2,<br>6:  1 + 2 + 3                sum = 6, N = 3,<br>7:  1 + 2 + 3 - 4 + 5    sum = 10, N = 4 + 1,<br>8:  -1 + 2 + 3 + 4        sum = 10, N = 4,<br>9:  1 + 2 - 3 + 4 + 5    sum = 10, N = 4 + 1,<br>10: 1 + 2 + 3 + 4            sum = 10, N = 5,<br>可得规律：if (sum - target) % 2 == 0   返回 n 即可<br>if n % 2 == 1 return  n + 1<br>else return n + 2</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func reachNumber(_ target: Int) -&gt; Int &#123;</div><div class="line">        var sum = 0</div><div class="line">        var n = 0</div><div class="line">        let target = abs(target)</div><div class="line">        while sum &lt; target &#123;</div><div class="line">            sum += n</div><div class="line">            n += 1</div><div class="line">        &#125;</div><div class="line">        if (sum - target) % 2 == 0 &#123;</div><div class="line">            return n - 1</div><div class="line">        &#125;else &#123;</div><div class="line">            if n % 2 == 1 &#123; return n &#125;</div><div class="line">            else &#123; return n + 1 &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/130-Surrounded-Regions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/130-Surrounded-Regions/" itemprop="url">130 Surrounded Regions</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T10:45:27+08:00">
-                2018-01-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/130-Surrounded-Regions/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="130-Surrounded-Regions/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="130-Surrounded-Regions"><a href="#130-Surrounded-Regions" class="headerlink" title="130. Surrounded Regions"></a><a href="https://leetcode.com/problems/surrounded-regions/description/" target="_blank" rel="external">130. Surrounded Regions</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given a 2D board containing ‘X’ and ‘O’ (the letter O), capture all regions surrounded by ‘X’.</p>
-<p>A region is captured by flipping all ‘O’s into ‘X’s in that surrounded region.</p>
-<p>For example,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X O O X</div><div class="line">X X O X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
-<p>After running your function, the board should be:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X X X X</div><div class="line">X O X X</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将矩阵中，被<code>X</code>包围的所有<code>O</code>都变为<code>X</code>。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>从四边开始遍历，如果边缘有<code>O</code>,则继续进行广度遍历，将相连的<code>O</code>标记为<code>#</code>。<br>遍历矩阵，则剩下的<code>O</code>便为被<code>X</code>包围的，即修改为<code>X</code>；将标记为<code>#</code>的修改为<code>O</code>。</p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">func solve(_ board: inout [[Character]]) &#123;</div><div class="line"></div><div class="line">        func bfs(x: Int, y: Int) &#123;</div><div class="line">            guard board[x][y] == &quot;O&quot; else &#123; return &#125;</div><div class="line">            board[x][y] = &quot;#&quot;</div><div class="line">            var queue = [(x, y)]</div><div class="line">            while !queue.isEmpty &#123;</div><div class="line">                let top = queue.removeLast()</div><div class="line">                if top.0 &gt; 0 &amp;&amp; board[top.0 - 1][top.1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0 - 1][top.1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0 - 1, top.1))</div><div class="line">                &#125;</div><div class="line">                if top.0 &lt; board.count - 1 &amp;&amp; board[top.0 + 1][top.1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0 + 1][top.1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0 + 1, top.1))</div><div class="line">                &#125;</div><div class="line">                if top.1 &gt; 0 &amp;&amp; board[top.0][top.1 - 1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0][top.1 - 1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0, top.1 - 1))</div><div class="line">                &#125;</div><div class="line">                if top.1 &lt; board[0].count - 1 &amp;&amp; board[top.0][top.1 + 1] == &quot;O&quot; &#123;</div><div class="line">                    board[top.0][top.1 + 1] = &quot;#&quot;</div><div class="line">                    queue.append((top.0, top.1 + 1))</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        guard board.count &gt; 2 &amp;&amp; board[0].count &gt; 2 else &#123; return &#125;</div><div class="line"></div><div class="line">        for j in 0..&lt;board[0].count &#123;</div><div class="line">            bfs(x: 0, y: j)</div><div class="line">            bfs(x: board.count - 1, y: j)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for i in 1..&lt;board.count - 1 &#123;</div><div class="line">            bfs(x: i, y: 0)</div><div class="line">            bfs(x: i, y: board[0].count - 1)</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        for i in 0..&lt;board.count &#123;</div><div class="line">            for j in 0..&lt;board[i].count &#123;</div><div class="line">                if board[i][j] == &quot;O&quot; &#123;</div><div class="line">                    board[i][j] = &quot;X&quot;</div><div class="line">                &#125;else if board[i][j] == &quot;#&quot; &#123;</div><div class="line">                    board[i][j] = &quot;O&quot;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ffib.github.io/Max-Chunks-To-Make-Sorted/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="FFIB">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="FFIB">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/Max-Chunks-To-Make-Sorted/" itemprop="url">Max Chunks To Make Sorted</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-28T20:26:22+08:00">
-                2018-01-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Max-Chunks-To-Make-Sorted/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="Max-Chunks-To-Make-Sorted/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="769-Max-Chunks-To-Make-Sorted"><a href="#769-Max-Chunks-To-Make-Sorted" class="headerlink" title="769. Max Chunks To Make Sorted"></a><a href="https://leetcode.com/problems/max-chunks-to-make-sorted/description/" target="_blank" rel="external">769. Max Chunks To Make Sorted</a></h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>Given an array arr that is a permutation of [0, 1, …, arr.length - 1], we split the array into some number of “chunks” (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.</p>
-<p>What is the most number of chunks we could have made?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line"></div><div class="line">Input: arr = [4,3,2,1,0]</div><div class="line">Output: 1</div><div class="line">Explanation:</div><div class="line">Splitting into two or more chunks will not return the required result.</div><div class="line">For example, splitting into [4, 3], [2, 1, 0] will result in [3, 4, 0, 1, 2], which isn&apos;t sorted.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line"></div><div class="line">Input: arr = [1,0,2,3,4]</div><div class="line">Output: 4</div><div class="line">Explanation:</div><div class="line">We can split into two chunks, such as [1, 0], [2, 3, 4].</div><div class="line">However, splitting into [1, 0], [2], [3], [4] is the highest number of chunks possible.</div></pre></td></tr></table></figure>
-<h3 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h3><p>将arr拆分n个部分，使得每个部分分别排序之后，重新组合在一起的数组呈递增序列。</p>
-<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>使数组呈递减序列，不满足条件的既加1：<br><code>arr[i..&lt;arr.count].min()! &gt; arr[0..&lt;i].max()!</code></p>
-</blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func maxChunksToSorted(_ arr: [Int]) -&gt; Int &#123;</div><div class="line">        guard !arr.isEmpty else &#123; return 0 &#125;</div><div class="line">        var ans = 1</div><div class="line">        for i in 1..&lt;arr.count &#123;</div><div class="line">            if arr[i..&lt;arr.count].min()! &gt; arr[0..&lt;i].max()! &#123;</div><div class="line">                ans += 1</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="768-Max-Chunks-To-Make-Sorted-II"><a href="#768-Max-Chunks-To-Make-Sorted-II" class="headerlink" title="768. Max Chunks To Make Sorted II"></a><a href="https://leetcode.com/problems/max-chunks-to-make-sorted-ii/description/" target="_blank" rel="external">768. Max Chunks To Make Sorted II</a></h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>This question is the same as “Max Chunks to Make Sorted” except the integers of the given array are not necessarily distinct, the input array could be up to length 2000, and the elements could be up to 10**8.</p>
-<p>Given an array arr of integers (not necessarily distinct), we split the array into some number of “chunks” (partitions), and individually sort each chunk.  After concatenating them, the result equals the sorted array.</p>
-<p>What is the most number of chunks we could have made?</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 1:</div><div class="line"></div><div class="line">Input: arr = [5,4,3,2,1]</div><div class="line">Output: 1</div><div class="line">Explanation:</div><div class="line">Splitting into two or more chunks will not return the required result.</div><div class="line">For example, splitting into [5, 4], [3, 2, 1] will result in [4, 5, 1, 2, 3], which isn&apos;t sorted.</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Example 2:</div><div class="line"></div><div class="line">Input: arr = [2,1,3,4,4]</div><div class="line">Output: 4</div><div class="line">Explanation:</div><div class="line">We can split into two chunks, such as [2, 1], [3, 4, 4].</div><div class="line">However, splitting into [2, 1], [3], [4], [4] is the highest number of chunks possible.</div></pre></td></tr></table></figure>
-<h3 id="题目大意-1"><a href="#题目大意-1" class="headerlink" title="题目大意"></a>题目大意</h3><p>这是<code>I</code>的变形，数组可能有重复元素。</p>
-<h3 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h3><blockquote>
-<p>通过当前数组记为<code>arr</code>和已排序数组记为<code>sortArr</code>进行对比，如果之前的元素个数不相等则计数器加一。<br>只有当计数器为0，即代表arr和sortArr前N项元素相同，结果加一。</p>
-</blockquote>
-<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Solution &#123;</div><div class="line">    func maxChunksToSorted(_ arr: [Int]) -&gt; Int &#123;</div><div class="line">        var ans = 0</div><div class="line">        var dict = [Int: Int]()</div><div class="line">        var count = 0</div><div class="line"></div><div class="line">        for (x, y) in zip(arr, arr.sorted()) &#123;</div><div class="line">            dict[x] = (dict[x] ?? 0) + 1</div><div class="line">            if dict[x] == 0 &#123;count -= 1 &#125;</div><div class="line">            if dict[x] == 1 &#123; count += 1 &#125;</div><div class="line"></div><div class="line">            dict[y] = (dict[y] ?? 0) - 1</div><div class="line">            if dict[y] == -1 &#123; count += 1 &#125;</div><div class="line">            if dict[y] == 0 &#123; count -= 1 &#125;</div><div class="line"></div><div class="line">            if count == 0 &#123; ans += 1 &#125;</div><div class="line">        &#125;</div><div class="line">        return ans</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1923,7 +1893,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">80</span>
+                <span class="site-state-item-count">85</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
